@@ -12,13 +12,13 @@ CPU="2"
 MEM="8"
 ## sequence databases
 #DB_UR30="$PIPEDIR/UniRef30_2020_06/UniRef30_2020_06"
-DB_UR30="~/Desktop/GNN_DOVE/UniRef30_2023_02"
+DB_UR30="./UniRef30_2023_02"
 #DB_BFD="$PIPEDIR/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt"
 
 # setup hhblits command
 #HHBLITS_UR30="hhblits -o /dev/null -mact 0.35 -maxfilt 100000000 -neffmax 20 -cov 25 -cpu $CPU -nodiff -realign_max 100000000 -maxseq 1000000 -maxmem $MEM -n 4 -d $DB_UR30"
 HHBLITS_UR30="hhblits -o /dev/null -mact 0.35 -maxfilt 100000000 -neffmax 20 -cov 25 -cpu $CPU -nodiff -realign_max 100000000 -maxseq 1000000 -maxmem $MEM -n 4 -d $DB_UR30"
-$HHBLITS_UR30 -i rcsb_pdb_5FXG.fasta -d ~/Desktop/GNN_DOVE/UniRef30_2023_02 -oa3m temp/t000_.$e.a3m -e 1e-3 -v 0 
+$HHBLITS_UR30 -i 5fxg.fasta -d ./UniRef30_2023_02 -oa3m temp/t000_.$e.a3m -e 1e-3 -v 0 
 #HHBLITS_BFD="hhblits -o /dev/null -mact 0.35 -maxfilt 100000000 -neffmax 20 -cov 25 -cpu $CPU -nodiff -realign_max 100000000 -maxseq 1000000 -maxmem $MEM -n 4 -d $DB_BFD"
 #
 #mkdir -p $out_dir/hhblits
