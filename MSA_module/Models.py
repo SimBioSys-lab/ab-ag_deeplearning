@@ -3,8 +3,7 @@ import torch.nn.functional as F
 from einops.layers.torch import Rearrange
 from torch import einsum, nn
 from torch.utils.checkpoint import checkpoint_sequential
-
-
+from einops import rearrange, repeat
 # helpers
 
 
@@ -16,6 +15,11 @@ def default(val, d):
     if exists(val):
         return val
     return d() if isfunction(d) else d
+
+def init_zero_(layer):
+    nn.init.constant_(layer.weight, 0.0)
+    if exists(layer.bias):
+        nn.init.constant_(layer.bias, 0.0)
 
 
 # attention
@@ -194,11 +198,9 @@ class AxialAttention(nn.Module):
                 attn_bias, "b h i j -> (b x) h i j", x=axial_dim
             )
 
-        tie_dim = axial_dim if self.global_query_attn else None
 
         out = self.attn(
-            x, mask=mask, attn_bias=attn_bias, tie_dim=tie_dim
-        )
+            x, mask=mask, attn_bias=attn_bias)
         out = rearrange(out, output_fold_eq, h=h, w=w)
 
         return out
@@ -231,24 +233,30 @@ class MsaAttentionBlock(nn.Module):
 
 # Main model that uses the trainable tokenizer, and attention-based mechanism
 class MSAModel(nn.Module):
-    def __init__(self, vocab_size, max_seq_len, embed_dim, num_heads, num_layers):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, batch_size):
         super().__init__()
-
+        VOCAB = ["PAD","A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V", "-"]
+        token_to_idx = {token: idx for idx, token in enumerate(VOCAB)}
+        self.batch_size = batch_size
         # Trainable embedding layer for tokenization
         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=token_to_idx["PAD"])
-        self.MsaAtt = MsaAttentionBlock(dim=128, seq_len=512, heads=8, dim_head=64, dropout=0.3)        
+        self.MsaAtt = MsaAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=8, dim_head=64, dropout=0.3)        
 
         # Final prediction layer (e.g., for structural prediction)
-        self.fc = nn.Linear(embed_dim * max_seq_len, 1)  # Output size depends on prediction task (e.g., contact map, binding score)
+        self.fc = nn.Linear(embed_dim * seq_len, 1)  # Output size depends on prediction task (e.g., contact map, binding score)
 
     def forward(self, sequences):
         # Token embedding (turn sequences into embeddings)
+        print("sequences_shape",sequences.shape)
         embedded = self.embedding(sequences)
-
+        print("embedded_shape",embedded.shape)
         output = self.MsaAtt(embedded)
+        print("output_afteratt_shape",output.shape)
         # Take information only from the original sequence
         output = output[:,0,:,:]
-        output = output.view(self.batch_size,-1)
+        print("output_1_shape",output.shape)
+        output = output.reshape(self.batch_size,-1)
+        print("output_reshape",output.shape)
         # Final prediction
         prediction = self.fc(output)
         return prediction

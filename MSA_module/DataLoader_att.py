@@ -2,7 +2,6 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
-import torch.optim as optim
 
 class A3MDataset(Dataset):
     def __init__(self, a3m_file, max_len=512):
