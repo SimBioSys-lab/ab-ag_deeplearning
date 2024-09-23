@@ -233,11 +233,10 @@ class MsaAttentionBlock(nn.Module):
 
 # Main model that uses the trainable tokenizer, and attention-based mechanism
 class MSAModel(nn.Module):
-    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, batch_size):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers):
         super().__init__()
         VOCAB = ["PAD","A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V", "-"]
         token_to_idx = {token: idx for idx, token in enumerate(VOCAB)}
-        self.batch_size = batch_size
         # Trainable embedding layer for tokenization
         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=token_to_idx["PAD"])
         self.MsaAtt = MsaAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=8, dim_head=64, dropout=0.3)        
@@ -247,16 +246,17 @@ class MSAModel(nn.Module):
 
     def forward(self, sequences):
         # Token embedding (turn sequences into embeddings)
-        print("sequences_shape",sequences.shape)
+#        print("sequences_shape",sequences.shape)
+        batch_size = sequences.shape[0]
         embedded = self.embedding(sequences)
-        print("embedded_shape",embedded.shape)
+#        print("embedded_shape",embedded.shape)
         output = self.MsaAtt(embedded)
-        print("output_afteratt_shape",output.shape)
+#        print("output_afteratt_shape",output.shape)
         # Take information only from the original sequence
         output = output[:,0,:,:]
-        print("output_1_shape",output.shape)
-        output = output.reshape(self.batch_size,-1)
-        print("output_reshape",output.shape)
+#        print("output_1_shape",output.shape)
+        output = output.reshape(batch_size,-1)
+#        print("output_reshape",output.shape)
         # Final prediction
         prediction = self.fc(output)
         return prediction

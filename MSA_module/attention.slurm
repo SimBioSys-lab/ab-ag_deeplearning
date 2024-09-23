@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:v100-sxm2:1
-#SBATCH -t 00:10:00
+#SBATCH -t 01:00:00
 ##SBATCH --export=ALL
 
 module load cuda/12.1
