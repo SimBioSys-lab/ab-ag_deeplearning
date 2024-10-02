@@ -2,19 +2,17 @@ import torch
 import torch.nn.functional as F
 from einops.layers.torch import Rearrange
 from torch import einsum, nn
-from torch.utils.checkpoint import checkpoint_sequential
 from einops import rearrange, repeat
-# helpers
 
 
+# Helpers
 def exists(val):
     return val is not None
 
 
 def default(val, d):
-    if exists(val):
-        return val
-    return d() if isfunction(d) else d
+    return val if exists(val) else (d() if callable(d) else d)
+
 
 def init_zero_(layer):
     nn.init.constant_(layer.weight, 0.0)
@@ -22,20 +20,11 @@ def init_zero_(layer):
         nn.init.constant_(layer.bias, 0.0)
 
 
-# attention
+# Attention
 class Attention(nn.Module):
-    def __init__(
-        self,
-        dim,
-        seq_len=None,
-        heads=8,
-        dim_head=64,
-        dropout=0.0,
-        gating=True,
-    ):
+    def __init__(self, dim, heads=8, dim_head=64, dropout=0.0, gating=True):
         super().__init__()
         inner_dim = dim_head * heads
-        self.seq_len = seq_len
         self.heads = heads
         self.scale = dim_head**-0.5
 
@@ -50,214 +39,183 @@ class Attention(nn.Module):
         self.dropout = nn.Dropout(dropout)
         init_zero_(self.to_out)
 
-    def forward(
-        self,
-        x,
-        mask=None,
-        attn_bias=None,
-    ):
-        device, orig_shape, h = (
-            x.device,
-            x.shape,
-            self.heads,
-        )
+    def forward(self, x, mask=None, attn_bias=None):
+        h = self.heads
 
-        q, k, v = (
-            self.to_q(x),
-            *self.to_kv(x).chunk(2, dim=-1),
-        )
+        q, k, v = self.to_q(x), *self.to_kv(x).chunk(2, dim=-1)
+        q, k, v = map(lambda t: rearrange(t, "b n (h d) -> b h n d", h=h), (q, k, v))
 
-        i, j = q.shape[-2], k.shape[-2]
-
-        q, k, v = map(
-            lambda t: rearrange(t, "b n (h d) -> b h n d", h=h),
-            (q, k, v),
-        )
-
-        # scale
-
+        # Scale
         q = q * self.scale
 
-        # query / key similarities
-
+        # Attention
         dots = einsum("b h i d, b h j d -> b h i j", q, k)
         attn = dots.softmax(dim=-1)
         attn = self.dropout(attn)
 
-        # aggregate
-
+        # Aggregate
         out = einsum("b h i j, b h j d -> b h i d", attn, v)
-
-        # merge heads
-
         out = rearrange(out, "b h n d -> b n (h d)")
 
-        # gating
-
+        # Gating
         gates = self.gating(x)
         out = out * gates.sigmoid()
 
-        # combine to out
+        # Combine to output
+        return self.to_out(out)
 
-        out = self.to_out(out)
-        return out
 
 class AxialAttention(nn.Module):
-    def __init__(
-        self,
-        dim: int,
-        heads: int,
-        row_attn: bool = True,
-        col_attn: bool = True,
-        accept_edges: bool = False,
-        global_query_attn: bool = False,
-        **kwargs,
-    ):
-        """
-        Axial Attention module.
-
-        Args:
-            dim (int): The input dimension.
-            heads (int): The number of attention heads.
-            row_attn (bool, optional): Whether to perform row attention. Defaults to True.
-            col_attn (bool, optional): Whether to perform column attention. Defaults to True.
-            accept_edges (bool, optional): Whether to accept edges for attention bias. Defaults to False.
-            global_query_attn (bool, optional): Whether to perform global query attention. Defaults to False.
-            **kwargs: Additional keyword arguments for the Attention module.
-        """
+    def __init__(self, dim, heads, row_attn=True, col_attn=True, accept_edges=False, **kwargs):
         super().__init__()
-        assert not (
-            not row_attn and not col_attn
-        ), "row or column attention must be turned on"
+        assert row_attn or col_attn, "Either row or column attention must be turned on."
 
         self.row_attn = row_attn
         self.col_attn = col_attn
-        self.global_query_attn = global_query_attn
-
         self.norm = nn.LayerNorm(dim)
-
         self.attn = Attention(dim=dim, heads=heads, **kwargs)
 
         self.edges_to_attn_bias = (
-            nn.Sequential(
-                nn.Linear(dim, heads, bias=False),
-                Rearrange("b i j h -> b h i j"),
-            )
-            if accept_edges
-            else None
+            nn.Sequential(nn.Linear(dim, heads, bias=False), Rearrange("b i j h -> b h i j")) if accept_edges else None
         )
 
-    def forward(
-        self,
-        x: torch.Tensor,
-        edges: torch.Tensor = None,
-        mask: torch.Tensor = None,
-    ) -> torch.Tensor:
-        """
-        Forward pass of the Axial Attention module.
-
-        Args:
-            x (torch.Tensor): The input tensor of shape (batch_size, height, width, dim).
-            edges (torch.Tensor, optional): The edges tensor for attention bias. Defaults to None.
-            mask (torch.Tensor, optional): The mask tensor for masking attention. Defaults to None.
-
-        Returns:
-            torch.Tensor: The output tensor of shape (batch_size, height, width, dim).
-        """
-        assert (
-            self.row_attn ^ self.col_attn
-        ), "has to be either row or column attention, but not both"
+    def forward(self, x, edges=None, mask=None):
+        assert self.row_attn ^ self.col_attn, "Has to be either row or column attention, not both."
 
         b, h, w, d = x.shape
-
         x = self.norm(x)
 
-        # axial attention
-
+        # Axial attention setup
         if self.col_attn:
             axial_dim = w
-            mask_fold_axial_eq = "b h w -> (b w) h"
             input_fold_eq = "b h w d -> (b w) h d"
             output_fold_eq = "(b w) h d -> b h w d"
-
         elif self.row_attn:
             axial_dim = h
-            mask_fold_axial_eq = "b h w -> (b h) w"
             input_fold_eq = "b h w d -> (b h) w d"
             output_fold_eq = "(b h) w d -> b h w d"
 
         x = rearrange(x, input_fold_eq)
 
         if exists(mask):
-            mask = rearrange(mask, mask_fold_axial_eq)
+            mask = rearrange(mask, input_fold_eq.replace("d", ""))
 
         attn_bias = None
         if exists(self.edges_to_attn_bias) and exists(edges):
             attn_bias = self.edges_to_attn_bias(edges)
-            attn_bias = repeat(
-                attn_bias, "b h i j -> (b x) h i j", x=axial_dim
-            )
+            attn_bias = repeat(attn_bias, "b h i j -> (b x) h i j", x=axial_dim)
+
+        out = self.attn(x, mask=mask, attn_bias=attn_bias)
+        return rearrange(out, output_fold_eq, h=h, w=w)
 
 
-        out = self.attn(
-            x, mask=mask, attn_bias=attn_bias)
-        out = rearrange(out, output_fold_eq, h=h, w=w)
-
-        return out
-
-
-
-class MsaAttentionBlock(nn.Module):
+class MSASelfAttentionBlock(nn.Module):
     def __init__(self, dim, seq_len, heads, dim_head, dropout=0.0):
         super().__init__()
-        self.row_attn = AxialAttention(
-            dim=dim,
-            heads=heads,
-            dim_head=dim_head,
-            row_attn=True,
-            col_attn=False,
-            accept_edges=True,
-        )
-        self.col_attn = AxialAttention(
-            dim=dim,
-            heads=heads,
-            dim_head=dim_head,
-            row_attn=False,
-            col_attn=True,
-        )
+        self.row_attn = AxialAttention(dim=dim, heads=heads, row_attn=True, col_attn=False, accept_edges=True)
+        self.col_attn = AxialAttention(dim=dim, heads=heads, row_attn=False, col_attn=True)
 
     def forward(self, x, mask=None, pairwise_repr=None):
         x = self.row_attn(x, mask=mask, edges=pairwise_repr) + x
         x = self.col_attn(x, mask=mask) + x
         return x
 
-# Main model that uses the trainable tokenizer, and attention-based mechanism
+
+class MSABidirectionalCrossAttention(nn.Module):
+    def __init__(self, embed_dim, num_heads):
+        super().__init__()
+        self.num_heads = num_heads
+        self.head_dim = embed_dim // num_heads
+
+        assert self.head_dim * num_heads == embed_dim, "Embedding dimension must be divisible by the number of heads."
+
+        # Linear layers for Q, K, V transformations
+        self.q_linear = nn.Linear(embed_dim, embed_dim)
+        self.k_linear = nn.Linear(embed_dim, embed_dim)
+        self.v_linear = nn.Linear(embed_dim, embed_dim)
+
+        # Output linear transformations
+        self.out1 = nn.Linear(embed_dim, embed_dim)
+        self.out2 = nn.Linear(embed_dim, embed_dim)
+
+        # Scaling factor for dot-product attention
+        self.scale = self.head_dim ** 0.5
+
+    def forward(self, mat1, mat2):
+        batch_size, num_sequences, seq_len, embed_dim = mat1.shape
+
+        # mat1 attends to mat2
+        Q1 = self.q_linear(mat1)
+        K2 = self.k_linear(mat2)
+        V2 = self.v_linear(mat2)
+        Q1 = rearrange(Q1, "b n l (h d) -> b n h l d", h=self.num_heads)
+        K2 = rearrange(K2, "b n l (h d) -> b n h l d", h=self.num_heads)
+        V2 = rearrange(V2, "b n l (h d) -> b n h l d", h=self.num_heads)
+
+        attention_scores_1 = torch.matmul(Q1, K2.transpose(-2, -1)) / self.scale
+        attention_weights_1 = F.softmax(attention_scores_1, dim=-1)
+        mat1_to_mat2_attention = torch.matmul(attention_weights_1, V2)
+        mat1_to_mat2_attention = rearrange(mat1_to_mat2_attention, "b n h l d -> b n l (h d)")
+        mat1_to_mat2_attention = self.out1(mat1_to_mat2_attention)
+
+        # mat2 attends to mat1
+        Q2 = self.q_linear(mat2)
+        K1 = self.k_linear(mat1)
+        V1 = self.v_linear(mat1)
+        Q2 = rearrange(Q2, "b n l (h d) -> b n h l d", h=self.num_heads)
+        K1 = rearrange(K1, "b n l (h d) -> b n h l d", h=self.num_heads)
+        V1 = rearrange(V1, "b n l (h d) -> b n h l d", h=self.num_heads)
+
+        attention_scores_2 = torch.matmul(Q2, K1.transpose(-2, -1)) / self.scale
+        attention_weights_2 = F.softmax(attention_scores_2, dim=-1)
+        mat2_to_mat1_attention = torch.matmul(attention_weights_2, V1)
+        mat2_to_mat1_attention = rearrange(mat2_to_mat1_attention, "b n h l d -> b n l (h d)")
+        mat2_to_mat1_attention = self.out2(mat2_to_mat1_attention)
+
+        return mat1_to_mat2_attention, mat2_to_mat1_attention
+
 class MSAModel(nn.Module):
     def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers):
+        print("Initializing MSAModel...")
         super().__init__()
-        VOCAB = ["PAD","A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V", "-"]
-        token_to_idx = {token: idx for idx, token in enumerate(VOCAB)}
-        # Trainable embedding layer for tokenization
-        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=token_to_idx["PAD"])
-        self.MsaAtt = MsaAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=8, dim_head=64, dropout=0.3)        
+        print("Finished initializing MSAModel...")
+        self.seq_len = seq_len
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+        self.MSASelfAttention = MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
+        self.MSABidirectionalCrossAttention = MSABidirectionalCrossAttention(embed_dim=embed_dim, num_heads=num_heads)
+        self.fc = nn.Linear(embed_dim * seq_len, seq_len)  # Output same number of values as input
+        self.sigmoid = nn.Sigmoid()  # Sigmoid for probability conversion
 
-        # Final prediction layer (e.g., for structural prediction)
-        self.fc = nn.Linear(embed_dim * seq_len, 1)  # Output size depends on prediction task (e.g., contact map, binding score)
+    def forward(self, sequences1, sequences2):
+        batch_size = sequences1.shape[0]
+        embedded1 = self.embedding(sequences1)
+        embedded2 = self.embedding(sequences2)
 
-    def forward(self, sequences):
-        # Token embedding (turn sequences into embeddings)
-#        print("sequences_shape",sequences.shape)
-        batch_size = sequences.shape[0]
-        embedded = self.embedding(sequences)
-#        print("embedded_shape",embedded.shape)
-        output = self.MsaAtt(embedded)
-#        print("output_afteratt_shape",output.shape)
-        # Take information only from the original sequence
-        output = output[:,0,:,:]
-#        print("output_1_shape",output.shape)
-        output = output.reshape(batch_size,-1)
-#        print("output_reshape",output.shape)
-        # Final prediction
-        prediction = self.fc(output)
-        return prediction
-  
+        output1 = self.MSASelfAttention(embedded1)
+        output2 = self.MSASelfAttention(embedded2)
+
+        output1, output2 = self.MSABidirectionalCrossAttention(output1, output2)
+
+        # Reshape outputs to be (batch_size, embed_dim * seq_len)
+        output1 = output1[:, 0, :, :].reshape(batch_size, -1)
+        output2 = output2[:, 0, :, :].reshape(batch_size, -1)
+
+        # Output same number of values as input for each sequence
+        prediction1 = self.fc(output1)
+        prediction2 = self.fc(output2)
+
+        return prediction1, prediction2
+
+    def predict(self, sequences1, sequences2):
+        # Get the logits from the forward pass
+        logits1, logits2 = self.forward(sequences1, sequences2)
+
+        # Apply sigmoid to get probabilities
+        probs1 = self.sigmoid(logits1)
+        probs2 = self.sigmoid(logits2)
+
+        # Convert to boolean using threshold of 0.5
+        bool_output1 = probs1 >= 0.5
+        bool_output2 = probs2 >= 0.5
+
+        return bool_output1, bool_output2

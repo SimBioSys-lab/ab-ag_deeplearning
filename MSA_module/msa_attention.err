@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/msa_training.py", line 5, in <module>
+    from DataLoader_att import MSADataset  # Assuming your dataset class is in 'DataLoader_att.py'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/DataLoader_att.py", line 1
+    mport torch
+          ^^^^^
+SyntaxError: invalid syntax
