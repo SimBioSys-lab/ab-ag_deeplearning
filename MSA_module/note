@@ -1,0 +1,3 @@
+start from building a model with only two attention layer that is trained on missing residue prediction and second structure prediction to predict the paratope of antibodies
+if that doesn't work try gnn instead, and then the combination of attention and gnn.
+

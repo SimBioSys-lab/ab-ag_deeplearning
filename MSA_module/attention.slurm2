@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH -J test 
+#SBATCH -o test.out
+#SBATCH -e test.err
+#SBATCH -p reservation
+#SBATCH --reservation=xing.liu_test
+#SBATCH --gres=gpu:v100-sxm2:4
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH -t 08:00:00
+#SBATCH --export=ALL
+#SBATCH --mem=150000
+#SBATCH --cpus-per-task=20
+#SBATCH --mail-user=xing.liu@northeastern.edu
+#SBATCH --mail-type=ALL
+
+module load cuda/12.1
+##NCCL_DEBUG=INFO NCCL_IB_DISABLE=1 NCCL_SOCKET_IFNAME=eth0 python -m torch.distributed.launch --nproc_per_node=4 --use_env  interface_pred.py
+#python SASA_train.py
+#python -m torch.distributed.run --nproc_per_node=4 SASA_DDP.py
+#python PT_train_val.py
+#python read_para.py
+python PT_test.py

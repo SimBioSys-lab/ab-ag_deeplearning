@@ -1,0 +1,9 @@
+/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/DataLoader_att.py:23: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  tokenized_seq1 = torch.tensor(eval(row[0]), dtype=torch.long)
+/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/DataLoader_att.py:24: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  tokenized_seq2 = torch.tensor(eval(row[1]), dtype=torch.long)
+/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/DataLoader_att.py:25: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  tgt1 = torch.tensor(eval(row[2]), dtype=torch.long)
+/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/DataLoader_att.py:26: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  tgt2 = torch.tensor(eval(row[3]), dtype=torch.long)
+slurmstepd: error: *** JOB 44717104 ON d1006 CANCELLED AT 2024-10-12T20:57:58 ***

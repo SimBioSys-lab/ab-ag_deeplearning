@@ -1,0 +1,85 @@
+import torch
+from torch.utils.data import Dataset
+
+class MSADataset(Dataset):
+    def __init__(self, a3m_file1, a3m_file2, tgt_file1, tgt_file2, max_len=512):
+        print("Initializing dataset...")
+        # Your initialization code
+        self.a3m_file1 = a3m_file1
+        self.a3m_file2 = a3m_file2
+        self.tgt_file1 = tgt_file1
+        self.tgt_file2 = tgt_file2
+        self.max_len = max_len
+        # Define the vocabulary (amino acids + padding and gap tokens)
+        self.VOCAB = ["PAD", "A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V", "-"]
+        self.token_to_idx = {token: idx for idx, token in enumerate(self.VOCAB)}
+
+        # Load sequences and targets from files
+        self.sequences1 = self._load_sequences(self.a3m_file1)
+        self.sequences2 = self._load_sequences(self.a3m_file2)
+        self.padded_targets1 = self._pad_target(self.tgt_file1)
+        self.padded_targets2 = self._pad_target(self.tgt_file2)
+
+    def _load_sequences(self, a3m_file):
+        """Load sequences from the a3m file, grouping by lines starting with '<'."""
+        sequences = []
+        current_sequences = []
+
+        with open(a3m_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('<'):
+                    if current_sequences:
+                        # Add the current group of sequences to the list
+                        sequences.append(current_sequences)
+                    current_sequences = []  # Start a new sequence group
+                elif line:  # Non-empty line, add to current group
+                    current_sequences.append(line)
+
+            # Add the last group of sequences if it exists
+            if current_sequences:
+                sequences.append(current_sequences)
+
+        return sequences
+
+    def _tokenize_and_pad(self, sequences):
+        """Tokenize and pad each sequence to the maximum length."""
+        tokenized_sequences = []
+        for seq in sequences:
+            # Convert each character to its token index
+            tokenized_seq = [self.token_to_idx.get(res, self.token_to_idx['PAD']) for res in seq]
+            # Pad and truncate the sequence to max_len
+            padded_seq = (tokenized_seq + [self.token_to_idx['PAD']] * self.max_len)[:self.max_len]
+            tokenized_sequences.append(padded_seq)
+
+        return torch.tensor(tokenized_sequences, dtype=torch.long)
+
+    def _pad_target(self, tgt_file):
+        """Pad target sequences loaded from a target file."""
+        padded_targets = []
+        with open(tgt_file, 'r') as f:
+            for line in f:
+                tgt = [int(x) for x in line.split()]  # Convert target to integers
+                # Pad and truncate the target to max_len
+                tgt_padded = (tgt + [-1] * self.max_len)[:self.max_len]
+                padded_targets.append(tgt_padded)
+
+        return torch.tensor(padded_targets, dtype=torch.int)
+
+    def __len__(self):
+        """Return the number of sequence groups (blocks) in the dataset."""
+        return min(len(self.sequences1), len(self.sequences2), len(self.padded_targets1), len(self.padded_targets2))
+
+    def __getitem__(self, idx):
+        print(f"Fetching item {idx} from the dataset...")
+        """Return the tokenized, padded sequences and targets for a given index."""
+        # Tokenize and pad sequences for both proteins
+        tokenized_seq1 = self._tokenize_and_pad(self.sequences1[idx])
+        tokenized_seq2 = self._tokenize_and_pad(self.sequences2[idx])
+
+        # Retrieve the padded target sequences for the given index
+        padded_tgt1 = self.padded_targets1[idx]
+        padded_tgt2 = self.padded_targets2[idx]
+
+        return tokenized_seq1, tokenized_seq2, padded_tgt1, padded_tgt2
+

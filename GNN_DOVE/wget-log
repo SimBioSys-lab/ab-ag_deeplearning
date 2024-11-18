@@ -1,0 +1,16 @@
+--2024-09-11 10:30:19--  https://bfd.mmseqs.com/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt.tar.gz
+Resolving bfd.mmseqs.com (bfd.mmseqs.com)... 134.76.223.151
+Connecting to bfd.mmseqs.com (bfd.mmseqs.com)|134.76.223.151|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://storage.googleapis.com/alphafold-databases/casp14_versions/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt.tar.gz [following]
+--2024-09-11 10:30:19--  https://storage.googleapis.com/alphafold-databases/casp14_versions/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt.tar.gz
+Resolving storage.googleapis.com (storage.googleapis.com)... 142.250.80.27, 142.250.80.91, 142.250.65.251, ...
+Connecting to storage.googleapis.com (storage.googleapis.com)|142.250.80.27|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 291649557441 (272G) [application/x-tar]
+Saving to: ‘bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt.tar.gz’
+
+                 bfd_metaclust_clu_complete_id30_c90_fi   0%[                                                                                                                               ]  22.20M  --.-KB/s               bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_op   0%[                                                                                                                               ]  22.20M  --.-KB/s    in 5d 1h   
+
+2024-09-16 12:15:35 (53.1 B/s) - Read error at byte 23281664/291649557441 (Connection timed out). Retrying.
+
