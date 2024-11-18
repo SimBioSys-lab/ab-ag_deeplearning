@@ -1,0 +1,14 @@
+0
+Initializing preprocessed dataset...
+1
+Initializing MSAModel...
+Initializing BasicModel with 1 repeated layers...
+2
+Total number of trainable parameters: 185723696
+Start epoch 0
+Epoch [1/10], Loss: nan
+Start epoch 1
+Epoch [2/10], Loss: nan
+Start epoch 2
+Epoch [3/10], Loss: nan
+Start epoch 3

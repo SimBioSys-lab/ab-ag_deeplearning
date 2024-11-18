@@ -7,19 +7,19 @@ with open('interface_files', 'r') as itf_f:
         chain_2 = interface.split('_')[3]
         
         # Process chain_1
-        with open(f'/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/a3m_DS/{pdb_name}_chain_{chain_1}.a3m.DS', 'r') as src, open('chain_1.ds', 'a') as dest:
+        with open(f'/work/SimBioSys/Xing/data_collection/pdbs/test/a3m_DS/{pdb_name}_chain_{chain_1}.a3m.DS', 'r') as src, open('chain_1.ds', 'a') as dest:
             dest.write(f'< {pdb_name}_chain_{chain_1}\n')
             content = src.read()
             dest.write(content)
         
         # Process chain_2
-        with open(f'/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/a3m_DS/{pdb_name}_chain_{chain_2}.a3m.DS', 'r') as src, open('chain_2.ds', 'a') as dest:
+        with open(f'/work/SimBioSys/Xing/data_collection/pdbs/test/a3m_DS/{pdb_name}_chain_{chain_2}.a3m.DS', 'r') as src, open('chain_2.ds', 'a') as dest:
             dest.write(f'< {pdb_name}_chain_{chain_2}\n')
             content = src.read()
             dest.write(content)
         
         # Process the interface file
-        with open('/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/interfaces/' + interface, 'r') as itf, open('tgt1.txt', 'a') as tgt1, open('tgt2.txt', 'a') as tgt2:
+        with open('/work/SimBioSys/Xing/data_collection/pdbs/test/interfaces/' + interface, 'r') as itf, open('tgt1.txt', 'a') as tgt1, open('tgt2.txt', 'a') as tgt2:
             interface_line = itf.readline()  # Use a different variable name
             while interface_line:
                 if interface_line.strip() == f'chain_{chain_1}_residue_one_hot':

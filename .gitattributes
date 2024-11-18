@@ -1,0 +1,2 @@
+MSA_module/chain_1.ds filter=lfs diff=lfs merge=lfs -text
+MSA_module/chain_2.ds filter=lfs diff=lfs merge=lfs -text

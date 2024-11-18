@@ -2,4 +2,6 @@
 *.ffindex
 *.ffdata
 *a3m
-
+*.npz
+*.ds
+*.csv
