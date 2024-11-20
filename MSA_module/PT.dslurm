@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --job-name="PT"
+#SBATCH --output="PT.%j.%N.out"
+#SBATCH --partition=gpuA100x4
+#SBATCH --mem=208G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=64  
+#SBATCH --constraint="scratch"
+#SBATCH --gpus-per-node=4
+#SBATCH --gpu-bind=closest   # select a cpu close to gpu on pci bus topology
+#SBATCH --account=xliu27    # <- match to a "Project" returned by the "accounts" command
+#SBATCH --exclusive  # dedicated node for this job
+#SBATCH --no-requeue
+#SBATCH -t 04:00:00
+#SBATCH -e slurm-%j.err
+#SBATCH -o slurm-%j.out
+
+
+module load cuda/12.1
+srun python PT_train_val.py

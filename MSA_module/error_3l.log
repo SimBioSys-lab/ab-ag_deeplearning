@@ -1,0 +1,45 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/media/volume/ab-ag/ab-ag_deeplearning/MSA_module/PT_1G.py", line 115, in <module>
+    output_seq = model(seq)
+                 ^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/volume/ab-ag/ab-ag_deeplearning/MSA_module/Models.py", line 301, in forward
+    output = attention_layer(output)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/volume/ab-ag/ab-ag_deeplearning/MSA_module/Models.py", line 129, in forward
+    x = self.row_attn(x, mask=mask, edges=pairwise_repr) + x
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/volume/ab-ag/ab-ag_deeplearning/MSA_module/Models.py", line 118, in forward
+    out = self.attn(x, mask=mask,  tied = tied)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/volume/ab-ag/ab-ag_deeplearning/MSA_module/Models.py", line 58, in forward
+    dots = einsum("b h i d, b h j d -> b h i j", q, k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/exouser/miniconda3/envs/msa/lib/python3.12/site-packages/torch/functional.py", line 402, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.88 GiB. GPU 0 has a total capacity of 39.39 GiB of which 6.11 GiB is free. Including non-PyTorch memory, this process has 33.28 GiB memory in use. Of the allocated memory 32.69 GiB is allocated by PyTorch, and 93.37 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

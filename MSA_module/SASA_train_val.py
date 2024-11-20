@@ -23,9 +23,18 @@ config = {
     'num_epochs': 1000,
     'learning_rate': 0.003,
     'max_grad_norm': 0.1,
-    'validation_split': 0.1,      # 10% for validation
-    'early_stop_patience': 30     # Early stopping patience (epochs)
+    'validation_split': 0.1,  # 10% for validation
+    'early_stop_patience': 30,  # Early stopping patience (epochs)
+    'initial_gradient_noise_std': 0.05  # Initial standard deviation for gradient noise
 }
+
+# Helper function to add gradient noise
+def add_gradient_noise(params, std_dev):
+    """Add Gaussian noise to gradients."""
+    for param in params:
+        if param.grad is not None:
+            noise = torch.normal(mean=0, std=std_dev, size=param.grad.shape, device=param.grad.device)
+            param.grad.add_(noise)
 
 # Load dataset and split into training and validation sets
 print('Initializing dataset...', flush=True)
@@ -61,12 +70,18 @@ early_stop_counter = 0
 for epoch in range(config['num_epochs']):
     model.train()
     total_loss = 0
+
+    # Decay the gradient noise standard deviation over epochs
+    current_gradient_noise_std = config['initial_gradient_noise_std'] * (0.9 ** epoch)
+
     for seq, tgt in train_loader:
         optimizer.zero_grad()
         seq, tgt = seq.to(device), tgt.to(device)
+
         if torch.isnan(seq).any() or torch.isinf(seq).any() or torch.isnan(tgt).any() or torch.isinf(tgt).any():
             print("NaN or Inf found in input; skipping batch.")
             continue
+
         # Forward pass with mixed precision
         with autocast(device_type='cuda', enabled=torch.cuda.is_available()):
             output_seq = model(seq)
@@ -74,24 +89,30 @@ for epoch in range(config['num_epochs']):
             # Mask padding positions and compute masked loss
             mask = tgt >= 0  # Assuming -1 is the padding value for targets
             tgt_padded = torch.where(mask, tgt, torch.zeros_like(tgt)).float()
-            loss = (criterion(output_seq, tgt_padded) * mask.float()).sum() / mask.sum().clamp(min=1)  # Normalized loss
+            loss = (criterion(output_seq, tgt_padded) * mask.float()).sum() / mask.sum().clamp(min=1)
 
-            # Check for NaN
-            if torch.isnan(loss):
-                print("NaN detected in loss; skipping this batch.")
-                continue
-            total_loss += loss.item()
+        # Skip batch if loss is NaN
+        if torch.isnan(loss):
+            print("NaN detected in loss; skipping this batch.")
+            continue
 
         # Backward pass and optimization with gradient clipping
         scaler.scale(loss).backward()
+
+        # Add gradient noise
+        if current_gradient_noise_std > 0:
+            add_gradient_noise(model.parameters(), current_gradient_noise_std)
+
         scaler.unscale_(optimizer)
         torch.nn.utils.clip_grad_norm_(model.parameters(), config['max_grad_norm'])
         scaler.step(optimizer)
         scaler.update()
 
+        total_loss += loss.item()
+
     avg_loss = total_loss / len(train_loader)
     scheduler.step()
-    print(f'Epoch [{epoch + 1}/{config["num_epochs"]}], Training Loss: {avg_loss:.4f}', flush=True)
+    print(f'Epoch [{epoch + 1}/{config["num_epochs"]}], Training Loss: {avg_loss:.4f}, Gradient Noise Std: {current_gradient_noise_std:.6f}', flush=True)
 
     # Validation
     model.eval()
@@ -101,11 +122,11 @@ for epoch in range(config['num_epochs']):
             seq, tgt = seq.to(device), tgt.to(device)
             with autocast(device_type='cuda', enabled=torch.cuda.is_available()):
                 output_seq = model(seq)
-                
+
                 # Mask padding positions in validation loss
                 mask = tgt != -1
                 tgt_padded = torch.where(mask, tgt, torch.zeros_like(tgt)).float()
-                loss = (criterion(output_seq, tgt_padded) * mask.float()).sum() / mask.sum().clamp(min=1)  # Normalized loss
+                loss = (criterion(output_seq, tgt_padded) * mask.float()).sum() / mask.sum().clamp(min=1)
                 val_loss += loss.item()
 
     avg_val_loss = val_loss / len(val_loader)
@@ -116,19 +137,18 @@ for epoch in range(config['num_epochs']):
         best_val_loss = avg_val_loss
         best_model_state = model.state_dict()
         print(f'New best model found with validation loss: {avg_val_loss:.4f}', flush=True)
-        early_stop_counter = 0  # Reset early stopping counter if validation loss improves
+        early_stop_counter = 0
     else:
         early_stop_counter += 1
         print(f"No improvement in validation loss. Early stop counter: {early_stop_counter}/{config['early_stop_patience']}", flush=True)
 
-    # Stop training if validation loss hasn't improved for 'early_stop_patience' epochs
     if early_stop_counter >= config['early_stop_patience']:
         print(f"Early stopping triggered after {epoch + 1} epochs.", flush=True)
         break
 
 # Save the best model state
 if best_model_state is not None:
-    torch.save(best_model_state, 'best_sasa_model.pth')
+    torch.save(best_model_state, 'best_sasa_model_with_noise.pth')
     print("Best model saved successfully.", flush=True)
 else:
     print("No best model found; check training configurations.", flush=True)

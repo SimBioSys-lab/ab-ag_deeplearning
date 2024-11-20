@@ -38,12 +38,14 @@ class Attention(nn.Module):
 
         self.dropout = nn.Dropout(dropout)
 
-        # LayerNorm after attention
+        # LayerNorm for residual connection
         self.norm = nn.LayerNorm(dim)
 
     def forward(self, x, mask=None, tied=False):
         h = self.heads
 
+        # Layer normalization before self-attention
+        x_norm = self.norm(x)
 
         # Generate query, key, and value
         q, k, v = self.to_q(x_norm), *self.to_kv(x_norm).chunk(2, dim=-1)
@@ -71,13 +73,13 @@ class Attention(nn.Module):
         out = rearrange(out, "b h n d -> b n (h d)")
 
         # Gating mechanism
-        gates = self.gating(x_norm)
+        gates = self.gating(x)
         out = out * gates.sigmoid()
 
         # Final linear layer
         out = self.to_out(out)
 
-        # Apply Add + Norm (residual connection and normalization after attention)
+        # Apply residual connection
         out = x + out
         out = self.norm(out)
 
@@ -150,8 +152,7 @@ class MSABidirectionalCrossAttention(nn.Module):
         self.scale = self.head_dim ** 0.5
 
         # Layer Normalization layers
-        self.norm1 = nn.LayerNorm(embed_dim)
-        self.norm2 = nn.LayerNorm(embed_dim)
+        self.norm = nn.LayerNorm(embed_dim)
 
     def forward(self, mat1, mat2):
         batch_size, num_sequences, seq_len, embed_dim = mat1.shape
@@ -170,8 +171,8 @@ class MSABidirectionalCrossAttention(nn.Module):
         mat1_to_mat2_attention = rearrange(mat1_to_mat2_attention, "b n h l d -> b n l (h d)")
         mat1_to_mat2_attention = self.out1(mat1_to_mat2_attention)
 
-        # Add + Norm for mat1
-        mat1_to_mat2_attention = self.norm1(mat1 + mat1_to_mat2_attention)
+        # residual connection for mat1
+        mat1_to_mat2_attention = self.norm(mat2 + mat1_to_mat2_attention)
 
         # mat2 attends to mat1
         Q2 = self.q_linear(mat2)
@@ -187,8 +188,8 @@ class MSABidirectionalCrossAttention(nn.Module):
         mat2_to_mat1_attention = rearrange(mat2_to_mat1_attention, "b n h l d -> b n l (h d)")
         mat2_to_mat1_attention = self.out2(mat2_to_mat1_attention)
 
-        # Add + Norm for mat2
-        mat2_to_mat1_attention = self.norm2(mat2 + mat2_to_mat1_attention)
+        # residual connection for mat2
+        mat2_to_mat1_attention = self.norm(mat1 + mat2_to_mat1_attention)
 
         return mat2_to_mat1_attention, mat1_to_mat2_attention
 
@@ -278,32 +279,32 @@ class ParatopeModel(nn.Module):
         self.seq_len = seq_len
         self.num_classes = num_classes
 
-        # Embedding layer for sequences
+        # Embedding layer for sequences (kept on CPU)
         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
 
-        # Multiple self-attention blocks, each with its own parameters
+        # Multiple self-attention blocks, each with its own parameters (on GPU by default)
         self.self_attention_layers = nn.ModuleList([
             MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
             for _ in range(num_layers)
         ])
 
-        # Fully connected layer for classification
+        # Fully connected layer for classification (on GPU by default)
         self.fc = nn.Linear(embed_dim, num_classes)
 
     def forward(self, sequences):
-        # Embed the sequences
+        # Embed the sequences (output is on CPU)
         output = self.embedding(sequences)
 
-        # Apply each self-attention layer sequentially
+        # Apply each self-attention layer sequentially (output remains on the same device as layers)
         for attention_layer in self.self_attention_layers:
             output = attention_layer(output)
 
         # Reshape the output for the fully connected layer
         batch_size, num_sequences, seq_len, embed_dim = output.shape
-        output = output[:, 0, :, :]
+        output = output[:, 0, :, :]  # Extract the sequence-level representation
 
         # Apply the fully connected layer to get class scores for each position
-        output = self.fc(output)
+        output = self.fc(output)  # Output remains on the same device
         return output  # Shape: [batch_size, seq_len, num_classes]
 
 class UnifiedModel(nn.Module):
