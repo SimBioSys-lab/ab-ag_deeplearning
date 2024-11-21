@@ -5,3 +5,4 @@
 *.npz
 *.ds
 *.csv
+*.pth

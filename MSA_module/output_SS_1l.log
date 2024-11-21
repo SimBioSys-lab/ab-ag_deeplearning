@@ -1,0 +1,7 @@
+{'batch_size': 8, 'sequence_file': 'preprocessed_seq_ab_train_1200.npz', 'ss_file': 'ss_train_data.csv', 'seq_len': 1200, 'vocab_size': 22, 'embed_dim': 128, 'num_heads': 8, 'num_layers': 1, 'num_classes': 8, 'num_epochs': 1000, 'learning_rate': 0.003, 'max_grad_norm': 0.1, 'validation_split': 0.1, 'early_stop_patience': 30, 'initial_gradient_noise_std': 0.05}
+Number of GPUs available: 1
+Initializing SecondaryStructureModel with 1 self-attention layers...
+Epoch [1/1000], Training Loss: 1.5341, Gradient Noise Std: 0.050000
+Validation Loss: 1.4012
+New best model found with validation loss: 1.4012
+NaN detected in loss; skipping batch.

@@ -12,7 +12,7 @@ torch.backends.cudnn.benchmark = True
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 config = {
-    'batch_size': 16,
+    'batch_size': 8,
     'sequence_file': 'preprocessed_seq_ab_train_1200.npz',
     'ss_file': 'ss_train_data.csv',
     'seq_len': 1200,

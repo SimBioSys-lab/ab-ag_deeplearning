@@ -45,10 +45,9 @@ class Attention(nn.Module):
         h = self.heads
 
         # Layer normalization before self-attention
-        x_norm = self.norm(x)
 
         # Generate query, key, and value
-        q, k, v = self.to_q(x_norm), *self.to_kv(x_norm).chunk(2, dim=-1)
+        q, k, v = self.to_q(x), *self.to_kv(x).chunk(2, dim=-1)
         q, k, v = map(lambda t: rearrange(t, "b n (h d) -> b h n d", h=h), (q, k, v))
 
         # Scale query
@@ -307,6 +306,49 @@ class ParatopeModel(nn.Module):
         output = self.fc(output)  # Output remains on the same device
         return output  # Shape: [batch_size, seq_len, num_classes]
 
+class SAPTModel(nn.Module):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers):
+        super().__init__()
+        print(f"Initializing SAPTModel with {num_layers} self-attention layers...")
+
+        self.seq_len = seq_len
+        self.num_layers = num_layers
+
+        # Embedding layer for sequences
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+
+        # Multiple self-attention blocks, each with its own parameters
+        self.self_attention_layers = nn.ModuleList([
+            MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
+            for _ in range(num_layers)
+        ])
+
+        # Fully connected layers for SAPT prediction
+        self.fc1 = nn.Linear(embed_dim, embed_dim // 2)
+        self.fc2 = nn.Linear(embed_dim // 2, 1)  # Output one scalar value per sequence
+
+    def forward(self, sequences):
+        # Assume input tensors are on the correct device
+
+        # Get the embeddings for the input sequences
+        output = self.embedding(sequences)
+
+        # Apply each self-attention layer sequentially
+        for attention_layer in self.self_attention_layers:
+            output = attention_layer(output)
+
+        # Reshape the output to aggregate embeddings across the sequence dimension
+        # Average pooling across the sequence dimension (dim=2)
+        output = output.mean(dim=2)  # Shape: (batch_size, num_sequences, embed_dim)
+
+        # Pass through the fully connected layers
+        output = self.fc1(output)
+        output = torch.relu(output)
+        output = self.fc2(output).squeeze(-1)  # Shape: (batch_size)
+
+        return output
+
+
 class UnifiedModel(nn.Module):
     def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, num_classes_ss=8, num_classes_pt=2):
         super().__init__()
@@ -352,6 +394,134 @@ class UnifiedModel(nn.Module):
         pt_output = self.fc_pt(output)  # Paratope output: [batch_size, seq_len, num_classes_pt]
 
         return sasa_output, ss_output, pt_output
+
+class PTSSModel(nn.Module):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, num_classes_ss=8, num_classes_pt=2):
+        super().__init__()
+        print(f"Initializing PTSSModel with {num_layers} self-attention layers...")
+
+        self.seq_len = seq_len
+        self.num_layers = num_layers
+
+        # Shared Embedding layer
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+
+        # Multiple self-attention blocks
+        self.self_attention_layers = nn.ModuleList([
+            MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
+            for _ in range(num_layers)
+        ])
+
+        # Task-specific Fully Connected layers
+        self.fc_ss = nn.Linear(embed_dim, num_classes_ss)  # Classification layer for Secondary Structure
+        self.fc_pt = nn.Linear(embed_dim, num_classes_pt)  # Classification layer for Paratope
+
+    def forward(self, sequences):
+        # Shared embedding layer
+        output = self.embedding(sequences)
+
+        # Apply self-attention layers
+        for layer in self.self_attention_layers:
+            output = layer(output)
+
+        # Reshape output for fully connected layers
+        batch_size, num_sequences, seq_len, embed_dim = output.shape
+        output = output[:, 0, :, :]  # Assuming you use the first sequence position
+
+        # Task-specific outputs
+        ss_output = self.fc_ss(output)  # Secondary Structure output: [batch_size, seq_len, num_classes_ss]
+        pt_output = self.fc_pt(output)  # Paratope output: [batch_size, seq_len, num_classes_pt]
+
+        return ss_output, pt_output
+
+class PTSASAModel(nn.Module):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, num_classes_pt=2):
+        super().__init__()
+        print(f"Initializing PTSASAModel with {num_layers} self-attention layers...")
+
+        self.seq_len = seq_len
+        self.num_layers = num_layers
+
+        # Shared Embedding layer
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+
+        # Multiple self-attention blocks
+        self.self_attention_layers = nn.ModuleList([
+            MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
+            for _ in range(num_layers)
+        ])
+
+        # Task-specific Fully Connected layers
+        self.fc_sasa = nn.Sequential(
+            nn.Linear(embed_dim, embed_dim // 2),
+            nn.ReLU(),
+            nn.Linear(embed_dim // 2, 1)  # SASA output: [batch_size, seq_len]
+        )
+        self.fc_pt = nn.Linear(embed_dim, num_classes_pt)  # Classification layer for Paratope
+
+    def forward(self, sequences):
+        # Shared embedding layer
+        output = self.embedding(sequences)
+
+        # Apply self-attention layers
+        for layer in self.self_attention_layers:
+            output = layer(output)
+
+        # Reshape output for fully connected layers
+        batch_size, num_sequences, seq_len, embed_dim = output.shape
+        output = output[:, 0, :, :]  # Assuming you use the first sequence position
+
+        # Task-specific outputs
+        sasa_output = self.fc_sasa(output).squeeze(-1)  # SASA output: [batch_size, seq_len]
+        pt_output = self.fc_pt(output)  # Paratope output: [batch_size, seq_len, num_classes_pt]
+
+        return sasa_output, pt_output
+
+class PTSAPTModel(nn.Module):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers, num_classes_pt=2):
+        super().__init__()
+        print(f"Initializing PTSAPTModel with {num_layers} self-attention layers...")
+
+        self.seq_len = seq_len
+        self.num_layers = num_layers
+
+        # Shared Embedding layer
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+
+        # Multiple self-attention blocks
+        self.self_attention_layers = nn.ModuleList([
+            MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=0.3)
+            for _ in range(num_layers)
+        ])
+
+        # Task-specific Fully Connected layers
+        self.fc_sapt = nn.Sequential(
+            nn.Linear(embed_dim, embed_dim // 2),
+            nn.ReLU(),
+            nn.Linear(embed_dim // 2, 1)  # SAPT output: [batch_size]
+        )
+        self.fc_pt = nn.Linear(embed_dim, num_classes_pt)  # Classification layer for Paratope
+
+    def forward(self, sequences):
+        # Shared embedding layer
+        output = self.embedding(sequences)
+
+        # Apply self-attention layers
+        for layer in self.self_attention_layers:
+            output = layer(output)
+
+        # Reshape output for fully connected layers
+        batch_size, num_sequences, seq_len, embed_dim = output.shape
+        output = output[:, 0, :, :]  # Assuming you use the first sequence position
+
+        # Task-specific outputs
+        sapt_output = self.fc_sapt(output).squeeze(-1)  # SAPT output: [batch_size]
+        pt_output = self.fc_pt(output)  # Paratope output: [batch_size, seq_len, num_classes_pt]
+
+        return sapt_output, pt_output
+
+
+
 
 class InteractiveModel(nn.Module):
     def __init__(self, vocab_size, seq_len, embed_dim, num_heads, num_layers):

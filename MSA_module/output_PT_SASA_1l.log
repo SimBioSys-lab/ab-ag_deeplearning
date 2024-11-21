@@ -1,0 +1,98 @@
+{'batch_size': 8, 'sequence_file': 'preprocessed_seq_ab_train_1200.npz', 'pt_file': 'pt_train_data.csv', 'sasa_file': 'sasa_train_data.csv', 'seq_len': 1200, 'vocab_size': 22, 'embed_dim': 128, 'num_heads': 8, 'num_layers': 1, 'num_classes_pt': 2, 'num_epochs': 1000, 'learning_rate': 0.003, 'max_grad_norm': 0.1, 'validation_split': 0.1, 'early_stop_patience': 30, 'initial_gradient_noise_std': 0.05}
+Number of GPUs available: 1
+Initializing PTSASAModel with 1 self-attention layers...
+Epoch [1/1000], Training Loss: 0.7476, Gradient Noise Std: 0.050000
+Validation Loss: 0.7130
+New best model found with validation loss: 0.7130
+Epoch [2/1000], Training Loss: nan, Gradient Noise Std: 0.045000
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 1/30
+Epoch [3/1000], Training Loss: nan, Gradient Noise Std: 0.040500
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 2/30
+Epoch [4/1000], Training Loss: nan, Gradient Noise Std: 0.036450
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 3/30
+Epoch [5/1000], Training Loss: nan, Gradient Noise Std: 0.032805
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 4/30
+Epoch [6/1000], Training Loss: nan, Gradient Noise Std: 0.029525
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 5/30
+Epoch [7/1000], Training Loss: nan, Gradient Noise Std: 0.026572
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 6/30
+Epoch [8/1000], Training Loss: nan, Gradient Noise Std: 0.023915
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 7/30
+Epoch [9/1000], Training Loss: nan, Gradient Noise Std: 0.021523
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 8/30
+Epoch [10/1000], Training Loss: nan, Gradient Noise Std: 0.019371
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 9/30
+Epoch [11/1000], Training Loss: nan, Gradient Noise Std: 0.017434
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 10/30
+Epoch [12/1000], Training Loss: nan, Gradient Noise Std: 0.015691
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 11/30
+Epoch [13/1000], Training Loss: nan, Gradient Noise Std: 0.014121
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 12/30
+Epoch [14/1000], Training Loss: nan, Gradient Noise Std: 0.012709
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 13/30
+Epoch [15/1000], Training Loss: nan, Gradient Noise Std: 0.011438
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 14/30
+Epoch [16/1000], Training Loss: nan, Gradient Noise Std: 0.010295
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 15/30
+Epoch [17/1000], Training Loss: nan, Gradient Noise Std: 0.009265
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 16/30
+Epoch [18/1000], Training Loss: nan, Gradient Noise Std: 0.008339
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 17/30
+Epoch [19/1000], Training Loss: nan, Gradient Noise Std: 0.007505
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 18/30
+Epoch [20/1000], Training Loss: nan, Gradient Noise Std: 0.006754
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 19/30
+Epoch [21/1000], Training Loss: nan, Gradient Noise Std: 0.006079
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 20/30
+Epoch [22/1000], Training Loss: nan, Gradient Noise Std: 0.005471
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 21/30
+Epoch [23/1000], Training Loss: nan, Gradient Noise Std: 0.004924
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 22/30
+Epoch [24/1000], Training Loss: nan, Gradient Noise Std: 0.004431
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 23/30
+Epoch [25/1000], Training Loss: nan, Gradient Noise Std: 0.003988
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 24/30
+Epoch [26/1000], Training Loss: nan, Gradient Noise Std: 0.003589
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 25/30
+Epoch [27/1000], Training Loss: nan, Gradient Noise Std: 0.003231
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 26/30
+Epoch [28/1000], Training Loss: nan, Gradient Noise Std: 0.002907
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 27/30
+Epoch [29/1000], Training Loss: nan, Gradient Noise Std: 0.002617
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 28/30
+Epoch [30/1000], Training Loss: nan, Gradient Noise Std: 0.002355
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 29/30
+Epoch [31/1000], Training Loss: nan, Gradient Noise Std: 0.002120
+Validation Loss: nan
+No improvement in validation loss. Early stop counter: 30/30
+Early stopping triggered after 31 epochs.
+Best model saved successfully.

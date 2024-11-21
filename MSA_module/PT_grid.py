@@ -12,13 +12,14 @@ torch.backends.cudnn.benchmark = True
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 base_config = {
-    'batch_size': 16,
+    'batch_size': 8,  # Per accumulation step
+    'gradient_accumulation_steps': 2,  # Number of mini-batches to accumulate
     'sequence_file': 'preprocessed_seq_ab_train_1200.npz',
     'pt_file': 'pt_train_data.csv',
     'seq_len': 1200,
     'vocab_size': 22,
     'num_classes': 2,
-    'num_epochs': 50,  # Shortened for grid search
+    'num_epochs': 50,
     'learning_rate': 0.003,
     'max_grad_norm': 0.1,
     'validation_split': 0.1,
@@ -29,7 +30,7 @@ base_config = {
 # Parameter ranges for grid search
 grid_params = {
     'num_layers': [1, 2, 4],
-    'embed_dim': [128, 256, 1024],
+    'embed_dim': [64, 128, 256],
     'num_heads': [4, 8, 16]
 }
 
@@ -89,8 +90,10 @@ for num_layers in grid_params['num_layers']:
                 # Decay gradient noise over epochs
                 current_gradient_noise_std = base_config['initial_gradient_noise_std'] * (0.9 ** epoch)
 
-                for seq, tgt in train_loader:
-                    optimizer.zero_grad()
+                # Reset gradients for gradient accumulation
+                optimizer.zero_grad()
+
+                for step, (seq, tgt) in enumerate(train_loader):
                     seq, tgt = seq.to(device), tgt.to(device)
 
                     # Skip invalid batches
@@ -102,7 +105,7 @@ for num_layers in grid_params['num_layers']:
                         output_seq = model(seq)
                         output_seq = output_seq.view(-1, base_config['num_classes'])
                         tgt = tgt.view(-1)
-                        loss = criterion(output_seq, tgt)
+                        loss = criterion(output_seq, tgt) / base_config['gradient_accumulation_steps']
 
                     scaler.scale(loss).backward()
 
@@ -113,12 +116,15 @@ for num_layers in grid_params['num_layers']:
                                 noise = torch.normal(mean=0, std=current_gradient_noise_std, size=param.grad.shape, device=param.grad.device)
                                 param.grad.add_(noise)
 
-                    scaler.unscale_(optimizer)
-                    torch.nn.utils.clip_grad_norm_(model.parameters(), base_config['max_grad_norm'])
-                    scaler.step(optimizer)
-                    scaler.update()
+                    # Gradient accumulation step
+                    if (step + 1) % base_config['gradient_accumulation_steps'] == 0 or (step + 1) == len(train_loader):
+                        scaler.unscale_(optimizer)
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), base_config['max_grad_norm'])
+                        scaler.step(optimizer)
+                        scaler.update()
+                        optimizer.zero_grad()  # Reset gradients
 
-                    total_loss += loss.item()
+                    total_loss += loss.item() * base_config['gradient_accumulation_steps']
 
                 avg_train_loss = total_loss / len(train_loader)
                 scheduler.step()

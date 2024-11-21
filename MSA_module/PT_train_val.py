@@ -12,7 +12,7 @@ torch.backends.cudnn.benchmark = True
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 config = {
-    'batch_size': 16,
+    'batch_size': 8,
     'sequence_file': 'preprocessed_seq_ab_train_1200.npz',
     'pt_file': 'pt_train_data.csv',
     'seq_len': 1200,
@@ -22,7 +22,7 @@ config = {
     'num_layers': 1,
     'num_classes': 2,
     'num_epochs': 1000,
-    'learning_rate': 0.003,
+    'learning_rate': 0.0001,
     'max_grad_norm': 0.1,
     'validation_split': 0.1,  # 10% for validation
     'early_stop_patience': 30,  # Stop if no improvement for 30 epochs

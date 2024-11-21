@@ -113,3 +113,40 @@ class SequenceParatopeDataset(Dataset):
 
         return sequence_tensor, pt_tensor
 
+class SequenceSAPTDataset(Dataset):
+    """
+    Dataset class where MSA sequences are the input and a single SAPT value is the target.
+    """
+    def __init__(self, sequence_file, sapt_file, max_len=1200):
+        # Load the sequence data from the npz file
+        self.sequence_data = np.load(sequence_file)['sequences']
+        # Load the SAPT data from a CSV file
+        self.sapt_data = pd.read_csv(sapt_file, header=None, index_col=0)
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.sequence_data)
+
+    def __getitem__(self, idx):
+        # Get the sequence data and pad/truncate to (100, max_len)
+        sequence = self.sequence_data[idx]
+        if sequence.shape[1] < self.max_len:
+            # Pad each row to max_len
+            sequence = np.pad(sequence, ((0, 0), (0, self.max_len - sequence.shape[1])), constant_values=-1)
+        sequence = sequence[:, :self.max_len]  # Truncate to max_len columns if needed
+
+        if sequence.shape[0] < 100:
+            # Pad rows to reach 100 rows
+            sequence = np.pad(sequence, ((0, 100 - sequence.shape[0]), (0, 0)), constant_values=-1)
+        sequence = sequence[:100, :]  # Truncate to 100 rows if needed
+
+        # Get the single SAPT value corresponding to the same index
+        sapt = self.sapt_data.iloc[idx, 0]  # Assume SAPT is stored as the first column for each sequence
+        sapt = float(sapt)  # Ensure it's a float
+
+        # Convert to PyTorch tensors
+        sequence_tensor = torch.tensor(sequence, dtype=torch.long)
+        sapt_tensor = torch.tensor(sapt, dtype=torch.float32)
+
+        return sequence_tensor, sapt_tensor
+
