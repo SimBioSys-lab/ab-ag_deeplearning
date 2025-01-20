@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_S.py", line 52, in <module>
+    dataset = SequenceParatopeDataset(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Dataloader_s.py", line 35, in __init__
+    raise ValueError("Keys in sequence, data, and edge files do not match.")
+ValueError: Keys in sequence, data, and edge files do not match.
+srun: error: gpub018: task 0: Exited with exit code 1

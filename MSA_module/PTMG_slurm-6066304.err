@@ -1,0 +1,13 @@
+/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_CV.py:72: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  edge_pad[:, :edge_index.shape[0]] = torch.tensor(edge_index.T, dtype=torch.long)
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 6066304.0 ON gpub096 CANCELLED AT 2025-01-09T14:47:52 ***
+slurmstepd: error: *** JOB 6066304 ON gpub096 CANCELLED AT 2025-01-09T14:47:52 ***

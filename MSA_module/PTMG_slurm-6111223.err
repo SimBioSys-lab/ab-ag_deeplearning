@@ -1,0 +1,104 @@
+/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_CV2.py:72: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  edge_pad[:, :edge_index.shape[0]] = torch.tensor(edge_index.T, dtype=torch.long)
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+cxil_map: write error
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_CV2.py", line 149, in <module>
+    output_seq = model(sequence_tensor, padded_edges)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/parallel/data_parallel.py", line 193, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/parallel/data_parallel.py", line 212, in parallel_apply
+    return parallel_apply(
+           ^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/parallel/parallel_apply.py", line 126, in parallel_apply
+    output.reraise()
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+torch.OutOfMemoryError: Caught OutOfMemoryError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/parallel/parallel_apply.py", line 96, in _worker
+    output = module(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 402, in forward
+    refined_embedding = self.mc_model(sequences, padded_edges)  # Shape: [batch_size, 1, seq_len, embed_dim]
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 359, in forward
+    output = self.cg_model(sequences, padded_edges)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 285, in forward
+    output = self.core_model(sequences)  # Shape: [batch_size, num_seq, seq_len, embed_dim]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 218, in forward
+    output = attention_layer(output)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 127, in forward
+    x = self.row_attn(x, mask=mask, edges=pairwise_repr)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 116, in forward
+    out = self.attn(x, mask=mask,  tied = tied)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_new.py", line 56, in forward
+    dots = einsum("b h i d, b h j d -> b h i j", q, k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/torch/functional.py", line 402, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.82 GiB. GPU 0 has a total capacity of 44.34 GiB of which 16.42 GiB is free. Including non-PyTorch memory, this process has 27.91 GiB memory in use. Of the allocated memory 27.30 GiB is allocated by PyTorch, and 120.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+srun: error: gpub031: task 0: Exited with exit code 1

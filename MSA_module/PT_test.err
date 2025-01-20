@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/PT_test.py", line 4, in <module>
-    from Models import ParatopeModel  # Make sure this matches your model import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/work/SimBioSys/Xing/ab-ag_deeplearning/MSA_module/Models.py", line 5, in <module>
-    from torch_geometric.nn import GCNConv
-ModuleNotFoundError: No module named 'torch_geometric'

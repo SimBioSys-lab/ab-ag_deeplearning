@@ -1,0 +1,1100 @@
+
+Testing model: mcmodel_fold1_l1_g1_i1_dp0.0.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.21%
+  Precision: 0.7016
+  Recall: 0.4775
+  AUC-ROC: 0.8792
+  AUC-PR: 0.6545
+
+Metrics for Hchain:
+  Accuracy: 82.72%
+  Precision: 0.7316
+  Recall: 0.5249
+  AUC-ROC: 0.8791
+  AUC-PR: 0.7062
+
+Metrics for Antibody:
+  Accuracy: 83.92%
+  Precision: 0.7194
+  Recall: 0.5049
+  AUC-ROC: 0.8776
+  AUC-PR: 0.6794
+
+Metrics for Antigen:
+  Accuracy: 88.92%
+  Precision: 0.5132
+  Recall: 0.1354
+  AUC-ROC: 0.8519
+  AUC-PR: 0.3848
+
+Metrics for AGchain_0:
+  Accuracy: 88.77%
+  Precision: 0.5154
+  Recall: 0.1392
+  AUC-ROC: 0.8590
+  AUC-PR: 0.3949
+
+Metrics for AGchain_1:
+  Accuracy: 91.59%
+  Precision: 0.3571
+  Recall: 0.0356
+  AUC-ROC: 0.6119
+  AUC-PR: 0.1504
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.5730
+  AUC-PR: 0.0697
+
+Testing model: mcmodel_fold1_l1_g1_i1_dp0.1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.17%
+  Precision: 0.6736
+  Recall: 0.5285
+  AUC-ROC: 0.8837
+  AUC-PR: 0.6366
+
+Metrics for Hchain:
+  Accuracy: 84.23%
+  Precision: 0.7308
+  Recall: 0.6184
+  AUC-ROC: 0.8898
+  AUC-PR: 0.7244
+
+Metrics for Antibody:
+  Accuracy: 84.68%
+  Precision: 0.7077
+  Recall: 0.5805
+  AUC-ROC: 0.8841
+  AUC-PR: 0.6826
+
+Metrics for Antigen:
+  Accuracy: 88.80%
+  Precision: 0.4942
+  Recall: 0.1494
+  AUC-ROC: 0.8516
+  AUC-PR: 0.3830
+
+Metrics for AGchain_0:
+  Accuracy: 88.66%
+  Precision: 0.4979
+  Recall: 0.1542
+  AUC-ROC: 0.8599
+  AUC-PR: 0.3960
+
+Metrics for AGchain_1:
+  Accuracy: 91.30%
+  Precision: 0.2245
+  Recall: 0.0261
+  AUC-ROC: 0.5760
+  AUC-PR: 0.1007
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.4193
+  AUC-PR: 0.0477
+
+Testing model: mcmodel_fold1_l1_g2_i1_dp0.0.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.50%
+  Precision: 0.6849
+  Recall: 0.5345
+  AUC-ROC: 0.8911
+  AUC-PR: 0.6715
+
+Metrics for Hchain:
+  Accuracy: 84.03%
+  Precision: 0.7257
+  Recall: 0.6154
+  AUC-ROC: 0.8930
+  AUC-PR: 0.7259
+
+Metrics for Antibody:
+  Accuracy: 84.73%
+  Precision: 0.7093
+  Recall: 0.5813
+  AUC-ROC: 0.8917
+  AUC-PR: 0.7029
+
+Metrics for Antigen:
+  Accuracy: 88.78%
+  Precision: 0.4927
+  Recall: 0.1742
+  AUC-ROC: 0.8431
+  AUC-PR: 0.3853
+
+Metrics for AGchain_0:
+  Accuracy: 88.69%
+  Precision: 0.5018
+  Recall: 0.1786
+  AUC-ROC: 0.8532
+  AUC-PR: 0.4011
+
+Metrics for AGchain_1:
+  Accuracy: 90.35%
+  Precision: 0.1984
+  Recall: 0.0594
+  AUC-ROC: 0.5253
+  AUC-PR: 0.1125
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.7539
+  AUC-PR: 0.1114
+
+Testing model: mcmodel_fold1_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.07%
+  Precision: 0.6574
+  Recall: 0.5591
+  AUC-ROC: 0.8856
+  AUC-PR: 0.6476
+
+Metrics for Hchain:
+  Accuracy: 83.68%
+  Precision: 0.6824
+  Recall: 0.6908
+  AUC-ROC: 0.8972
+  AUC-PR: 0.7294
+
+Metrics for Antibody:
+  Accuracy: 84.35%
+  Precision: 0.6729
+  Recall: 0.6353
+  AUC-ROC: 0.8912
+  AUC-PR: 0.6959
+
+Metrics for Antigen:
+  Accuracy: 88.86%
+  Precision: 0.5022
+  Recall: 0.2155
+  AUC-ROC: 0.8590
+  AUC-PR: 0.4106
+
+Metrics for AGchain_0:
+  Accuracy: 88.72%
+  Precision: 0.5040
+  Recall: 0.2217
+  AUC-ROC: 0.8686
+  AUC-PR: 0.4246
+
+Metrics for AGchain_1:
+  Accuracy: 91.47%
+  Precision: 0.3594
+  Recall: 0.0546
+  AUC-ROC: 0.5335
+  AUC-PR: 0.1181
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.6262
+  AUC-PR: 0.0731
+
+Testing model: mcmodel_fold2_l1_g1_i1_dp0.0.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.15%
+  Precision: 0.6842
+  Recall: 0.5043
+  AUC-ROC: 0.8806
+  AUC-PR: 0.6445
+
+Metrics for Hchain:
+  Accuracy: 83.58%
+  Precision: 0.7198
+  Recall: 0.5985
+  AUC-ROC: 0.8818
+  AUC-PR: 0.7141
+
+Metrics for Antibody:
+  Accuracy: 84.33%
+  Precision: 0.7058
+  Recall: 0.5588
+  AUC-ROC: 0.8793
+  AUC-PR: 0.6816
+
+Metrics for Antigen:
+  Accuracy: 88.93%
+  Precision: 0.5135
+  Recall: 0.1519
+  AUC-ROC: 0.8520
+  AUC-PR: 0.3851
+
+Metrics for AGchain_0:
+  Accuracy: 88.78%
+  Precision: 0.5153
+  Recall: 0.1558
+  AUC-ROC: 0.8588
+  AUC-PR: 0.3953
+
+Metrics for AGchain_1:
+  Accuracy: 91.65%
+  Precision: 0.4151
+  Recall: 0.0523
+  AUC-ROC: 0.6482
+  AUC-PR: 0.1683
+
+Metrics for AGchain_2:
+  Accuracy: 93.06%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.5588
+  AUC-PR: 0.0629
+
+Testing model: mcmodel_fold2_l1_g1_i1_dp0.1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 84.91%
+  Precision: 0.6829
+  Recall: 0.4852
+  AUC-ROC: 0.8814
+  AUC-PR: 0.6391
+
+Metrics for Hchain:
+  Accuracy: 83.74%
+  Precision: 0.7311
+  Recall: 0.5875
+  AUC-ROC: 0.8887
+  AUC-PR: 0.7169
+
+Metrics for Antibody:
+  Accuracy: 84.30%
+  Precision: 0.7122
+  Recall: 0.5444
+  AUC-ROC: 0.8834
+  AUC-PR: 0.6811
+
+Metrics for Antigen:
+  Accuracy: 88.97%
+  Precision: 0.5272
+  Recall: 0.1086
+  AUC-ROC: 0.8529
+  AUC-PR: 0.3831
+
+Metrics for AGchain_0:
+  Accuracy: 88.81%
+  Precision: 0.5267
+  Recall: 0.1121
+  AUC-ROC: 0.8592
+  AUC-PR: 0.3915
+
+Metrics for AGchain_1:
+  Accuracy: 91.88%
+  Precision: 0.6364
+  Recall: 0.0166
+  AUC-ROC: 0.6164
+  AUC-PR: 0.1595
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.6377
+  AUC-PR: 0.0778
+
+Testing model: mcmodel_fold2_l1_g2_i1_dp0.0.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.46%
+  Precision: 0.7173
+  Recall: 0.4731
+  AUC-ROC: 0.8915
+  AUC-PR: 0.6793
+
+Metrics for Hchain:
+  Accuracy: 83.34%
+  Precision: 0.7449
+  Recall: 0.5418
+  AUC-ROC: 0.8913
+  AUC-PR: 0.7210
+
+Metrics for Antibody:
+  Accuracy: 84.36%
+  Precision: 0.7339
+  Recall: 0.5129
+  AUC-ROC: 0.8909
+  AUC-PR: 0.7030
+
+Metrics for Antigen:
+  Accuracy: 89.31%
+  Precision: 0.5815
+  Recall: 0.1502
+  AUC-ROC: 0.8535
+  AUC-PR: 0.4132
+
+Metrics for AGchain_0:
+  Accuracy: 89.20%
+  Precision: 0.5875
+  Recall: 0.1549
+  AUC-ROC: 0.8630
+  AUC-PR: 0.4286
+
+Metrics for AGchain_1:
+  Accuracy: 91.28%
+  Precision: 0.2200
+  Recall: 0.0261
+  AUC-ROC: 0.5687
+  AUC-PR: 0.1167
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.9017
+  AUC-PR: 0.2638
+
+Testing model: mcmodel_fold2_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.08%
+  Precision: 0.6641
+  Recall: 0.5431
+  AUC-ROC: 0.8847
+  AUC-PR: 0.6589
+
+Metrics for Hchain:
+  Accuracy: 84.04%
+  Precision: 0.6980
+  Recall: 0.6753
+  AUC-ROC: 0.8970
+  AUC-PR: 0.7253
+
+Metrics for Antibody:
+  Accuracy: 84.54%
+  Precision: 0.6851
+  Recall: 0.6196
+  AUC-ROC: 0.8886
+  AUC-PR: 0.6950
+
+Metrics for Antigen:
+  Accuracy: 89.04%
+  Precision: 0.5293
+  Recall: 0.1594
+  AUC-ROC: 0.8589
+  AUC-PR: 0.4080
+
+Metrics for AGchain_0:
+  Accuracy: 88.95%
+  Precision: 0.5396
+  Recall: 0.1655
+  AUC-ROC: 0.8697
+  AUC-PR: 0.4269
+
+Metrics for AGchain_1:
+  Accuracy: 90.58%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.5052
+  AUC-PR: 0.0763
+
+Metrics for AGchain_2:
+  Accuracy: 92.24%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.2855
+  AUC-PR: 0.0397
+
+Testing model: mcmodel_fold3_l1_g1_i1_dp0.0.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 84.86%
+  Precision: 0.6904
+  Recall: 0.4669
+  AUC-ROC: 0.8752
+  AUC-PR: 0.6291
+
+Metrics for Hchain:
+  Accuracy: 82.63%
+  Precision: 0.7503
+  Recall: 0.4930
+  AUC-ROC: 0.8657
+  AUC-PR: 0.6958
+
+Metrics for Antibody:
+  Accuracy: 83.70%
+  Precision: 0.7246
+  Recall: 0.4820
+  AUC-ROC: 0.8676
+  AUC-PR: 0.6609
+
+Metrics for Antigen:
+  Accuracy: 88.87%
+  Precision: 0.5070
+  Recall: 0.1004
+  AUC-ROC: 0.8445
+  AUC-PR: 0.3618
+
+Metrics for AGchain_0:
+  Accuracy: 88.77%
+  Precision: 0.5204
+  Recall: 0.1025
+  AUC-ROC: 0.8520
+  AUC-PR: 0.3762
+
+Metrics for AGchain_1:
+  Accuracy: 90.77%
+  Precision: 0.2128
+  Recall: 0.0475
+  AUC-ROC: 0.6317
+  AUC-PR: 0.1329
+
+Metrics for AGchain_2:
+  Accuracy: 91.84%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.6617
+  AUC-PR: 0.0834
+
+Testing model: mcmodel_fold3_l1_g1_i1_dp0.1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.31%
+  Precision: 0.6843
+  Recall: 0.5192
+  AUC-ROC: 0.8869
+  AUC-PR: 0.6538
+
+Metrics for Hchain:
+  Accuracy: 84.13%
+  Precision: 0.7390
+  Recall: 0.5981
+  AUC-ROC: 0.8920
+  AUC-PR: 0.7288
+
+Metrics for Antibody:
+  Accuracy: 84.70%
+  Precision: 0.7168
+  Recall: 0.5649
+  AUC-ROC: 0.8876
+  AUC-PR: 0.6931
+
+Metrics for Antigen:
+  Accuracy: 88.96%
+  Precision: 0.5240
+  Recall: 0.1166
+  AUC-ROC: 0.8522
+  AUC-PR: 0.3858
+
+Metrics for AGchain_0:
+  Accuracy: 88.81%
+  Precision: 0.5256
+  Recall: 0.1201
+  AUC-ROC: 0.8606
+  AUC-PR: 0.3988
+
+Metrics for AGchain_1:
+  Accuracy: 91.69%
+  Precision: 0.3793
+  Recall: 0.0261
+  AUC-ROC: 0.6162
+  AUC-PR: 0.1318
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.3742
+  AUC-PR: 0.0443
+
+Testing model: mcmodel_fold3_l1_g2_i1_dp0.0.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.12%
+  Precision: 0.6807
+  Recall: 0.5090
+  AUC-ROC: 0.8846
+  AUC-PR: 0.6602
+
+Metrics for Hchain:
+  Accuracy: 83.16%
+  Precision: 0.7016
+  Recall: 0.6076
+  AUC-ROC: 0.8869
+  AUC-PR: 0.7137
+
+Metrics for Antibody:
+  Accuracy: 84.10%
+  Precision: 0.6936
+  Recall: 0.5660
+  AUC-ROC: 0.8852
+  AUC-PR: 0.6906
+
+Metrics for Antigen:
+  Accuracy: 88.90%
+  Precision: 0.5113
+  Recall: 0.1140
+  AUC-ROC: 0.8477
+  AUC-PR: 0.3722
+
+Metrics for AGchain_0:
+  Accuracy: 88.75%
+  Precision: 0.5135
+  Recall: 0.1162
+  AUC-ROC: 0.8556
+  AUC-PR: 0.3837
+
+Metrics for AGchain_1:
+  Accuracy: 91.65%
+  Precision: 0.4211
+  Recall: 0.0570
+  AUC-ROC: 0.5947
+  AUC-PR: 0.1465
+
+Metrics for AGchain_2:
+  Accuracy: 93.47%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.4930
+  AUC-PR: 0.0544
+
+Testing model: mcmodel_fold3_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.31%
+  Precision: 0.6634
+  Recall: 0.5675
+  AUC-ROC: 0.8912
+  AUC-PR: 0.6643
+
+Metrics for Hchain:
+  Accuracy: 83.96%
+  Precision: 0.6984
+  Recall: 0.6691
+  AUC-ROC: 0.8973
+  AUC-PR: 0.7308
+
+Metrics for Antibody:
+  Accuracy: 84.61%
+  Precision: 0.6846
+  Recall: 0.6263
+  AUC-ROC: 0.8934
+  AUC-PR: 0.7020
+
+Metrics for Antigen:
+  Accuracy: 89.03%
+  Precision: 0.5224
+  Recall: 0.1940
+  AUC-ROC: 0.8624
+  AUC-PR: 0.4180
+
+Metrics for AGchain_0:
+  Accuracy: 88.90%
+  Precision: 0.5254
+  Recall: 0.1986
+  AUC-ROC: 0.8702
+  AUC-PR: 0.4300
+
+Metrics for AGchain_1:
+  Accuracy: 91.40%
+  Precision: 0.3721
+  Recall: 0.0760
+  AUC-ROC: 0.6212
+  AUC-PR: 0.1630
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.4951
+  AUC-PR: 0.0550
+
+Testing model: mcmodel_fold4_l1_g1_i1_dp0.0.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.33%
+  Precision: 0.7088
+  Recall: 0.4757
+  AUC-ROC: 0.8807
+  AUC-PR: 0.6629
+
+Metrics for Hchain:
+  Accuracy: 82.83%
+  Precision: 0.7441
+  Recall: 0.5126
+  AUC-ROC: 0.8770
+  AUC-PR: 0.7072
+
+Metrics for Antibody:
+  Accuracy: 84.03%
+  Precision: 0.7295
+  Recall: 0.4970
+  AUC-ROC: 0.8770
+  AUC-PR: 0.6849
+
+Metrics for Antigen:
+  Accuracy: 88.92%
+  Precision: 0.5157
+  Recall: 0.1178
+  AUC-ROC: 0.8469
+  AUC-PR: 0.3747
+
+Metrics for AGchain_0:
+  Accuracy: 88.79%
+  Precision: 0.5205
+  Recall: 0.1219
+  AUC-ROC: 0.8552
+  AUC-PR: 0.3890
+
+Metrics for AGchain_1:
+  Accuracy: 91.44%
+  Precision: 0.1429
+  Recall: 0.0095
+  AUC-ROC: 0.5825
+  AUC-PR: 0.1026
+
+Metrics for AGchain_2:
+  Accuracy: 91.84%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.5293
+  AUC-PR: 0.0587
+
+Testing model: mcmodel_fold4_l1_g1_i1_dp0.1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.05%
+  Precision: 0.6771
+  Recall: 0.5105
+  AUC-ROC: 0.8807
+  AUC-PR: 0.6434
+
+Metrics for Hchain:
+  Accuracy: 83.84%
+  Precision: 0.7233
+  Recall: 0.6084
+  AUC-ROC: 0.8911
+  AUC-PR: 0.7190
+
+Metrics for Antibody:
+  Accuracy: 84.42%
+  Precision: 0.7050
+  Recall: 0.5671
+  AUC-ROC: 0.8847
+  AUC-PR: 0.6842
+
+Metrics for Antigen:
+  Accuracy: 89.05%
+  Precision: 0.5359
+  Recall: 0.1419
+  AUC-ROC: 0.8535
+  AUC-PR: 0.3935
+
+Metrics for AGchain_0:
+  Accuracy: 88.94%
+  Precision: 0.5430
+  Recall: 0.1469
+  AUC-ROC: 0.8629
+  AUC-PR: 0.4096
+
+Metrics for AGchain_1:
+  Accuracy: 91.05%
+  Precision: 0.1000
+  Recall: 0.0119
+  AUC-ROC: 0.5841
+  AUC-PR: 0.1008
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.3077
+  AUC-PR: 0.0402
+
+Testing model: mcmodel_fold4_l1_g2_i1_dp0.0.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.14%
+  Precision: 0.6746
+  Recall: 0.5239
+  AUC-ROC: 0.8874
+  AUC-PR: 0.6609
+
+Metrics for Hchain:
+  Accuracy: 83.09%
+  Precision: 0.7091
+  Recall: 0.5875
+  AUC-ROC: 0.8888
+  AUC-PR: 0.7142
+
+Metrics for Antibody:
+  Accuracy: 84.08%
+  Precision: 0.6951
+  Recall: 0.5607
+  AUC-ROC: 0.8879
+  AUC-PR: 0.6910
+
+Metrics for Antigen:
+  Accuracy: 89.01%
+  Precision: 0.5284
+  Recall: 0.1411
+  AUC-ROC: 0.8454
+  AUC-PR: 0.3846
+
+Metrics for AGchain_0:
+  Accuracy: 88.89%
+  Precision: 0.5346
+  Recall: 0.1423
+  AUC-ROC: 0.8541
+  AUC-PR: 0.3989
+
+Metrics for AGchain_1:
+  Accuracy: 91.22%
+  Precision: 0.3780
+  Recall: 0.1140
+  AUC-ROC: 0.5996
+  AUC-PR: 0.1603
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.8604
+  AUC-PR: 0.1894
+
+Testing model: mcmodel_fold4_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 84.62%
+  Precision: 0.6456
+  Recall: 0.5447
+  AUC-ROC: 0.8836
+  AUC-PR: 0.6439
+
+Metrics for Hchain:
+  Accuracy: 84.07%
+  Precision: 0.7009
+  Recall: 0.6703
+  AUC-ROC: 0.8979
+  AUC-PR: 0.7359
+
+Metrics for Antibody:
+  Accuracy: 84.33%
+  Precision: 0.6792
+  Recall: 0.6174
+  AUC-ROC: 0.8905
+  AUC-PR: 0.6967
+
+Metrics for Antigen:
+  Accuracy: 89.30%
+  Precision: 0.5596
+  Recall: 0.1936
+  AUC-ROC: 0.8644
+  AUC-PR: 0.4354
+
+Metrics for AGchain_0:
+  Accuracy: 89.19%
+  Precision: 0.5644
+  Recall: 0.1985
+  AUC-ROC: 0.8722
+  AUC-PR: 0.4482
+
+Metrics for AGchain_1:
+  Accuracy: 91.28%
+  Precision: 0.3372
+  Recall: 0.0689
+  AUC-ROC: 0.5900
+  AUC-PR: 0.1492
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.5220
+  AUC-PR: 0.0572
+
+Testing model: mcmodel_fold5_l1_g1_i1_dp0.0.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.39%
+  Precision: 0.7130
+  Recall: 0.4742
+  AUC-ROC: 0.8823
+  AUC-PR: 0.6609
+
+Metrics for Hchain:
+  Accuracy: 83.05%
+  Precision: 0.7390
+  Recall: 0.5336
+  AUC-ROC: 0.8783
+  AUC-PR: 0.7060
+
+Metrics for Antibody:
+  Accuracy: 84.18%
+  Precision: 0.7286
+  Recall: 0.5086
+  AUC-ROC: 0.8776
+  AUC-PR: 0.6840
+
+Metrics for Antigen:
+  Accuracy: 88.83%
+  Precision: 0.4976
+  Recall: 0.1236
+  AUC-ROC: 0.8449
+  AUC-PR: 0.3701
+
+Metrics for AGchain_0:
+  Accuracy: 88.69%
+  Precision: 0.5028
+  Recall: 0.1266
+  AUC-ROC: 0.8537
+  AUC-PR: 0.3835
+
+Metrics for AGchain_1:
+  Accuracy: 91.24%
+  Precision: 0.2794
+  Recall: 0.0451
+  AUC-ROC: 0.5733
+  AUC-PR: 0.1193
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.6980
+  AUC-PR: 0.0882
+
+Testing model: mcmodel_fold5_l1_g1_i1_dp0.1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 84.79%
+  Precision: 0.6713
+  Recall: 0.4981
+  AUC-ROC: 0.8787
+  AUC-PR: 0.6299
+
+Metrics for Hchain:
+  Accuracy: 83.52%
+  Precision: 0.7256
+  Recall: 0.5842
+  AUC-ROC: 0.8876
+  AUC-PR: 0.7180
+
+Metrics for Antibody:
+  Accuracy: 84.13%
+  Precision: 0.7038
+  Recall: 0.5479
+  AUC-ROC: 0.8813
+  AUC-PR: 0.6759
+
+Metrics for Antigen:
+  Accuracy: 88.98%
+  Precision: 0.5321
+  Recall: 0.1060
+  AUC-ROC: 0.8570
+  AUC-PR: 0.3900
+
+Metrics for AGchain_0:
+  Accuracy: 88.82%
+  Precision: 0.5318
+  Recall: 0.1090
+  AUC-ROC: 0.8631
+  AUC-PR: 0.3986
+
+Metrics for AGchain_1:
+  Accuracy: 91.88%
+  Precision: 0.5714
+  Recall: 0.0285
+  AUC-ROC: 0.6489
+  AUC-PR: 0.1704
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.3757
+  AUC-PR: 0.0444
+
+Testing model: mcmodel_fold5_l1_g2_i1_dp0.0.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.21%
+  Precision: 0.6939
+  Recall: 0.4917
+  AUC-ROC: 0.8826
+  AUC-PR: 0.6588
+
+Metrics for Hchain:
+  Accuracy: 82.71%
+  Precision: 0.6862
+  Recall: 0.6113
+  AUC-ROC: 0.8781
+  AUC-PR: 0.7031
+
+Metrics for Antibody:
+  Accuracy: 83.91%
+  Precision: 0.6890
+  Recall: 0.5609
+  AUC-ROC: 0.8795
+  AUC-PR: 0.6835
+
+Metrics for Antigen:
+  Accuracy: 88.87%
+  Precision: 0.5037
+  Recall: 0.1828
+  AUC-ROC: 0.8522
+  AUC-PR: 0.3897
+
+Metrics for AGchain_0:
+  Accuracy: 88.73%
+  Precision: 0.5064
+  Recall: 0.1878
+  AUC-ROC: 0.8605
+  AUC-PR: 0.4004
+
+Metrics for AGchain_1:
+  Accuracy: 91.40%
+  Precision: 0.3382
+  Recall: 0.0546
+  AUC-ROC: 0.5582
+  AUC-PR: 0.1241
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.2391
+  AUC-PR: 0.0375
+
+Testing model: mcmodel_fold5_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 84.68%
+  Precision: 0.6321
+  Recall: 0.5952
+  AUC-ROC: 0.8807
+  AUC-PR: 0.6464
+
+Metrics for Hchain:
+  Accuracy: 83.48%
+  Precision: 0.6641
+  Recall: 0.7318
+  AUC-ROC: 0.8981
+  AUC-PR: 0.7376
+
+Metrics for Antibody:
+  Accuracy: 84.06%
+  Precision: 0.6518
+  Recall: 0.6742
+  AUC-ROC: 0.8893
+  AUC-PR: 0.7002
+
+Metrics for Antigen:
+  Accuracy: 88.97%
+  Precision: 0.5128
+  Recall: 0.2298
+  AUC-ROC: 0.8590
+  AUC-PR: 0.4218
+
+Metrics for AGchain_0:
+  Accuracy: 88.86%
+  Precision: 0.5175
+  Recall: 0.2369
+  AUC-ROC: 0.8678
+  AUC-PR: 0.4354
+
+Metrics for AGchain_1:
+  Accuracy: 90.91%
+  Precision: 0.2235
+  Recall: 0.0451
+  AUC-ROC: 0.5718
+  AUC-PR: 0.1133
+
+Metrics for AGchain_2:
+  Accuracy: 93.88%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.6403
+  AUC-PR: 0.0774

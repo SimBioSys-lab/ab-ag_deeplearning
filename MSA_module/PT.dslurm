@@ -1,21 +1,23 @@
 #!/bin/bash
-#SBATCH --job-name="PT"
-#SBATCH --output="PT.%j.%N.out"
+#SBATCH --job-name="PT_MG"
+#SBATCH --output="PT_MG.%j.%N.out"
 #SBATCH --partition=gpuA40x4
 #SBATCH --mem=208G
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=64  
-#SBATCH --constraint="scratch"
+#SBATCH --ntasks-per-node=1  # Match the number of GPUs
+#SBATCH --cpus-per-task=64
 #SBATCH --gpus-per-node=4
-#SBATCH --gpu-bind=closest   # select a cpu close to gpu on pci bus topology
-#SBATCH --account=xliu27    # <- match to a "Project" returned by the "accounts" command
-#SBATCH --exclusive  # dedicated node for this job
+#SBATCH --constraint="scratch"
+#SBATCH --gpu-bind=closest
+#SBATCH --account=bdtb-delta-gpu
+#SBATCH --exclusive
 #SBATCH --no-requeue
-#SBATCH -t 04:00:00
-#SBATCH -e slurm-%j.err
-#SBATCH -o slurm-%j.out
+#SBATCH -t 48:00:00
+#SBATCH -e PTMG_slurm-%j.err
+#SBATCH -o PTMG_slurm-%j.out
 
+# Load CUDA
+module load cuda/11.8.0 nccl
 
-module load cuda/12.1
-srun python PT_train_val.py
+#srun python PT_MSA_GNN.py 
+srun python PT_MG_CV.py

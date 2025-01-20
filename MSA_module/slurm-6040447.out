@@ -1,0 +1,123 @@
+
+Testing model: mcmodel_fold1_l1_g1_i1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 80.93%
+  Precision: 0.5232
+  Recall: 0.7316
+  AUC-ROC: 0.8645
+  AUC-PR: 0.6015
+
+Metrics for Hchain:
+  Accuracy: 70.51%
+  Precision: 0.4603
+  Recall: 0.8113
+  AUC-ROC: 0.8136
+  AUC-PR: 0.5812
+
+Metrics for AGchain_0:
+  Accuracy: 87.34%
+  Precision: 0.3343
+  Recall: 0.1194
+  AUC-ROC: 0.8111
+  AUC-PR: 0.2813
+
+Metrics for AGchain_1:
+  Accuracy: 83.16%
+  Precision: 0.0824
+  Recall: 0.1045
+  AUC-ROC: 0.5094
+  AUC-PR: 0.0822
+
+Metrics for AGchain_2:
+  Accuracy: 86.53%
+  Precision: 0.0500
+  Recall: 0.0667
+  AUC-ROC: 0.3881
+  AUC-PR: 0.0478
+
+Testing model: mcmodel_fold2_l1_g1_i1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 80.89%
+  Precision: 0.5222
+  Recall: 0.7361
+  AUC-ROC: 0.8653
+  AUC-PR: 0.6034
+
+Metrics for Hchain:
+  Accuracy: 69.77%
+  Precision: 0.4525
+  Recall: 0.8024
+  AUC-ROC: 0.8051
+  AUC-PR: 0.5733
+
+Metrics for AGchain_0:
+  Accuracy: 87.64%
+  Precision: 0.3196
+  Recall: 0.0809
+  AUC-ROC: 0.8132
+  AUC-PR: 0.2786
+
+Metrics for AGchain_1:
+  Accuracy: 85.01%
+  Precision: 0.0771
+  Recall: 0.0760
+  AUC-ROC: 0.5145
+  AUC-PR: 0.0839
+
+Metrics for AGchain_2:
+  Accuracy: 82.04%
+  Precision: 0.0000
+  Recall: 0.0000
+  AUC-ROC: 0.3820
+  AUC-PR: 0.0449
+
+Testing model: mcmodel_fold3_l1_g1_i1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CGModel with 1 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 81.56%
+  Precision: 0.5363
+  Recall: 0.7044
+  AUC-ROC: 0.8636
+  AUC-PR: 0.6072
+
+Metrics for Hchain:
+  Accuracy: 72.99%
+  Precision: 0.4860
+  Recall: 0.7594
+  AUC-ROC: 0.8124
+  AUC-PR: 0.5778
+
+Metrics for AGchain_0:
+  Accuracy: 88.30%
+  Precision: 0.3596
+  Recall: 0.0430
+  AUC-ROC: 0.8127
+  AUC-PR: 0.2835
+
+Metrics for AGchain_1:
+  Accuracy: 87.92%
+  Precision: 0.1149
+  Recall: 0.0713
+  AUC-ROC: 0.5217
+  AUC-PR: 0.0876
+
+Metrics for AGchain_2:
+  Accuracy: 92.65%
+  Precision: 0.2857
+  Recall: 0.1333
+  AUC-ROC: 0.4591
+  AUC-PR: 0.0934

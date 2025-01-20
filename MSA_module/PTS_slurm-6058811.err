@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_S.py", line 52, in <module>
+    dataset = SequenceParatopeDataset(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Dataloader_s.py", line 24, in __init__
+    self.abedge_data = np.load(abedge_file, allow_pickle=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/xliu27/miniconda3/envs/msa/lib/python3.12/site-packages/numpy/lib/npyio.py", line 427, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'antibody_train_edges_1300.npz'
+srun: error: gpub035: task 0: Exited with exit code 1

@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name="PT_test"
+#SBATCH --output="PT_test.%j.%N.out"
+#SBATCH --partition=gpuA40x4
+#SBATCH --mem=208G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=64  
+#SBATCH --constraint="scratch"
+#SBATCH --gpus-per-node=4
+#SBATCH --gpu-bind=closest   # select a cpu close to gpu on pci bus topology
+#SBATCH --account=bdtb-delta-gpu    # <- match to a "Project" returned by the "accounts" command
+#SBATCH --exclusive  # dedicated node for this job
+#SBATCH --no-requeue
+#SBATCH -t 48:00:00
+#SBATCH -e slurm-%j.err
+#SBATCH -o slurm-%j.out
+
+
+module load cuda/11.8.0
+#srun python PT_test.py
+srun python PT_test_ab.py

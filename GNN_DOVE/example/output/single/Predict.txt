@@ -1,2 +1,0 @@
-Input	Score
-correct.pdb	0.9969

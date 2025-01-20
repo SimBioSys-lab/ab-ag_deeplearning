@@ -1,0 +1,5 @@
+Accuracy: 71.48%
+Precision: 0.7095
+Recall: 0.8632
+AUC-ROC: 0.7738
+AUC-PR: 0.8156

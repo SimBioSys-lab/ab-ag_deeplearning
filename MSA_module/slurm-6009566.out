@@ -1,0 +1,40 @@
+
+Testing model: mcmodel_fold1_l1_g1_i1.pth
+Initializing ClassificationModel with 1 GAT layers and residual connections...
+Initializing MCModel with 1 GAT layers and 1 row attention layers...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 82.35%
+  Precision: 0.5567
+  Recall: 0.6585
+  AUC-ROC: 0.8615
+  AUC-PR: 0.6024
+
+Metrics for Hchain:
+  Accuracy: 74.35%
+  Precision: 0.5030
+  Recall: 0.7245
+  AUC-ROC: 0.8129
+  AUC-PR: 0.5868
+
+Metrics for AGchain_0:
+  Accuracy: 87.84%
+  Precision: 0.3714
+  Recall: 0.1066
+  AUC-ROC: 0.8308
+  AUC-PR: 0.3108
+
+Metrics for AGchain_1:
+  Accuracy: 83.86%
+  Precision: 0.1042
+  Recall: 0.1283
+  AUC-ROC: 0.5296
+  AUC-PR: 0.1081
+
+Metrics for AGchain_2:
+  Accuracy: 82.45%
+  Precision: 0.0625
+  Recall: 0.1333
+  AUC-ROC: 0.3922
+  AUC-PR: 0.1486

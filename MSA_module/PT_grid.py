@@ -13,25 +13,25 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 base_config = {
     'batch_size': 8,  # Per accumulation step
-    'gradient_accumulation_steps': 2,  # Number of mini-batches to accumulate
     'sequence_file': 'preprocessed_seq_ab_train_1200.npz',
     'pt_file': 'pt_train_data.csv',
     'seq_len': 1200,
     'vocab_size': 22,
     'num_classes': 2,
-    'num_epochs': 50,
-    'learning_rate': 0.003,
+    'num_epochs': 500,
+    'learning_rate': 0.0001,
     'max_grad_norm': 0.1,
     'validation_split': 0.1,
     'early_stop_patience': 10,
-    'initial_gradient_noise_std': 0.05
+    'initial_gradient_noise_std': 0.05,
+    'num_heads': 16  # Fixed value for num_heads
 }
 
 # Parameter ranges for grid search
 grid_params = {
-    'num_layers': [1, 2, 4],
-    'embed_dim': [64, 128, 256],
-    'num_heads': [4, 8, 16]
+    'num_layers': [1, 2, 4],  # Tune this
+    'embed_dim': [128, 256],  # Tune this
+    'gradient_accumulation_steps': [2, 4]  # Tune this
 }
 
 # Grid search results
@@ -54,15 +54,15 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Perform grid search
 for num_layers in grid_params['num_layers']:
     for embed_dim in grid_params['embed_dim']:
-        for num_heads in grid_params['num_heads']:
-            print(f"Training with num_layers={num_layers}, embed_dim={embed_dim}, num_heads={num_heads}", flush=True)
+        for grad_accum_steps in grid_params['gradient_accumulation_steps']:
+            print(f"Training with num_layers={num_layers}, embed_dim={embed_dim}, num_heads={base_config['num_heads']}, gradient_accumulation_steps={grad_accum_steps}", flush=True)
 
             # Initialize model
             model = ParatopeModel(
                 vocab_size=base_config['vocab_size'],
                 seq_len=base_config['seq_len'],
                 embed_dim=embed_dim,
-                num_heads=num_heads,
+                num_heads=base_config['num_heads'],  # Fixed num_heads
                 num_layers=num_layers,
                 num_classes=base_config['num_classes']
             )
@@ -70,6 +70,10 @@ for num_layers in grid_params['num_layers']:
                 print(f"Using {torch.cuda.device_count()} GPUs with DataParallel.")
                 model = nn.DataParallel(model)
             model = model.to(device)
+
+            # Print number of trainable parameters
+            total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+            print(f"Trainable Parameters: {total_params}", flush=True)
 
             # Initialize optimizer, scheduler, and criterion
             criterion = nn.CrossEntropyLoss(ignore_index=-1)
@@ -105,10 +109,9 @@ for num_layers in grid_params['num_layers']:
                         output_seq = model(seq)
                         output_seq = output_seq.view(-1, base_config['num_classes'])
                         tgt = tgt.view(-1)
-                        loss = criterion(output_seq, tgt) / base_config['gradient_accumulation_steps']
+                        loss = criterion(output_seq, tgt) / grad_accum_steps
 
                     scaler.scale(loss).backward()
-
                     # Add gradient noise
                     if current_gradient_noise_std > 0:
                         for param in model.parameters():
@@ -117,14 +120,14 @@ for num_layers in grid_params['num_layers']:
                                 param.grad.add_(noise)
 
                     # Gradient accumulation step
-                    if (step + 1) % base_config['gradient_accumulation_steps'] == 0 or (step + 1) == len(train_loader):
+                    if (step + 1) % grad_accum_steps == 0 or (step + 1) == len(train_loader):
                         scaler.unscale_(optimizer)
                         torch.nn.utils.clip_grad_norm_(model.parameters(), base_config['max_grad_norm'])
                         scaler.step(optimizer)
                         scaler.update()
                         optimizer.zero_grad()  # Reset gradients
 
-                    total_loss += loss.item() * base_config['gradient_accumulation_steps']
+                    total_loss += loss.item() * grad_accum_steps
 
                 avg_train_loss = total_loss / len(train_loader)
                 scheduler.step()
@@ -165,13 +168,14 @@ for num_layers in grid_params['num_layers']:
             results.append({
                 'num_layers': num_layers,
                 'embed_dim': embed_dim,
-                'num_heads': num_heads,
-                'best_val_loss': best_val_loss
+                'gradient_accumulation_steps': grad_accum_steps,
+                'best_val_loss': best_val_loss,
+                'trainable_params': total_params
             })
 
             # Save the best model for this configuration
             if best_model_state is not None:
-                model_path = f"model_layers_{num_layers}_dim_{embed_dim}_heads_{num_heads}.pth"
+                model_path = f"model_layers_{num_layers}_dim_{embed_dim}_heads_{base_config['num_heads']}_accum_{grad_accum_steps}.pth"
                 torch.save(best_model_state, model_path)
                 print(f"Best model saved to {model_path}", flush=True)
 

@@ -1,0 +1,14 @@
+model_l0_g1_d256_h16_bs4x2.pth
+model_l0_g2_d256_h16_bs4x2.pth
+model_l0_g3_d256_h16_bs4x2.pth
+model_l0_g4_d256_h16_bs4x2.pth
+model_l1_g0_d256_h16_bs4x2.pth
+model_l1_g1_d256_h16_bs4x2.pth
+model_l1_g2_d256_h16_bs4x2.pth
+model_l1_g3_d256_h16_bs4x2.pth
+model_l2_g0_d256_h16_bs4x2.pth
+model_l2_g1_d256_h16_bs4x2.pth
+model_l2_g2_d256_h16_bs4x2.pth
+model_l3_g0_d256_h16_bs4x2.pth
+model_l3_g1_d256_h16_bs4x2.pth
+model_l4_g0_d256_h16_bs4x2.pth

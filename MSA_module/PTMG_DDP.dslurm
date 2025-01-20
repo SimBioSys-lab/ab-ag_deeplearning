@@ -1,0 +1,32 @@
+#!/bin/bash
+#SBATCH --job-name="PTMG_DDP"
+#SBATCH --output="PTMG_DDP.%j.%N.out"
+#SBATCH --partition=gpuA40x4
+#SBATCH --mem=208G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4  # Match the number of GPUs
+#SBATCH --cpus-per-task=16
+#SBATCH --gpus-per-node=4
+#SBATCH --constraint="scratch"
+#SBATCH --gpu-bind=closest
+#SBATCH --account=bdtb-delta-gpu
+#SBATCH --exclusive
+#SBATCH --no-requeue
+#SBATCH -t 48:00:00
+#SBATCH -e PTMG_DDP_slurm-%j.err
+#SBATCH -o PTMG_DDP_slurm-%j.out
+
+# Load CUDA
+module load cuda/11.8.0
+#module load nccl/2.19.3-1 
+module load nccl/2.19.3-1.awsplugin
+# Set NCCL and PyTorch debugging environment variables
+export NCCL_DEBUG=INFO
+export NCCL_IB_DISABLE=1
+export NCCL_SOCKET_IFNAME=^lo,docker0
+export OMP_NUM_THREADS=4  # Adjust based on your system's configuration
+export CUDA_LAUNCH_BLOCKING=1
+
+# Run the DDP script with torchrun
+torchrun --nproc_per_node=4 PT_DDP_MSA_GNN.py
+

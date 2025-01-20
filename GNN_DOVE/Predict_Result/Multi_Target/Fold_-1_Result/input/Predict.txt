@@ -1,3 +1,0 @@
-Input	Score
-correct	0.9601
-incorrect	0.1143
