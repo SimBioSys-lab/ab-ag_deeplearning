@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import roc_auc_score, precision_recall_curve, auc, precision_score, recall_score
 import numpy as np
 from Dataloader_itf import SequenceParatopeDataset
-from Models_new import ClassificationModel
+from Models_test import ClassificationModel
 from torch.amp import autocast
 import csv
 import os
@@ -14,7 +14,7 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
 
 # Read model filenames
-with open('mcmodel_files', 'r') as f:
+with open('gsd_files', 'r') as f:
     models = [line.strip() for line in f if line.strip()]
 
 # Test configuration
@@ -109,7 +109,7 @@ for model_file in models:
 
                 # Perform inference
                 with autocast("cuda"):
-                    outputs = model(sequence_tensor, padded_edges)
+                    outputs, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges, return_attention=True)
                 outputs = outputs.squeeze(1)
                 probs = torch.softmax(outputs, dim=-1)
                 preds = torch.argmax(probs, dim=-1)

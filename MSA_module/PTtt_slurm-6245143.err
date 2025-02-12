@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_TT1.py", line 1, in <module>
+srun: error: gpub052: task 0: Exited with exit code 1
+    import torch
+ModuleNotFoundError: No module named 'torch'

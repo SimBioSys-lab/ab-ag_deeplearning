@@ -24,7 +24,7 @@ config = {
     'vocab_size': 23,
     'embed_dim': 256,
     'num_heads': 16,
-    'dropout': 0.0,
+    'dropout': 0.2,
     'num_layers': 2,
     'num_gnn_layers': 0,
     'num_int_layers': 1,

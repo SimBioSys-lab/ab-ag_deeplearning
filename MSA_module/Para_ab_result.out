@@ -1,0 +1,28 @@
+
+Testing model: PTttabmodel_d1_l1_g2_i1_dp0.1.pth
+Initializing ClassificationModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+
+Metrics for Lchain:
+  Accuracy: 85.38%
+  Precision: 0.6228
+  Recall: 0.6619
+  AUC-ROC: 0.8967
+  AUC-PR: 0.6688
+
+Metrics for Hchain:
+  Accuracy: 87.21%
+  Precision: 0.7514
+  Recall: 0.7786
+  AUC-ROC: 0.9289
+  AUC-PR: 0.8292
+
+Metrics for Antibody:
+  Accuracy: 86.34%
+  Precision: 0.6992
+  Recall: 0.7319
+  AUC-ROC: 0.9155
+  AUC-PR: 0.7712
+No data available for Antigen

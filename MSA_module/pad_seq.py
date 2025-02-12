@@ -2,10 +2,10 @@ import numpy as np
 
 # Configuration
 Threshold = 3000  # Set your desired threshold for sequence length
-output_file = f"test_train_sequences_{Threshold}.npz"  # Output file for padded sequences
+output_file = f"temp_combined_test_sequences_{Threshold}.npz"  # Output file for padded sequences
 
-# Load the combined_train_sequences.npz file
-sequences = np.load("combined_train_sequences.npz", allow_pickle=True)
+# Load the combined_val_sequences.npz file
+sequences = np.load("combined_test_sequences.npz", allow_pickle=True)
 
 # Dictionary to store processed sequences
 padded_sequences = {}

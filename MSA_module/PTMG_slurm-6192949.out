@@ -1,0 +1,1186 @@
+{'batch_size': 4, 'sequence_file': 'padded_sequences_train_3000.npz', 'data_file': 'padded_interfaces_train_3000.npz', 'edge_file': 'padded_edges_train_3000.npz', 'max_len': 3000, 'vocab_size': 23, 'embed_dim': 256, 'num_heads': 16, 'dropout': 0.0, 'num_layers': 0, 'num_gnn_layers': 3, 'num_int_layers': 1, 'num_classes': 2, 'num_epochs': 1000, 'learning_rate': 0.0001, 'max_grad_norm': 0.1, 'validation_split': 0.1, 'early_stop_patience': 10, 'initial_gradient_noise_std': 0.05, 'accumulation_steps': 2}
+Number of GPUs available: 4
+
+Starting Fold 1/5...
+Initializing ClassificationModel with 3 GAT layers and residual connections...
+Initializing MCModel with 3 GAT layers and 1 row attention layers...
+Initializing CGModel with 3 GAT layers and residual connections...
+Initializing CoreModel with 0 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 0.4227
+Validation Loss: 0.4200
+New best model found with validation loss: 0.4200
+Epoch [2/1000], Training Loss: 0.4159
+Validation Loss: 0.4190
+New best model found with validation loss: 0.4190
+Epoch [3/1000], Training Loss: 0.4122
+Validation Loss: 0.4246
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [4/1000], Training Loss: 0.4114
+Validation Loss: 0.4164
+New best model found with validation loss: 0.4164
+Epoch [5/1000], Training Loss: 0.4108
+Validation Loss: 0.4167
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [6/1000], Training Loss: 0.4072
+Validation Loss: 0.4079
+New best model found with validation loss: 0.4079
+Epoch [7/1000], Training Loss: 0.4065
+Validation Loss: 0.4161
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [8/1000], Training Loss: 0.4040
+Validation Loss: 0.4170
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [9/1000], Training Loss: 0.4037
+Validation Loss: 0.4036
+New best model found with validation loss: 0.4036
+Epoch [10/1000], Training Loss: 0.3999
+Validation Loss: 0.4033
+New best model found with validation loss: 0.4033
+Epoch [11/1000], Training Loss: 0.3965
+Validation Loss: 0.4006
+New best model found with validation loss: 0.4006
+Epoch [12/1000], Training Loss: 0.3956
+Validation Loss: 0.4006
+New best model found with validation loss: 0.4006
+Epoch [13/1000], Training Loss: 0.3952
+Validation Loss: 0.3992
+New best model found with validation loss: 0.3992
+Epoch [14/1000], Training Loss: 0.3956
+Validation Loss: 0.3968
+New best model found with validation loss: 0.3968
+Epoch [15/1000], Training Loss: 0.3942
+Validation Loss: 0.4006
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [16/1000], Training Loss: 0.3924
+Validation Loss: 0.3956
+New best model found with validation loss: 0.3956
+Epoch [17/1000], Training Loss: 0.3924
+Validation Loss: 0.3960
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [18/1000], Training Loss: 0.3918
+Validation Loss: 0.3977
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [19/1000], Training Loss: 0.3897
+Validation Loss: 0.3972
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [20/1000], Training Loss: 0.3902
+Validation Loss: 0.3947
+New best model found with validation loss: 0.3947
+Epoch [21/1000], Training Loss: 0.3894
+Validation Loss: 0.3943
+New best model found with validation loss: 0.3943
+Epoch [22/1000], Training Loss: 0.3881
+Validation Loss: 0.3949
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [23/1000], Training Loss: 0.3882
+Validation Loss: 0.3975
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [24/1000], Training Loss: 0.3865
+Validation Loss: 0.3948
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [25/1000], Training Loss: 0.3882
+Validation Loss: 0.3954
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [26/1000], Training Loss: 0.3884
+Validation Loss: 0.3939
+New best model found with validation loss: 0.3939
+Epoch [27/1000], Training Loss: 0.3886
+Validation Loss: 0.3931
+New best model found with validation loss: 0.3931
+Epoch [28/1000], Training Loss: 0.3878
+Validation Loss: 0.3936
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [29/1000], Training Loss: 0.3868
+Validation Loss: 0.3947
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [30/1000], Training Loss: 0.3855
+Validation Loss: 0.3931
+New best model found with validation loss: 0.3931
+Epoch [31/1000], Training Loss: 0.3874
+Validation Loss: 0.3950
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [32/1000], Training Loss: 0.3859
+Validation Loss: 0.3929
+New best model found with validation loss: 0.3929
+Epoch [33/1000], Training Loss: 0.3841
+Validation Loss: 0.3925
+New best model found with validation loss: 0.3925
+Epoch [34/1000], Training Loss: 0.3858
+Validation Loss: 0.3932
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [35/1000], Training Loss: 0.3858
+Validation Loss: 0.3928
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [36/1000], Training Loss: 0.3854
+Validation Loss: 0.3925
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [37/1000], Training Loss: 0.3877
+Validation Loss: 0.3929
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [38/1000], Training Loss: 0.3844
+Validation Loss: 0.3945
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [39/1000], Training Loss: 0.3857
+Validation Loss: 0.3929
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [40/1000], Training Loss: 0.3849
+Validation Loss: 0.3924
+New best model found with validation loss: 0.3924
+Epoch [41/1000], Training Loss: 0.3844
+Validation Loss: 0.3923
+New best model found with validation loss: 0.3923
+Epoch [42/1000], Training Loss: 0.3856
+Validation Loss: 0.3923
+New best model found with validation loss: 0.3923
+Epoch [43/1000], Training Loss: 0.3839
+Validation Loss: 0.3925
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [44/1000], Training Loss: 0.3857
+Validation Loss: 0.3923
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [45/1000], Training Loss: 0.3844
+Validation Loss: 0.3932
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [46/1000], Training Loss: 0.3841
+Validation Loss: 0.3924
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [47/1000], Training Loss: 0.3839
+Validation Loss: 0.3926
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [48/1000], Training Loss: 0.3850
+Validation Loss: 0.3923
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [49/1000], Training Loss: 0.3855
+Validation Loss: 0.3922
+New best model found with validation loss: 0.3922
+Epoch [50/1000], Training Loss: 0.3840
+Validation Loss: 0.3927
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [51/1000], Training Loss: 0.3845
+Validation Loss: 0.3919
+New best model found with validation loss: 0.3919
+Epoch [52/1000], Training Loss: 0.3845
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [53/1000], Training Loss: 0.3838
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [54/1000], Training Loss: 0.3834
+Validation Loss: 0.3923
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [55/1000], Training Loss: 0.3837
+Validation Loss: 0.3921
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [56/1000], Training Loss: 0.3843
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [57/1000], Training Loss: 0.3844
+Validation Loss: 0.3922
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [58/1000], Training Loss: 0.3853
+Validation Loss: 0.3922
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [59/1000], Training Loss: 0.3843
+Validation Loss: 0.3918
+New best model found with validation loss: 0.3918
+Epoch [60/1000], Training Loss: 0.3845
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [61/1000], Training Loss: 0.3829
+Validation Loss: 0.3921
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [62/1000], Training Loss: 0.3836
+Validation Loss: 0.3921
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [63/1000], Training Loss: 0.3840
+Validation Loss: 0.3922
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [64/1000], Training Loss: 0.3846
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [65/1000], Training Loss: 0.3858
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [66/1000], Training Loss: 0.3850
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [67/1000], Training Loss: 0.3839
+Validation Loss: 0.3918
+New best model found with validation loss: 0.3918
+Epoch [68/1000], Training Loss: 0.3835
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [69/1000], Training Loss: 0.3842
+Validation Loss: 0.3917
+New best model found with validation loss: 0.3917
+Epoch [70/1000], Training Loss: 0.3823
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [71/1000], Training Loss: 0.3816
+Validation Loss: 0.3920
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [72/1000], Training Loss: 0.3849
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [73/1000], Training Loss: 0.3838
+Validation Loss: 0.3918
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [74/1000], Training Loss: 0.3839
+Validation Loss: 0.3917
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [75/1000], Training Loss: 0.3841
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [76/1000], Training Loss: 0.3825
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [77/1000], Training Loss: 0.3837
+Validation Loss: 0.3918
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [78/1000], Training Loss: 0.3836
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [79/1000], Training Loss: 0.3834
+Validation Loss: 0.3919
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 79 epochs.
+Best model for fold 1 saved successfully.
+
+Starting Fold 2/5...
+Initializing ClassificationModel with 3 GAT layers and residual connections...
+Initializing MCModel with 3 GAT layers and 1 row attention layers...
+Initializing CGModel with 3 GAT layers and residual connections...
+Initializing CoreModel with 0 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 0.4279
+Validation Loss: 0.4208
+New best model found with validation loss: 0.4208
+Epoch [2/1000], Training Loss: 0.4166
+Validation Loss: 0.4189
+New best model found with validation loss: 0.4189
+Epoch [3/1000], Training Loss: 0.4155
+Validation Loss: 0.4228
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [4/1000], Training Loss: 0.4126
+Validation Loss: 0.4176
+New best model found with validation loss: 0.4176
+Epoch [5/1000], Training Loss: 0.4097
+Validation Loss: 0.4128
+New best model found with validation loss: 0.4128
+Epoch [6/1000], Training Loss: 0.4083
+Validation Loss: 0.4310
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [7/1000], Training Loss: 0.4085
+Validation Loss: 0.4117
+New best model found with validation loss: 0.4117
+Epoch [8/1000], Training Loss: 0.4047
+Validation Loss: 0.4182
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [9/1000], Training Loss: 0.4035
+Validation Loss: 0.4074
+New best model found with validation loss: 0.4074
+Epoch [10/1000], Training Loss: 0.4004
+Validation Loss: 0.4061
+New best model found with validation loss: 0.4061
+Epoch [11/1000], Training Loss: 0.3962
+Validation Loss: 0.4072
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [12/1000], Training Loss: 0.3948
+Validation Loss: 0.4072
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [13/1000], Training Loss: 0.3949
+Validation Loss: 0.4036
+New best model found with validation loss: 0.4036
+Epoch [14/1000], Training Loss: 0.3927
+Validation Loss: 0.4026
+New best model found with validation loss: 0.4026
+Epoch [15/1000], Training Loss: 0.3941
+Validation Loss: 0.4039
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [16/1000], Training Loss: 0.3935
+Validation Loss: 0.4034
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [17/1000], Training Loss: 0.3913
+Validation Loss: 0.4018
+New best model found with validation loss: 0.4018
+Epoch [18/1000], Training Loss: 0.3910
+Validation Loss: 0.4087
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [19/1000], Training Loss: 0.3924
+Validation Loss: 0.4056
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [20/1000], Training Loss: 0.3900
+Validation Loss: 0.4043
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [21/1000], Training Loss: 0.3892
+Validation Loss: 0.4029
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [22/1000], Training Loss: 0.3897
+Validation Loss: 0.4016
+New best model found with validation loss: 0.4016
+Epoch [23/1000], Training Loss: 0.3890
+Validation Loss: 0.4006
+New best model found with validation loss: 0.4006
+Epoch [24/1000], Training Loss: 0.3876
+Validation Loss: 0.4006
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [25/1000], Training Loss: 0.3886
+Validation Loss: 0.4015
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [26/1000], Training Loss: 0.3884
+Validation Loss: 0.4014
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [27/1000], Training Loss: 0.3872
+Validation Loss: 0.4007
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [28/1000], Training Loss: 0.3901
+Validation Loss: 0.4006
+New best model found with validation loss: 0.4006
+Epoch [29/1000], Training Loss: 0.3868
+Validation Loss: 0.4002
+New best model found with validation loss: 0.4002
+Epoch [30/1000], Training Loss: 0.3890
+Validation Loss: 0.4028
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [31/1000], Training Loss: 0.3874
+Validation Loss: 0.4012
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [32/1000], Training Loss: 0.3869
+Validation Loss: 0.4001
+New best model found with validation loss: 0.4001
+Epoch [33/1000], Training Loss: 0.3873
+Validation Loss: 0.4009
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [34/1000], Training Loss: 0.3878
+Validation Loss: 0.4007
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [35/1000], Training Loss: 0.3865
+Validation Loss: 0.4005
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [36/1000], Training Loss: 0.3850
+Validation Loss: 0.4005
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [37/1000], Training Loss: 0.3880
+Validation Loss: 0.4001
+New best model found with validation loss: 0.4001
+Epoch [38/1000], Training Loss: 0.3860
+Validation Loss: 0.4003
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [39/1000], Training Loss: 0.3874
+Validation Loss: 0.4005
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [40/1000], Training Loss: 0.3874
+Validation Loss: 0.3998
+New best model found with validation loss: 0.3998
+Epoch [41/1000], Training Loss: 0.3859
+Validation Loss: 0.4000
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [42/1000], Training Loss: 0.3859
+Validation Loss: 0.4001
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [43/1000], Training Loss: 0.3859
+Validation Loss: 0.4000
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [44/1000], Training Loss: 0.3865
+Validation Loss: 0.4022
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [45/1000], Training Loss: 0.3854
+Validation Loss: 0.4003
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [46/1000], Training Loss: 0.3851
+Validation Loss: 0.4000
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [47/1000], Training Loss: 0.3862
+Validation Loss: 0.3998
+New best model found with validation loss: 0.3998
+Epoch [48/1000], Training Loss: 0.3853
+Validation Loss: 0.4004
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [49/1000], Training Loss: 0.3869
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [50/1000], Training Loss: 0.3850
+Validation Loss: 0.3997
+New best model found with validation loss: 0.3997
+Epoch [51/1000], Training Loss: 0.3851
+Validation Loss: 0.3997
+New best model found with validation loss: 0.3997
+Epoch [52/1000], Training Loss: 0.3860
+Validation Loss: 0.4002
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [53/1000], Training Loss: 0.3860
+Validation Loss: 0.4002
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [54/1000], Training Loss: 0.3880
+Validation Loss: 0.4003
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [55/1000], Training Loss: 0.3868
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [56/1000], Training Loss: 0.3855
+Validation Loss: 0.4004
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [57/1000], Training Loss: 0.3849
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [58/1000], Training Loss: 0.3848
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [59/1000], Training Loss: 0.3853
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [60/1000], Training Loss: 0.3868
+Validation Loss: 0.3997
+New best model found with validation loss: 0.3997
+Epoch [61/1000], Training Loss: 0.3841
+Validation Loss: 0.4000
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [62/1000], Training Loss: 0.3837
+Validation Loss: 0.4002
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [63/1000], Training Loss: 0.3841
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [64/1000], Training Loss: 0.3855
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [65/1000], Training Loss: 0.3852
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [66/1000], Training Loss: 0.3834
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [67/1000], Training Loss: 0.3849
+Validation Loss: 0.3997
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [68/1000], Training Loss: 0.3865
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [69/1000], Training Loss: 0.3847
+Validation Loss: 0.3998
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [70/1000], Training Loss: 0.3850
+Validation Loss: 0.4002
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 70 epochs.
+Best model for fold 2 saved successfully.
+
+Starting Fold 3/5...
+Initializing ClassificationModel with 3 GAT layers and residual connections...
+Initializing MCModel with 3 GAT layers and 1 row attention layers...
+Initializing CGModel with 3 GAT layers and residual connections...
+Initializing CoreModel with 0 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 0.4273
+Validation Loss: 0.4121
+New best model found with validation loss: 0.4121
+Epoch [2/1000], Training Loss: 0.4156
+Validation Loss: 0.4098
+New best model found with validation loss: 0.4098
+Epoch [3/1000], Training Loss: 0.4148
+Validation Loss: 0.4138
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [4/1000], Training Loss: 0.4118
+Validation Loss: 0.4076
+New best model found with validation loss: 0.4076
+Epoch [5/1000], Training Loss: 0.4103
+Validation Loss: 0.4035
+New best model found with validation loss: 0.4035
+Epoch [6/1000], Training Loss: 0.4097
+Validation Loss: 0.4053
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [7/1000], Training Loss: 0.4060
+Validation Loss: 0.4007
+New best model found with validation loss: 0.4007
+Epoch [8/1000], Training Loss: 0.4036
+Validation Loss: 0.4026
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [9/1000], Training Loss: 0.4019
+Validation Loss: 0.4025
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [10/1000], Training Loss: 0.4023
+Validation Loss: 0.3986
+New best model found with validation loss: 0.3986
+Epoch [11/1000], Training Loss: 0.3992
+Validation Loss: 0.3947
+New best model found with validation loss: 0.3947
+Epoch [12/1000], Training Loss: 0.3976
+Validation Loss: 0.3934
+New best model found with validation loss: 0.3934
+Epoch [13/1000], Training Loss: 0.3972
+Validation Loss: 0.4069
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [14/1000], Training Loss: 0.3961
+Validation Loss: 0.3924
+New best model found with validation loss: 0.3924
+Epoch [15/1000], Training Loss: 0.3938
+Validation Loss: 0.4015
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [16/1000], Training Loss: 0.3952
+Validation Loss: 0.3918
+New best model found with validation loss: 0.3918
+Epoch [17/1000], Training Loss: 0.3922
+Validation Loss: 0.3914
+New best model found with validation loss: 0.3914
+Epoch [18/1000], Training Loss: 0.3932
+Validation Loss: 0.3907
+New best model found with validation loss: 0.3907
+Epoch [19/1000], Training Loss: 0.3917
+Validation Loss: 0.3908
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [20/1000], Training Loss: 0.3928
+Validation Loss: 0.3943
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [21/1000], Training Loss: 0.3898
+Validation Loss: 0.3906
+New best model found with validation loss: 0.3906
+Epoch [22/1000], Training Loss: 0.3901
+Validation Loss: 0.3897
+New best model found with validation loss: 0.3897
+Epoch [23/1000], Training Loss: 0.3889
+Validation Loss: 0.3898
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [24/1000], Training Loss: 0.3893
+Validation Loss: 0.3901
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [25/1000], Training Loss: 0.3882
+Validation Loss: 0.3928
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [26/1000], Training Loss: 0.3896
+Validation Loss: 0.3911
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [27/1000], Training Loss: 0.3906
+Validation Loss: 0.3891
+New best model found with validation loss: 0.3891
+Epoch [28/1000], Training Loss: 0.3890
+Validation Loss: 0.3891
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [29/1000], Training Loss: 0.3910
+Validation Loss: 0.3904
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [30/1000], Training Loss: 0.3903
+Validation Loss: 0.3893
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [31/1000], Training Loss: 0.3882
+Validation Loss: 0.3889
+New best model found with validation loss: 0.3889
+Epoch [32/1000], Training Loss: 0.3873
+Validation Loss: 0.3893
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [33/1000], Training Loss: 0.3882
+Validation Loss: 0.3887
+New best model found with validation loss: 0.3887
+Epoch [34/1000], Training Loss: 0.3874
+Validation Loss: 0.3890
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [35/1000], Training Loss: 0.3880
+Validation Loss: 0.3887
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [36/1000], Training Loss: 0.3887
+Validation Loss: 0.3886
+New best model found with validation loss: 0.3886
+Epoch [37/1000], Training Loss: 0.3862
+Validation Loss: 0.3886
+New best model found with validation loss: 0.3886
+Epoch [38/1000], Training Loss: 0.3877
+Validation Loss: 0.3885
+New best model found with validation loss: 0.3885
+Epoch [39/1000], Training Loss: 0.3879
+Validation Loss: 0.3891
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [40/1000], Training Loss: 0.3870
+Validation Loss: 0.3891
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [41/1000], Training Loss: 0.3865
+Validation Loss: 0.3884
+New best model found with validation loss: 0.3884
+Epoch [42/1000], Training Loss: 0.3863
+Validation Loss: 0.3884
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [43/1000], Training Loss: 0.3867
+Validation Loss: 0.3883
+New best model found with validation loss: 0.3883
+Epoch [44/1000], Training Loss: 0.3857
+Validation Loss: 0.3887
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [45/1000], Training Loss: 0.3871
+Validation Loss: 0.3891
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [46/1000], Training Loss: 0.3869
+Validation Loss: 0.3884
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [47/1000], Training Loss: 0.3870
+Validation Loss: 0.3882
+New best model found with validation loss: 0.3882
+Epoch [48/1000], Training Loss: 0.3871
+Validation Loss: 0.3883
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [49/1000], Training Loss: 0.3856
+Validation Loss: 0.3885
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [50/1000], Training Loss: 0.3871
+Validation Loss: 0.3881
+New best model found with validation loss: 0.3881
+Epoch [51/1000], Training Loss: 0.3867
+Validation Loss: 0.3884
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [52/1000], Training Loss: 0.3865
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [53/1000], Training Loss: 0.3855
+Validation Loss: 0.3891
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [54/1000], Training Loss: 0.3866
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [55/1000], Training Loss: 0.3849
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [56/1000], Training Loss: 0.3881
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [57/1000], Training Loss: 0.3867
+Validation Loss: 0.3881
+New best model found with validation loss: 0.3881
+Epoch [58/1000], Training Loss: 0.3873
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [59/1000], Training Loss: 0.3863
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [60/1000], Training Loss: 0.3871
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [61/1000], Training Loss: 0.3874
+Validation Loss: 0.3883
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [62/1000], Training Loss: 0.3859
+Validation Loss: 0.3880
+New best model found with validation loss: 0.3880
+Epoch [63/1000], Training Loss: 0.3853
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [64/1000], Training Loss: 0.3857
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [65/1000], Training Loss: 0.3847
+Validation Loss: 0.3880
+New best model found with validation loss: 0.3880
+Epoch [66/1000], Training Loss: 0.3846
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [67/1000], Training Loss: 0.3862
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [68/1000], Training Loss: 0.3851
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [69/1000], Training Loss: 0.3854
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [70/1000], Training Loss: 0.3863
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [71/1000], Training Loss: 0.3868
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [72/1000], Training Loss: 0.3852
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [73/1000], Training Loss: 0.3853
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [74/1000], Training Loss: 0.3866
+Validation Loss: 0.3880
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [75/1000], Training Loss: 0.3866
+Validation Loss: 0.3882
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 75 epochs.
+Best model for fold 3 saved successfully.
+
+Starting Fold 4/5...
+Initializing ClassificationModel with 3 GAT layers and residual connections...
+Initializing MCModel with 3 GAT layers and 1 row attention layers...
+Initializing CGModel with 3 GAT layers and residual connections...
+Initializing CoreModel with 0 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 0.4251
+Validation Loss: 0.4296
+New best model found with validation loss: 0.4296
+Epoch [2/1000], Training Loss: 0.4144
+Validation Loss: 0.4229
+New best model found with validation loss: 0.4229
+Epoch [3/1000], Training Loss: 0.4129
+Validation Loss: 0.4248
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [4/1000], Training Loss: 0.4100
+Validation Loss: 0.4220
+New best model found with validation loss: 0.4220
+Epoch [5/1000], Training Loss: 0.4086
+Validation Loss: 0.4187
+New best model found with validation loss: 0.4187
+Epoch [6/1000], Training Loss: 0.4047
+Validation Loss: 0.4190
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [7/1000], Training Loss: 0.4046
+Validation Loss: 0.4150
+New best model found with validation loss: 0.4150
+Epoch [8/1000], Training Loss: 0.4005
+Validation Loss: 0.4147
+New best model found with validation loss: 0.4147
+Epoch [9/1000], Training Loss: 0.4007
+Validation Loss: 0.4183
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [10/1000], Training Loss: 0.3967
+Validation Loss: 0.4128
+New best model found with validation loss: 0.4128
+Epoch [11/1000], Training Loss: 0.3941
+Validation Loss: 0.4094
+New best model found with validation loss: 0.4094
+Epoch [12/1000], Training Loss: 0.3941
+Validation Loss: 0.4087
+New best model found with validation loss: 0.4087
+Epoch [13/1000], Training Loss: 0.3940
+Validation Loss: 0.4075
+New best model found with validation loss: 0.4075
+Epoch [14/1000], Training Loss: 0.3918
+Validation Loss: 0.4067
+New best model found with validation loss: 0.4067
+Epoch [15/1000], Training Loss: 0.3899
+Validation Loss: 0.4083
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [16/1000], Training Loss: 0.3892
+Validation Loss: 0.4058
+New best model found with validation loss: 0.4058
+Epoch [17/1000], Training Loss: 0.3905
+Validation Loss: 0.4058
+New best model found with validation loss: 0.4058
+Epoch [18/1000], Training Loss: 0.3901
+Validation Loss: 0.4084
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [19/1000], Training Loss: 0.3873
+Validation Loss: 0.4050
+New best model found with validation loss: 0.4050
+Epoch [20/1000], Training Loss: 0.3886
+Validation Loss: 0.4043
+New best model found with validation loss: 0.4043
+Epoch [21/1000], Training Loss: 0.3878
+Validation Loss: 0.4046
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [22/1000], Training Loss: 0.3861
+Validation Loss: 0.4043
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [23/1000], Training Loss: 0.3859
+Validation Loss: 0.4040
+New best model found with validation loss: 0.4040
+Epoch [24/1000], Training Loss: 0.3875
+Validation Loss: 0.4043
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [25/1000], Training Loss: 0.3849
+Validation Loss: 0.4052
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [26/1000], Training Loss: 0.3874
+Validation Loss: 0.4046
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [27/1000], Training Loss: 0.3859
+Validation Loss: 0.4043
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [28/1000], Training Loss: 0.3867
+Validation Loss: 0.4064
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [29/1000], Training Loss: 0.3847
+Validation Loss: 0.4056
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [30/1000], Training Loss: 0.3859
+Validation Loss: 0.4040
+New best model found with validation loss: 0.4040
+Epoch [31/1000], Training Loss: 0.3844
+Validation Loss: 0.4035
+New best model found with validation loss: 0.4035
+Epoch [32/1000], Training Loss: 0.3872
+Validation Loss: 0.4038
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [33/1000], Training Loss: 0.3854
+Validation Loss: 0.4055
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [34/1000], Training Loss: 0.3841
+Validation Loss: 0.4036
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [35/1000], Training Loss: 0.3858
+Validation Loss: 0.4036
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [36/1000], Training Loss: 0.3842
+Validation Loss: 0.4036
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [37/1000], Training Loss: 0.3832
+Validation Loss: 0.4034
+New best model found with validation loss: 0.4034
+Epoch [38/1000], Training Loss: 0.3850
+Validation Loss: 0.4039
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [39/1000], Training Loss: 0.3835
+Validation Loss: 0.4048
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [40/1000], Training Loss: 0.3834
+Validation Loss: 0.4035
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [41/1000], Training Loss: 0.3828
+Validation Loss: 0.4033
+New best model found with validation loss: 0.4033
+Epoch [42/1000], Training Loss: 0.3825
+Validation Loss: 0.4033
+New best model found with validation loss: 0.4033
+Epoch [43/1000], Training Loss: 0.3837
+Validation Loss: 0.4034
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [44/1000], Training Loss: 0.3828
+Validation Loss: 0.4038
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [45/1000], Training Loss: 0.3821
+Validation Loss: 0.4032
+New best model found with validation loss: 0.4032
+Epoch [46/1000], Training Loss: 0.3824
+Validation Loss: 0.4034
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [47/1000], Training Loss: 0.3837
+Validation Loss: 0.4035
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [48/1000], Training Loss: 0.3831
+Validation Loss: 0.4035
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [49/1000], Training Loss: 0.3819
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [50/1000], Training Loss: 0.3829
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [51/1000], Training Loss: 0.3824
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [52/1000], Training Loss: 0.3825
+Validation Loss: 0.4032
+New best model found with validation loss: 0.4032
+Epoch [53/1000], Training Loss: 0.3825
+Validation Loss: 0.4032
+New best model found with validation loss: 0.4032
+Epoch [54/1000], Training Loss: 0.3828
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [55/1000], Training Loss: 0.3827
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [56/1000], Training Loss: 0.3842
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [57/1000], Training Loss: 0.3830
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [58/1000], Training Loss: 0.3816
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [59/1000], Training Loss: 0.3820
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [60/1000], Training Loss: 0.3821
+Validation Loss: 0.4031
+New best model found with validation loss: 0.4031
+Epoch [61/1000], Training Loss: 0.3815
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [62/1000], Training Loss: 0.3831
+Validation Loss: 0.4033
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [63/1000], Training Loss: 0.3828
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [64/1000], Training Loss: 0.3830
+Validation Loss: 0.4031
+New best model found with validation loss: 0.4031
+Epoch [65/1000], Training Loss: 0.3816
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [66/1000], Training Loss: 0.3831
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [67/1000], Training Loss: 0.3833
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [68/1000], Training Loss: 0.3828
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [69/1000], Training Loss: 0.3831
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [70/1000], Training Loss: 0.3836
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [71/1000], Training Loss: 0.3833
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [72/1000], Training Loss: 0.3817
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [73/1000], Training Loss: 0.3815
+Validation Loss: 0.4032
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [74/1000], Training Loss: 0.3829
+Validation Loss: 0.4031
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 74 epochs.
+Best model for fold 4 saved successfully.
+
+Starting Fold 5/5...
+Initializing ClassificationModel with 3 GAT layers and residual connections...
+Initializing MCModel with 3 GAT layers and 1 row attention layers...
+Initializing CGModel with 3 GAT layers and residual connections...
+Initializing CoreModel with 0 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 0.4387
+Validation Loss: 0.4134
+New best model found with validation loss: 0.4134
+Epoch [2/1000], Training Loss: 0.4188
+Validation Loss: 0.4106
+New best model found with validation loss: 0.4106
+Epoch [3/1000], Training Loss: 0.4158
+Validation Loss: 0.4127
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [4/1000], Training Loss: 0.4123
+Validation Loss: 0.4054
+New best model found with validation loss: 0.4054
+Epoch [5/1000], Training Loss: 0.4099
+Validation Loss: 0.4060
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [6/1000], Training Loss: 0.4107
+Validation Loss: 0.4026
+New best model found with validation loss: 0.4026
+Epoch [7/1000], Training Loss: 0.4070
+Validation Loss: 0.4011
+New best model found with validation loss: 0.4011
+Epoch [8/1000], Training Loss: 0.4061
+Validation Loss: 0.3989
+New best model found with validation loss: 0.3989
+Epoch [9/1000], Training Loss: 0.4036
+Validation Loss: 0.3957
+New best model found with validation loss: 0.3957
+Epoch [10/1000], Training Loss: 0.4014
+Validation Loss: 0.3968
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [11/1000], Training Loss: 0.3989
+Validation Loss: 0.3921
+New best model found with validation loss: 0.3921
+Epoch [12/1000], Training Loss: 0.3974
+Validation Loss: 0.3913
+New best model found with validation loss: 0.3913
+Epoch [13/1000], Training Loss: 0.3955
+Validation Loss: 0.3905
+New best model found with validation loss: 0.3905
+Epoch [14/1000], Training Loss: 0.3942
+Validation Loss: 0.3912
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [15/1000], Training Loss: 0.3938
+Validation Loss: 0.3892
+New best model found with validation loss: 0.3892
+Epoch [16/1000], Training Loss: 0.3940
+Validation Loss: 0.3897
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [17/1000], Training Loss: 0.3946
+Validation Loss: 0.3885
+New best model found with validation loss: 0.3885
+Epoch [18/1000], Training Loss: 0.3925
+Validation Loss: 0.3904
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [19/1000], Training Loss: 0.3912
+Validation Loss: 0.3885
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [20/1000], Training Loss: 0.3916
+Validation Loss: 0.3892
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [21/1000], Training Loss: 0.3896
+Validation Loss: 0.3880
+New best model found with validation loss: 0.3880
+Epoch [22/1000], Training Loss: 0.3905
+Validation Loss: 0.3902
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [23/1000], Training Loss: 0.3892
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [24/1000], Training Loss: 0.3899
+Validation Loss: 0.3874
+New best model found with validation loss: 0.3874
+Epoch [25/1000], Training Loss: 0.3896
+Validation Loss: 0.3925
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [26/1000], Training Loss: 0.3904
+Validation Loss: 0.3938
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [27/1000], Training Loss: 0.3896
+Validation Loss: 0.3866
+New best model found with validation loss: 0.3866
+Epoch [28/1000], Training Loss: 0.3885
+Validation Loss: 0.3867
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [29/1000], Training Loss: 0.3888
+Validation Loss: 0.3886
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [30/1000], Training Loss: 0.3890
+Validation Loss: 0.3876
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [31/1000], Training Loss: 0.3865
+Validation Loss: 0.3864
+New best model found with validation loss: 0.3864
+Epoch [32/1000], Training Loss: 0.3880
+Validation Loss: 0.3862
+New best model found with validation loss: 0.3862
+Epoch [33/1000], Training Loss: 0.3870
+Validation Loss: 0.3859
+New best model found with validation loss: 0.3859
+Epoch [34/1000], Training Loss: 0.3862
+Validation Loss: 0.3863
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [35/1000], Training Loss: 0.3887
+Validation Loss: 0.3869
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [36/1000], Training Loss: 0.3867
+Validation Loss: 0.3859
+New best model found with validation loss: 0.3859
+Epoch [37/1000], Training Loss: 0.3874
+Validation Loss: 0.3859
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [38/1000], Training Loss: 0.3886
+Validation Loss: 0.3856
+New best model found with validation loss: 0.3856
+Epoch [39/1000], Training Loss: 0.3867
+Validation Loss: 0.3867
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [40/1000], Training Loss: 0.3873
+Validation Loss: 0.3863
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [41/1000], Training Loss: 0.3857
+Validation Loss: 0.3856
+New best model found with validation loss: 0.3856
+Epoch [42/1000], Training Loss: 0.3880
+Validation Loss: 0.3859
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [43/1000], Training Loss: 0.3861
+Validation Loss: 0.3857
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [44/1000], Training Loss: 0.3868
+Validation Loss: 0.3858
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [45/1000], Training Loss: 0.3867
+Validation Loss: 0.3858
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [46/1000], Training Loss: 0.3864
+Validation Loss: 0.3858
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [47/1000], Training Loss: 0.3879
+Validation Loss: 0.3881
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [48/1000], Training Loss: 0.3863
+Validation Loss: 0.3858
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [49/1000], Training Loss: 0.3866
+Validation Loss: 0.3856
+New best model found with validation loss: 0.3856
+Epoch [50/1000], Training Loss: 0.3863
+Validation Loss: 0.3854
+New best model found with validation loss: 0.3854
+Epoch [51/1000], Training Loss: 0.3856
+Validation Loss: 0.3860
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [52/1000], Training Loss: 0.3856
+Validation Loss: 0.3856
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [53/1000], Training Loss: 0.3861
+Validation Loss: 0.3855
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [54/1000], Training Loss: 0.3857
+Validation Loss: 0.3853
+New best model found with validation loss: 0.3853
+Epoch [55/1000], Training Loss: 0.3849
+Validation Loss: 0.3854
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [56/1000], Training Loss: 0.3859
+Validation Loss: 0.3860
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [57/1000], Training Loss: 0.3866
+Validation Loss: 0.3855
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [58/1000], Training Loss: 0.3850
+Validation Loss: 0.3859
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [59/1000], Training Loss: 0.3863
+Validation Loss: 0.3853
+New best model found with validation loss: 0.3853
+Epoch [60/1000], Training Loss: 0.3869
+Validation Loss: 0.3854
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [61/1000], Training Loss: 0.3861
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [62/1000], Training Loss: 0.3856
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [63/1000], Training Loss: 0.3859
+Validation Loss: 0.3854
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [64/1000], Training Loss: 0.3850
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [65/1000], Training Loss: 0.3858
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [66/1000], Training Loss: 0.3861
+Validation Loss: 0.3854
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [67/1000], Training Loss: 0.3848
+Validation Loss: 0.3854
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [68/1000], Training Loss: 0.3859
+Validation Loss: 0.3856
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [69/1000], Training Loss: 0.3845
+Validation Loss: 0.3852
+New best model found with validation loss: 0.3852
+Epoch [70/1000], Training Loss: 0.3862
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [71/1000], Training Loss: 0.3847
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [72/1000], Training Loss: 0.3860
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [73/1000], Training Loss: 0.3859
+Validation Loss: 0.3855
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [74/1000], Training Loss: 0.3846
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [75/1000], Training Loss: 0.3863
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [76/1000], Training Loss: 0.3841
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [77/1000], Training Loss: 0.3860
+Validation Loss: 0.3855
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [78/1000], Training Loss: 0.3848
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [79/1000], Training Loss: 0.3864
+Validation Loss: 0.3853
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 79 epochs.
+Best model for fold 5 saved successfully.
+
+Cross-validation results:
+Fold 1: Validation Loss = 0.3917
+Fold 2: Validation Loss = 0.3997
+Fold 3: Validation Loss = 0.3880
+Fold 4: Validation Loss = 0.4031
+Fold 5: Validation Loss = 0.3852
+Average Validation Loss: 0.3935

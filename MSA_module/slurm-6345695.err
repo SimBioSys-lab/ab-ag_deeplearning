@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_test_abpt.py", line 17, in <module>
+    with open('mcabptmodel_files', 'r') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mcabptmodel_files'
+srun: error: gpub061: task 0: Exited with exit code 1

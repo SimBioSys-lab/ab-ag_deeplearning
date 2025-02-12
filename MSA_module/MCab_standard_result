@@ -1,0 +1,17 @@
+Detailed Metrics:
+                                  Model Fold  ... AUC-ROC  AUC-PR
+0  mcabaimodel_fold1_l1_g2_i1_dp0.0.pth    f  ...  0.9459  0.8670
+1  mcabaimodel_fold2_l1_g2_i1_dp0.0.pth    f  ...  0.9427  0.8634
+2  mcabaimodel_fold3_l1_g2_i1_dp0.0.pth    f  ...  0.9428  0.8576
+3  mcabaimodel_fold4_l1_g2_i1_dp0.0.pth    f  ...  0.9431  0.8594
+4  mcabaimodel_fold5_l1_g2_i1_dp0.0.pth    f  ...  0.9414  0.8526
+
+[5 rows x 6 columns]
+
+Average Metrics:
+        Structure  Category  AUC-ROC  AUC-PR
+0  ld1_l1_g2_i1_d  Antibody   0.9459  0.8670
+1  ld2_l1_g2_i1_d  Antibody   0.9427  0.8634
+2  ld3_l1_g2_i1_d  Antibody   0.9428  0.8576
+3  ld4_l1_g2_i1_d  Antibody   0.9431  0.8594
+4  ld5_l1_g2_i1_d  Antibody   0.9414  0.8526

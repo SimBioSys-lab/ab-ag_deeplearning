@@ -17,7 +17,7 @@
 #SBATCH -o PTMG_slurm-%j.out
 
 # Load CUDA
-module load cuda/11.8.0 nccl
+module load cuda/11.8.0
 
 #srun python PT_MSA_GNN.py 
 srun python PT_MG_CV.py

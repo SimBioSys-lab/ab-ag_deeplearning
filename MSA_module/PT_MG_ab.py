@@ -17,9 +17,9 @@ torch.cuda.reset_peak_memory_stats()  # Optional: Reset memory tracking
 
 config = {
     'batch_size': 4,
-    'sequence_file': 'padded_sequences_train_3000.npz',
-    'data_file': 'antibody_train_interfaces_aligned_3000.npz',
-    'edge_file': 'padded_edges_train_3000.npz',
+    'sequence_file': 'antibody_train_sequences_3000.npz',
+    'data_file': 'antibody_train_interfaces_3000.npz',
+    'edge_file': 'antibody_train_edges_3000.npz',
     'max_len': 3000,
     'vocab_size': 23,
     'embed_dim': 256,

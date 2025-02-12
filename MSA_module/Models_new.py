@@ -480,5 +480,5 @@ class RegressionModel(nn.Module):
         refined_embedding = self.mc_model(sequences, padded_edges)  # Shape: [batch_size, seq_len, embed_dim]
 
         # Final regression output
-        predictions = self.fc_regression(refined_embedding)  # Shape: [batch_size, seq_len, 1]
+        predictions = torch.relu(self.fc_regression(refined_embedding))  # Shape: [batch_size, seq_len, 1]
         return predictions

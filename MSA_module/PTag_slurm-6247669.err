@@ -1,0 +1,2 @@
+srun: error: Slurm job 6247669 has expired
+srun: Check SLURM_JOB_ID environment variable. Expired or invalid job 6247669

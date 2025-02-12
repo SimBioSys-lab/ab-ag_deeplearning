@@ -14,15 +14,15 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
 
 # Read model filenames
-with open('mcabaimodel_files', 'r') as f:
+with open('ttabmodel_files', 'r') as f:
     models = [line.strip() for line in f if line.strip()]
 
 # Test configuration
 test_config = {
     'batch_size': 1,
-    'sequence_file': 'padded_sequences_train_3000.npz',
+    'sequence_file': 'antibody_test_sequences_3000.npz',
     'data_file': 'antibody_test_interfaces_3000.npz',
-    'edge_file': 'padded_edges_test_3000.npz',
+    'edge_file': 'antibody_test_edges_3000.npz',
     'max_len': 3000,
     'vocab_size': 23,
     'num_classes': 2

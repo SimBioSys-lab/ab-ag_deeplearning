@@ -1,0 +1,2563 @@
+{'batch_size': 4, 'sequence_file': 'padded_sequences_train_filtered_3000.npz', 'data_file': 'padded_train_sasa_filtered_3000.npz', 'edge_file': 'padded_edges_train_filtered_3000.npz', 'max_len': 3000, 'vocab_size': 23, 'embed_dim': 256, 'num_heads': 16, 'dropout': 0.0, 'num_layers': 1, 'num_gnn_layers': 2, 'num_int_layers': 1, 'num_epochs': 1000, 'learning_rate': 0.0001, 'max_grad_norm': 0.1, 'validation_split': 0.1, 'early_stop_patience': 10, 'initial_gradient_noise_std': 0.05, 'accumulation_steps': 2}
+Number of GPUs available: 4
+
+Starting Fold 1/5...
+Initializing RegressionModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 3949.8194
+Validation Loss: 3759.3819
+New best model found with validation loss: 3759.3819
+Epoch [2/1000], Training Loss: 3663.2349
+Validation Loss: 3566.1962
+New best model found with validation loss: 3566.1962
+Epoch [3/1000], Training Loss: 3462.9393
+Validation Loss: 3371.0956
+New best model found with validation loss: 3371.0956
+Epoch [4/1000], Training Loss: 3269.9224
+Validation Loss: 3177.2899
+New best model found with validation loss: 3177.2899
+Epoch [5/1000], Training Loss: 3078.9071
+Validation Loss: 2989.2707
+New best model found with validation loss: 2989.2707
+Epoch [6/1000], Training Loss: 2893.6822
+Validation Loss: 2810.8305
+New best model found with validation loss: 2810.8305
+Epoch [7/1000], Training Loss: 2719.9751
+Validation Loss: 2644.4238
+New best model found with validation loss: 2644.4238
+Epoch [8/1000], Training Loss: 2561.8240
+Validation Loss: 2492.4608
+New best model found with validation loss: 2492.4608
+Epoch [9/1000], Training Loss: 2417.7502
+Validation Loss: 2357.3713
+New best model found with validation loss: 2357.3713
+Epoch [10/1000], Training Loss: 2290.6976
+Validation Loss: 2239.8665
+New best model found with validation loss: 2239.8665
+Epoch [11/1000], Training Loss: 2206.4338
+Validation Loss: 2189.0335
+New best model found with validation loss: 2189.0335
+Epoch [12/1000], Training Loss: 2158.6377
+Validation Loss: 2143.0640
+New best model found with validation loss: 2143.0640
+Epoch [13/1000], Training Loss: 2113.4496
+Validation Loss: 2102.9170
+New best model found with validation loss: 2102.9170
+Epoch [14/1000], Training Loss: 2077.6302
+Validation Loss: 2068.7416
+New best model found with validation loss: 2068.7416
+Epoch [15/1000], Training Loss: 2045.0470
+Validation Loss: 2039.8790
+New best model found with validation loss: 2039.8790
+Epoch [16/1000], Training Loss: 1953.6876
+Validation Loss: 1874.2323
+New best model found with validation loss: 1874.2323
+Epoch [17/1000], Training Loss: 1824.6600
+Validation Loss: 1796.8641
+New best model found with validation loss: 1796.8641
+Epoch [18/1000], Training Loss: 1775.7358
+Validation Loss: 1759.5716
+New best model found with validation loss: 1759.5716
+Epoch [19/1000], Training Loss: 1728.0368
+Validation Loss: 1721.3954
+New best model found with validation loss: 1721.3954
+Epoch [20/1000], Training Loss: 1682.2292
+Validation Loss: 1675.2359
+New best model found with validation loss: 1675.2359
+Epoch [21/1000], Training Loss: 1645.9685
+Validation Loss: 1647.3389
+New best model found with validation loss: 1647.3389
+Epoch [22/1000], Training Loss: 1627.1541
+Validation Loss: 1632.2456
+New best model found with validation loss: 1632.2456
+Epoch [23/1000], Training Loss: 1608.6829
+Validation Loss: 1616.4651
+New best model found with validation loss: 1616.4651
+Epoch [24/1000], Training Loss: 1591.9380
+Validation Loss: 1597.0106
+New best model found with validation loss: 1597.0106
+Epoch [25/1000], Training Loss: 1571.9006
+Validation Loss: 1583.0238
+New best model found with validation loss: 1583.0238
+Epoch [26/1000], Training Loss: 1557.1629
+Validation Loss: 1563.6628
+New best model found with validation loss: 1563.6628
+Epoch [27/1000], Training Loss: 1542.9952
+Validation Loss: 1557.4443
+New best model found with validation loss: 1557.4443
+Epoch [28/1000], Training Loss: 1526.1715
+Validation Loss: 1541.4291
+New best model found with validation loss: 1541.4291
+Epoch [29/1000], Training Loss: 1510.6002
+Validation Loss: 1525.5819
+New best model found with validation loss: 1525.5819
+Epoch [30/1000], Training Loss: 1495.1512
+Validation Loss: 1506.9383
+New best model found with validation loss: 1506.9383
+Epoch [31/1000], Training Loss: 1480.0072
+Validation Loss: 1494.8213
+New best model found with validation loss: 1494.8213
+Epoch [32/1000], Training Loss: 1468.4890
+Validation Loss: 1485.7398
+New best model found with validation loss: 1485.7398
+Epoch [33/1000], Training Loss: 1462.4737
+Validation Loss: 1478.3943
+New best model found with validation loss: 1478.3943
+Epoch [34/1000], Training Loss: 1451.7440
+Validation Loss: 1470.4509
+New best model found with validation loss: 1470.4509
+Epoch [35/1000], Training Loss: 1445.9433
+Validation Loss: 1460.9499
+New best model found with validation loss: 1460.9499
+Epoch [36/1000], Training Loss: 1435.0950
+Validation Loss: 1452.7068
+New best model found with validation loss: 1452.7068
+Epoch [37/1000], Training Loss: 1428.6734
+Validation Loss: 1445.8392
+New best model found with validation loss: 1445.8392
+Epoch [38/1000], Training Loss: 1422.6134
+Validation Loss: 1437.7157
+New best model found with validation loss: 1437.7157
+Epoch [39/1000], Training Loss: 1414.0779
+Validation Loss: 1431.7691
+New best model found with validation loss: 1431.7691
+Epoch [40/1000], Training Loss: 1408.6114
+Validation Loss: 1427.1616
+New best model found with validation loss: 1427.1616
+Epoch [41/1000], Training Loss: 1402.9787
+Validation Loss: 1418.3616
+New best model found with validation loss: 1418.3616
+Epoch [42/1000], Training Loss: 1394.3749
+Validation Loss: 1414.2415
+New best model found with validation loss: 1414.2415
+Epoch [43/1000], Training Loss: 1390.4819
+Validation Loss: 1409.8574
+New best model found with validation loss: 1409.8574
+Epoch [44/1000], Training Loss: 1385.3465
+Validation Loss: 1409.2766
+New best model found with validation loss: 1409.2766
+Epoch [45/1000], Training Loss: 1381.4586
+Validation Loss: 1401.2964
+New best model found with validation loss: 1401.2964
+Epoch [46/1000], Training Loss: 1375.3515
+Validation Loss: 1396.9603
+New best model found with validation loss: 1396.9603
+Epoch [47/1000], Training Loss: 1371.6040
+Validation Loss: 1393.8497
+New best model found with validation loss: 1393.8497
+Epoch [48/1000], Training Loss: 1366.7576
+Validation Loss: 1389.0470
+New best model found with validation loss: 1389.0470
+Epoch [49/1000], Training Loss: 1365.9967
+Validation Loss: 1384.1383
+New best model found with validation loss: 1384.1383
+Epoch [50/1000], Training Loss: 1360.6205
+Validation Loss: 1380.0143
+New best model found with validation loss: 1380.0143
+Epoch [51/1000], Training Loss: 1354.5146
+Validation Loss: 1378.3972
+New best model found with validation loss: 1378.3972
+Epoch [52/1000], Training Loss: 1353.2632
+Validation Loss: 1375.3079
+New best model found with validation loss: 1375.3079
+Epoch [53/1000], Training Loss: 1351.0337
+Validation Loss: 1374.6547
+New best model found with validation loss: 1374.6547
+Epoch [54/1000], Training Loss: 1347.4542
+Validation Loss: 1370.9260
+New best model found with validation loss: 1370.9260
+Epoch [55/1000], Training Loss: 1349.7822
+Validation Loss: 1368.8858
+New best model found with validation loss: 1368.8858
+Epoch [56/1000], Training Loss: 1344.1710
+Validation Loss: 1367.6545
+New best model found with validation loss: 1367.6545
+Epoch [57/1000], Training Loss: 1341.4821
+Validation Loss: 1364.4795
+New best model found with validation loss: 1364.4795
+Epoch [58/1000], Training Loss: 1341.2057
+Validation Loss: 1362.5126
+New best model found with validation loss: 1362.5126
+Epoch [59/1000], Training Loss: 1338.0082
+Validation Loss: 1359.6655
+New best model found with validation loss: 1359.6655
+Epoch [60/1000], Training Loss: 1333.9121
+Validation Loss: 1357.7421
+New best model found with validation loss: 1357.7421
+Epoch [61/1000], Training Loss: 1332.9992
+Validation Loss: 1356.8396
+New best model found with validation loss: 1356.8396
+Epoch [62/1000], Training Loss: 1332.5586
+Validation Loss: 1355.0822
+New best model found with validation loss: 1355.0822
+Epoch [63/1000], Training Loss: 1330.3413
+Validation Loss: 1353.8547
+New best model found with validation loss: 1353.8547
+Epoch [64/1000], Training Loss: 1327.9112
+Validation Loss: 1352.4036
+New best model found with validation loss: 1352.4036
+Epoch [65/1000], Training Loss: 1328.2813
+Validation Loss: 1351.1730
+New best model found with validation loss: 1351.1730
+Epoch [66/1000], Training Loss: 1326.4964
+Validation Loss: 1350.3358
+New best model found with validation loss: 1350.3358
+Epoch [67/1000], Training Loss: 1324.0571
+Validation Loss: 1349.2711
+New best model found with validation loss: 1349.2711
+Epoch [68/1000], Training Loss: 1323.1020
+Validation Loss: 1347.7547
+New best model found with validation loss: 1347.7547
+Epoch [69/1000], Training Loss: 1323.0129
+Validation Loss: 1346.2846
+New best model found with validation loss: 1346.2846
+Epoch [70/1000], Training Loss: 1321.8038
+Validation Loss: 1345.5061
+New best model found with validation loss: 1345.5061
+Epoch [71/1000], Training Loss: 1320.3213
+Validation Loss: 1344.6155
+New best model found with validation loss: 1344.6155
+Epoch [72/1000], Training Loss: 1320.6697
+Validation Loss: 1343.8681
+New best model found with validation loss: 1343.8681
+Epoch [73/1000], Training Loss: 1318.9308
+Validation Loss: 1343.0660
+New best model found with validation loss: 1343.0660
+Epoch [74/1000], Training Loss: 1319.2798
+Validation Loss: 1342.5480
+New best model found with validation loss: 1342.5480
+Epoch [75/1000], Training Loss: 1316.1760
+Validation Loss: 1342.5437
+New best model found with validation loss: 1342.5437
+Epoch [76/1000], Training Loss: 1317.3318
+Validation Loss: 1341.1814
+New best model found with validation loss: 1341.1814
+Epoch [77/1000], Training Loss: 1316.7276
+Validation Loss: 1340.8846
+New best model found with validation loss: 1340.8846
+Epoch [78/1000], Training Loss: 1315.1009
+Validation Loss: 1340.0195
+New best model found with validation loss: 1340.0195
+Epoch [79/1000], Training Loss: 1314.1908
+Validation Loss: 1339.5758
+New best model found with validation loss: 1339.5758
+Epoch [80/1000], Training Loss: 1315.3289
+Validation Loss: 1339.2200
+New best model found with validation loss: 1339.2200
+Epoch [81/1000], Training Loss: 1315.9015
+Validation Loss: 1338.5981
+New best model found with validation loss: 1338.5981
+Epoch [82/1000], Training Loss: 1314.9508
+Validation Loss: 1338.2684
+New best model found with validation loss: 1338.2684
+Epoch [83/1000], Training Loss: 1313.6719
+Validation Loss: 1337.9104
+New best model found with validation loss: 1337.9104
+Epoch [84/1000], Training Loss: 1313.6181
+Validation Loss: 1338.2338
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [85/1000], Training Loss: 1313.1460
+Validation Loss: 1337.3954
+New best model found with validation loss: 1337.3954
+Epoch [86/1000], Training Loss: 1311.9228
+Validation Loss: 1336.9698
+New best model found with validation loss: 1336.9698
+Epoch [87/1000], Training Loss: 1312.4322
+Validation Loss: 1337.0233
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [88/1000], Training Loss: 1312.3365
+Validation Loss: 1336.4588
+New best model found with validation loss: 1336.4588
+Epoch [89/1000], Training Loss: 1312.5851
+Validation Loss: 1336.1242
+New best model found with validation loss: 1336.1242
+Epoch [90/1000], Training Loss: 1312.8495
+Validation Loss: 1335.7123
+New best model found with validation loss: 1335.7123
+Epoch [91/1000], Training Loss: 1311.0489
+Validation Loss: 1335.8996
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [92/1000], Training Loss: 1310.4750
+Validation Loss: 1335.3863
+New best model found with validation loss: 1335.3863
+Epoch [93/1000], Training Loss: 1309.4711
+Validation Loss: 1335.3859
+New best model found with validation loss: 1335.3859
+Epoch [94/1000], Training Loss: 1309.7252
+Validation Loss: 1335.2462
+New best model found with validation loss: 1335.2462
+Epoch [95/1000], Training Loss: 1311.3649
+Validation Loss: 1334.9698
+New best model found with validation loss: 1334.9698
+Epoch [96/1000], Training Loss: 1309.5645
+Validation Loss: 1334.8935
+New best model found with validation loss: 1334.8935
+Epoch [97/1000], Training Loss: 1310.2521
+Validation Loss: 1334.6351
+New best model found with validation loss: 1334.6351
+Epoch [98/1000], Training Loss: 1309.6851
+Validation Loss: 1334.4805
+New best model found with validation loss: 1334.4805
+Epoch [99/1000], Training Loss: 1309.8710
+Validation Loss: 1334.2997
+New best model found with validation loss: 1334.2997
+Epoch [100/1000], Training Loss: 1309.4854
+Validation Loss: 1334.2757
+New best model found with validation loss: 1334.2757
+Epoch [101/1000], Training Loss: 1311.1337
+Validation Loss: 1334.2077
+New best model found with validation loss: 1334.2077
+Epoch [102/1000], Training Loss: 1307.2686
+Validation Loss: 1334.0771
+New best model found with validation loss: 1334.0771
+Epoch [103/1000], Training Loss: 1307.4183
+Validation Loss: 1333.9433
+New best model found with validation loss: 1333.9433
+Epoch [104/1000], Training Loss: 1310.1481
+Validation Loss: 1333.9820
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [105/1000], Training Loss: 1308.5820
+Validation Loss: 1333.7434
+New best model found with validation loss: 1333.7434
+Epoch [106/1000], Training Loss: 1308.8422
+Validation Loss: 1333.7737
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [107/1000], Training Loss: 1308.4955
+Validation Loss: 1333.6661
+New best model found with validation loss: 1333.6661
+Epoch [108/1000], Training Loss: 1307.1987
+Validation Loss: 1333.7367
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [109/1000], Training Loss: 1308.7714
+Validation Loss: 1333.6103
+New best model found with validation loss: 1333.6103
+Epoch [110/1000], Training Loss: 1307.8390
+Validation Loss: 1333.5904
+New best model found with validation loss: 1333.5904
+Epoch [111/1000], Training Loss: 1307.3374
+Validation Loss: 1333.4545
+New best model found with validation loss: 1333.4545
+Epoch [112/1000], Training Loss: 1310.3586
+Validation Loss: 1333.4747
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [113/1000], Training Loss: 1307.7993
+Validation Loss: 1333.3262
+New best model found with validation loss: 1333.3262
+Epoch [114/1000], Training Loss: 1307.4970
+Validation Loss: 1333.3085
+New best model found with validation loss: 1333.3085
+Epoch [115/1000], Training Loss: 1309.7317
+Validation Loss: 1333.2698
+New best model found with validation loss: 1333.2698
+Epoch [116/1000], Training Loss: 1307.8252
+Validation Loss: 1333.3354
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [117/1000], Training Loss: 1307.5676
+Validation Loss: 1333.1243
+New best model found with validation loss: 1333.1243
+Epoch [118/1000], Training Loss: 1307.6651
+Validation Loss: 1333.1682
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [119/1000], Training Loss: 1308.7113
+Validation Loss: 1333.2066
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [120/1000], Training Loss: 1307.8255
+Validation Loss: 1333.0700
+New best model found with validation loss: 1333.0700
+Epoch [121/1000], Training Loss: 1308.5809
+Validation Loss: 1333.0843
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [122/1000], Training Loss: 1308.4281
+Validation Loss: 1333.1094
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [123/1000], Training Loss: 1308.8997
+Validation Loss: 1333.0428
+New best model found with validation loss: 1333.0428
+Epoch [124/1000], Training Loss: 1310.2212
+Validation Loss: 1333.0179
+New best model found with validation loss: 1333.0179
+Epoch [125/1000], Training Loss: 1307.6916
+Validation Loss: 1333.0070
+New best model found with validation loss: 1333.0070
+Epoch [126/1000], Training Loss: 1308.4818
+Validation Loss: 1332.9611
+New best model found with validation loss: 1332.9611
+Epoch [127/1000], Training Loss: 1309.8015
+Validation Loss: 1332.9045
+New best model found with validation loss: 1332.9045
+Epoch [128/1000], Training Loss: 1309.2090
+Validation Loss: 1332.9220
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [129/1000], Training Loss: 1306.5877
+Validation Loss: 1332.9063
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [130/1000], Training Loss: 1308.1736
+Validation Loss: 1332.8757
+New best model found with validation loss: 1332.8757
+Epoch [131/1000], Training Loss: 1306.4978
+Validation Loss: 1332.8854
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [132/1000], Training Loss: 1309.1069
+Validation Loss: 1332.8724
+New best model found with validation loss: 1332.8724
+Epoch [133/1000], Training Loss: 1308.8248
+Validation Loss: 1332.8480
+New best model found with validation loss: 1332.8480
+Epoch [134/1000], Training Loss: 1308.2059
+Validation Loss: 1332.8306
+New best model found with validation loss: 1332.8306
+Epoch [135/1000], Training Loss: 1306.4578
+Validation Loss: 1332.8360
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [136/1000], Training Loss: 1307.1331
+Validation Loss: 1332.8203
+New best model found with validation loss: 1332.8203
+Epoch [137/1000], Training Loss: 1305.9531
+Validation Loss: 1332.8114
+New best model found with validation loss: 1332.8114
+Epoch [138/1000], Training Loss: 1307.0926
+Validation Loss: 1332.7941
+New best model found with validation loss: 1332.7941
+Epoch [139/1000], Training Loss: 1306.9003
+Validation Loss: 1332.7876
+New best model found with validation loss: 1332.7876
+Epoch [140/1000], Training Loss: 1309.2852
+Validation Loss: 1332.7674
+New best model found with validation loss: 1332.7674
+Epoch [141/1000], Training Loss: 1308.3533
+Validation Loss: 1332.7585
+New best model found with validation loss: 1332.7585
+Epoch [142/1000], Training Loss: 1307.6821
+Validation Loss: 1332.7822
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [143/1000], Training Loss: 1307.8278
+Validation Loss: 1332.7734
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [144/1000], Training Loss: 1306.1626
+Validation Loss: 1332.7701
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [145/1000], Training Loss: 1307.9515
+Validation Loss: 1332.7717
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [146/1000], Training Loss: 1306.6417
+Validation Loss: 1332.7610
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [147/1000], Training Loss: 1306.3316
+Validation Loss: 1332.7600
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [148/1000], Training Loss: 1307.7674
+Validation Loss: 1332.7581
+New best model found with validation loss: 1332.7581
+Epoch [149/1000], Training Loss: 1308.8601
+Validation Loss: 1332.7454
+New best model found with validation loss: 1332.7454
+Epoch [150/1000], Training Loss: 1307.5907
+Validation Loss: 1332.7392
+New best model found with validation loss: 1332.7392
+Epoch [151/1000], Training Loss: 1307.9116
+Validation Loss: 1332.7420
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [152/1000], Training Loss: 1306.7109
+Validation Loss: 1332.7432
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [153/1000], Training Loss: 1307.9606
+Validation Loss: 1332.7445
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [154/1000], Training Loss: 1310.2528
+Validation Loss: 1332.7562
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [155/1000], Training Loss: 1307.6172
+Validation Loss: 1332.7518
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [156/1000], Training Loss: 1306.8701
+Validation Loss: 1332.7478
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [157/1000], Training Loss: 1307.4020
+Validation Loss: 1332.7517
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [158/1000], Training Loss: 1309.6972
+Validation Loss: 1332.7576
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [159/1000], Training Loss: 1311.1587
+Validation Loss: 1332.7480
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [160/1000], Training Loss: 1306.1698
+Validation Loss: 1332.7496
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 160 epochs.
+Best model for fold 1 saved successfully.
+
+Starting Fold 2/5...
+Initializing RegressionModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 3952.7030
+Validation Loss: 3743.5963
+New best model found with validation loss: 3743.5963
+Epoch [2/1000], Training Loss: 3640.4688
+Validation Loss: 3548.0359
+New best model found with validation loss: 3548.0359
+Epoch [3/1000], Training Loss: 3443.4479
+Validation Loss: 3351.5039
+New best model found with validation loss: 3351.5039
+Epoch [4/1000], Training Loss: 3251.7542
+Validation Loss: 3156.5065
+New best model found with validation loss: 3156.5065
+Epoch [5/1000], Training Loss: 3059.9194
+Validation Loss: 2968.0982
+New best model found with validation loss: 2968.0982
+Epoch [6/1000], Training Loss: 2876.4705
+Validation Loss: 2789.7730
+New best model found with validation loss: 2789.7730
+Epoch [7/1000], Training Loss: 2705.2972
+Validation Loss: 2623.7802
+New best model found with validation loss: 2623.7802
+Epoch [8/1000], Training Loss: 2552.4313
+Validation Loss: 2472.7358
+New best model found with validation loss: 2472.7358
+Epoch [9/1000], Training Loss: 2405.8231
+Validation Loss: 2338.0943
+New best model found with validation loss: 2338.0943
+Epoch [10/1000], Training Loss: 2280.7627
+Validation Loss: 2222.5624
+New best model found with validation loss: 2222.5624
+Epoch [11/1000], Training Loss: 2201.5717
+Validation Loss: 2172.1195
+New best model found with validation loss: 2172.1195
+Epoch [12/1000], Training Loss: 2150.0788
+Validation Loss: 2126.5922
+New best model found with validation loss: 2126.5922
+Epoch [13/1000], Training Loss: 2110.7640
+Validation Loss: 2087.0939
+New best model found with validation loss: 2087.0939
+Epoch [14/1000], Training Loss: 2075.0898
+Validation Loss: 2053.6041
+New best model found with validation loss: 2053.6041
+Epoch [15/1000], Training Loss: 2043.7334
+Validation Loss: 2026.8280
+New best model found with validation loss: 2026.8280
+Epoch [16/1000], Training Loss: 1975.9765
+Validation Loss: 1874.8098
+New best model found with validation loss: 1874.8098
+Epoch [17/1000], Training Loss: 1832.9182
+Validation Loss: 1790.3637
+New best model found with validation loss: 1790.3637
+Epoch [18/1000], Training Loss: 1770.7864
+Validation Loss: 1757.7846
+New best model found with validation loss: 1757.7846
+Epoch [19/1000], Training Loss: 1732.2398
+Validation Loss: 1719.8534
+New best model found with validation loss: 1719.8534
+Epoch [20/1000], Training Loss: 1701.6973
+Validation Loss: 1681.1290
+New best model found with validation loss: 1681.1290
+Epoch [21/1000], Training Loss: 1665.3712
+Validation Loss: 1657.6457
+New best model found with validation loss: 1657.6457
+Epoch [22/1000], Training Loss: 1643.7254
+Validation Loss: 1637.8334
+New best model found with validation loss: 1637.8334
+Epoch [23/1000], Training Loss: 1623.1530
+Validation Loss: 1617.9442
+New best model found with validation loss: 1617.9442
+Epoch [24/1000], Training Loss: 1602.7747
+Validation Loss: 1601.5909
+New best model found with validation loss: 1601.5909
+Epoch [25/1000], Training Loss: 1586.6162
+Validation Loss: 1586.4485
+New best model found with validation loss: 1586.4485
+Epoch [26/1000], Training Loss: 1569.9986
+Validation Loss: 1569.0103
+New best model found with validation loss: 1569.0103
+Epoch [27/1000], Training Loss: 1550.4574
+Validation Loss: 1547.9190
+New best model found with validation loss: 1547.9190
+Epoch [28/1000], Training Loss: 1534.4006
+Validation Loss: 1535.4426
+New best model found with validation loss: 1535.4426
+Epoch [29/1000], Training Loss: 1516.9706
+Validation Loss: 1524.3077
+New best model found with validation loss: 1524.3077
+Epoch [30/1000], Training Loss: 1503.5952
+Validation Loss: 1504.2168
+New best model found with validation loss: 1504.2168
+Epoch [31/1000], Training Loss: 1488.9153
+Validation Loss: 1497.0172
+New best model found with validation loss: 1497.0172
+Epoch [32/1000], Training Loss: 1482.6030
+Validation Loss: 1487.3585
+New best model found with validation loss: 1487.3585
+Epoch [33/1000], Training Loss: 1471.6640
+Validation Loss: 1479.3854
+New best model found with validation loss: 1479.3854
+Epoch [34/1000], Training Loss: 1461.7866
+Validation Loss: 1470.7227
+New best model found with validation loss: 1470.7227
+Epoch [35/1000], Training Loss: 1456.0557
+Validation Loss: 1466.0823
+New best model found with validation loss: 1466.0823
+Epoch [36/1000], Training Loss: 1449.1838
+Validation Loss: 1458.6912
+New best model found with validation loss: 1458.6912
+Epoch [37/1000], Training Loss: 1442.1855
+Validation Loss: 1449.7854
+New best model found with validation loss: 1449.7854
+Epoch [38/1000], Training Loss: 1433.0196
+Validation Loss: 1442.6510
+New best model found with validation loss: 1442.6510
+Epoch [39/1000], Training Loss: 1426.1027
+Validation Loss: 1444.7719
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [40/1000], Training Loss: 1420.5600
+Validation Loss: 1429.9128
+New best model found with validation loss: 1429.9128
+Epoch [41/1000], Training Loss: 1412.1501
+Validation Loss: 1425.6393
+New best model found with validation loss: 1425.6393
+Epoch [42/1000], Training Loss: 1406.4759
+Validation Loss: 1421.2637
+New best model found with validation loss: 1421.2637
+Epoch [43/1000], Training Loss: 1404.0156
+Validation Loss: 1417.7419
+New best model found with validation loss: 1417.7419
+Epoch [44/1000], Training Loss: 1400.7646
+Validation Loss: 1413.5710
+New best model found with validation loss: 1413.5710
+Epoch [45/1000], Training Loss: 1398.0010
+Validation Loss: 1411.7012
+New best model found with validation loss: 1411.7012
+Epoch [46/1000], Training Loss: 1393.9917
+Validation Loss: 1409.3788
+New best model found with validation loss: 1409.3788
+Epoch [47/1000], Training Loss: 1387.2481
+Validation Loss: 1405.0121
+New best model found with validation loss: 1405.0121
+Epoch [48/1000], Training Loss: 1385.8792
+Validation Loss: 1402.7226
+New best model found with validation loss: 1402.7226
+Epoch [49/1000], Training Loss: 1379.8909
+Validation Loss: 1396.4519
+New best model found with validation loss: 1396.4519
+Epoch [50/1000], Training Loss: 1375.8485
+Validation Loss: 1391.8697
+New best model found with validation loss: 1391.8697
+Epoch [51/1000], Training Loss: 1373.5764
+Validation Loss: 1388.7983
+New best model found with validation loss: 1388.7983
+Epoch [52/1000], Training Loss: 1371.4171
+Validation Loss: 1386.7171
+New best model found with validation loss: 1386.7171
+Epoch [53/1000], Training Loss: 1368.7805
+Validation Loss: 1385.1530
+New best model found with validation loss: 1385.1530
+Epoch [54/1000], Training Loss: 1364.2687
+Validation Loss: 1383.4193
+New best model found with validation loss: 1383.4193
+Epoch [55/1000], Training Loss: 1365.8439
+Validation Loss: 1380.5997
+New best model found with validation loss: 1380.5997
+Epoch [56/1000], Training Loss: 1362.9881
+Validation Loss: 1378.5707
+New best model found with validation loss: 1378.5707
+Epoch [57/1000], Training Loss: 1360.2059
+Validation Loss: 1376.6518
+New best model found with validation loss: 1376.6518
+Epoch [58/1000], Training Loss: 1359.6433
+Validation Loss: 1375.6626
+New best model found with validation loss: 1375.6626
+Epoch [59/1000], Training Loss: 1356.1964
+Validation Loss: 1373.7151
+New best model found with validation loss: 1373.7151
+Epoch [60/1000], Training Loss: 1352.9030
+Validation Loss: 1372.7551
+New best model found with validation loss: 1372.7551
+Epoch [61/1000], Training Loss: 1351.0225
+Validation Loss: 1370.1594
+New best model found with validation loss: 1370.1594
+Epoch [62/1000], Training Loss: 1352.0810
+Validation Loss: 1368.9089
+New best model found with validation loss: 1368.9089
+Epoch [63/1000], Training Loss: 1348.2573
+Validation Loss: 1367.2278
+New best model found with validation loss: 1367.2278
+Epoch [64/1000], Training Loss: 1347.4831
+Validation Loss: 1366.1244
+New best model found with validation loss: 1366.1244
+Epoch [65/1000], Training Loss: 1347.6285
+Validation Loss: 1365.0388
+New best model found with validation loss: 1365.0388
+Epoch [66/1000], Training Loss: 1345.7355
+Validation Loss: 1364.2932
+New best model found with validation loss: 1364.2932
+Epoch [67/1000], Training Loss: 1344.9159
+Validation Loss: 1363.6356
+New best model found with validation loss: 1363.6356
+Epoch [68/1000], Training Loss: 1344.3672
+Validation Loss: 1362.0764
+New best model found with validation loss: 1362.0764
+Epoch [69/1000], Training Loss: 1344.1282
+Validation Loss: 1361.5612
+New best model found with validation loss: 1361.5612
+Epoch [70/1000], Training Loss: 1341.1438
+Validation Loss: 1359.8804
+New best model found with validation loss: 1359.8804
+Epoch [71/1000], Training Loss: 1340.3020
+Validation Loss: 1359.2539
+New best model found with validation loss: 1359.2539
+Epoch [72/1000], Training Loss: 1339.7189
+Validation Loss: 1359.0839
+New best model found with validation loss: 1359.0839
+Epoch [73/1000], Training Loss: 1339.2991
+Validation Loss: 1358.0038
+New best model found with validation loss: 1358.0038
+Epoch [74/1000], Training Loss: 1338.0845
+Validation Loss: 1357.9515
+New best model found with validation loss: 1357.9515
+Epoch [75/1000], Training Loss: 1340.7372
+Validation Loss: 1357.0773
+New best model found with validation loss: 1357.0773
+Epoch [76/1000], Training Loss: 1336.0812
+Validation Loss: 1356.4475
+New best model found with validation loss: 1356.4475
+Epoch [77/1000], Training Loss: 1338.2917
+Validation Loss: 1356.0258
+New best model found with validation loss: 1356.0258
+Epoch [78/1000], Training Loss: 1336.6973
+Validation Loss: 1355.0117
+New best model found with validation loss: 1355.0117
+Epoch [79/1000], Training Loss: 1336.1258
+Validation Loss: 1355.3025
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [80/1000], Training Loss: 1333.9049
+Validation Loss: 1354.1884
+New best model found with validation loss: 1354.1884
+Epoch [81/1000], Training Loss: 1335.8986
+Validation Loss: 1353.8520
+New best model found with validation loss: 1353.8520
+Epoch [82/1000], Training Loss: 1333.0826
+Validation Loss: 1353.7274
+New best model found with validation loss: 1353.7274
+Epoch [83/1000], Training Loss: 1333.8855
+Validation Loss: 1353.1723
+New best model found with validation loss: 1353.1723
+Epoch [84/1000], Training Loss: 1332.5322
+Validation Loss: 1353.0589
+New best model found with validation loss: 1353.0589
+Epoch [85/1000], Training Loss: 1332.5206
+Validation Loss: 1352.6907
+New best model found with validation loss: 1352.6907
+Epoch [86/1000], Training Loss: 1332.5921
+Validation Loss: 1352.3317
+New best model found with validation loss: 1352.3317
+Epoch [87/1000], Training Loss: 1333.3363
+Validation Loss: 1352.4542
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [88/1000], Training Loss: 1333.5851
+Validation Loss: 1351.8791
+New best model found with validation loss: 1351.8791
+Epoch [89/1000], Training Loss: 1332.7014
+Validation Loss: 1351.5988
+New best model found with validation loss: 1351.5988
+Epoch [90/1000], Training Loss: 1331.0666
+Validation Loss: 1351.4054
+New best model found with validation loss: 1351.4054
+Epoch [91/1000], Training Loss: 1331.0116
+Validation Loss: 1351.1684
+New best model found with validation loss: 1351.1684
+Epoch [92/1000], Training Loss: 1332.3638
+Validation Loss: 1351.0188
+New best model found with validation loss: 1351.0188
+Epoch [93/1000], Training Loss: 1331.4441
+Validation Loss: 1350.7743
+New best model found with validation loss: 1350.7743
+Epoch [94/1000], Training Loss: 1333.0412
+Validation Loss: 1350.6180
+New best model found with validation loss: 1350.6180
+Epoch [95/1000], Training Loss: 1329.5696
+Validation Loss: 1350.5435
+New best model found with validation loss: 1350.5435
+Epoch [96/1000], Training Loss: 1331.4294
+Validation Loss: 1350.3542
+New best model found with validation loss: 1350.3542
+Epoch [97/1000], Training Loss: 1332.4656
+Validation Loss: 1350.2541
+New best model found with validation loss: 1350.2541
+Epoch [98/1000], Training Loss: 1331.1857
+Validation Loss: 1350.1827
+New best model found with validation loss: 1350.1827
+Epoch [99/1000], Training Loss: 1329.5550
+Validation Loss: 1350.1278
+New best model found with validation loss: 1350.1278
+Epoch [100/1000], Training Loss: 1330.5218
+Validation Loss: 1349.8041
+New best model found with validation loss: 1349.8041
+Epoch [101/1000], Training Loss: 1331.0665
+Validation Loss: 1349.7369
+New best model found with validation loss: 1349.7369
+Epoch [102/1000], Training Loss: 1330.7125
+Validation Loss: 1349.6263
+New best model found with validation loss: 1349.6263
+Epoch [103/1000], Training Loss: 1329.7862
+Validation Loss: 1349.5167
+New best model found with validation loss: 1349.5167
+Epoch [104/1000], Training Loss: 1329.7480
+Validation Loss: 1349.5415
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [105/1000], Training Loss: 1329.8710
+Validation Loss: 1349.4416
+New best model found with validation loss: 1349.4416
+Epoch [106/1000], Training Loss: 1330.4834
+Validation Loss: 1349.3119
+New best model found with validation loss: 1349.3119
+Epoch [107/1000], Training Loss: 1328.9873
+Validation Loss: 1349.2682
+New best model found with validation loss: 1349.2682
+Epoch [108/1000], Training Loss: 1330.3502
+Validation Loss: 1349.1989
+New best model found with validation loss: 1349.1989
+Epoch [109/1000], Training Loss: 1328.4857
+Validation Loss: 1349.3416
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [110/1000], Training Loss: 1330.7622
+Validation Loss: 1349.2281
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [111/1000], Training Loss: 1328.9002
+Validation Loss: 1349.0979
+New best model found with validation loss: 1349.0979
+Epoch [112/1000], Training Loss: 1329.8738
+Validation Loss: 1349.0315
+New best model found with validation loss: 1349.0315
+Epoch [113/1000], Training Loss: 1327.9412
+Validation Loss: 1348.9986
+New best model found with validation loss: 1348.9986
+Epoch [114/1000], Training Loss: 1330.0649
+Validation Loss: 1348.9524
+New best model found with validation loss: 1348.9524
+Epoch [115/1000], Training Loss: 1329.6093
+Validation Loss: 1348.9076
+New best model found with validation loss: 1348.9076
+Epoch [116/1000], Training Loss: 1328.5657
+Validation Loss: 1348.9269
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [117/1000], Training Loss: 1330.1900
+Validation Loss: 1348.8414
+New best model found with validation loss: 1348.8414
+Epoch [118/1000], Training Loss: 1329.4771
+Validation Loss: 1348.8199
+New best model found with validation loss: 1348.8199
+Epoch [119/1000], Training Loss: 1329.1458
+Validation Loss: 1348.8604
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [120/1000], Training Loss: 1328.9282
+Validation Loss: 1348.7449
+New best model found with validation loss: 1348.7449
+Epoch [121/1000], Training Loss: 1328.0188
+Validation Loss: 1348.7443
+New best model found with validation loss: 1348.7443
+Epoch [122/1000], Training Loss: 1331.5723
+Validation Loss: 1348.7380
+New best model found with validation loss: 1348.7380
+Epoch [123/1000], Training Loss: 1330.3018
+Validation Loss: 1348.7087
+New best model found with validation loss: 1348.7087
+Epoch [124/1000], Training Loss: 1329.2057
+Validation Loss: 1348.7055
+New best model found with validation loss: 1348.7055
+Epoch [125/1000], Training Loss: 1327.7122
+Validation Loss: 1348.6598
+New best model found with validation loss: 1348.6598
+Epoch [126/1000], Training Loss: 1331.0410
+Validation Loss: 1348.6568
+New best model found with validation loss: 1348.6568
+Epoch [127/1000], Training Loss: 1329.7471
+Validation Loss: 1348.6196
+New best model found with validation loss: 1348.6196
+Epoch [128/1000], Training Loss: 1330.9712
+Validation Loss: 1348.6170
+New best model found with validation loss: 1348.6170
+Epoch [129/1000], Training Loss: 1328.5526
+Validation Loss: 1348.6115
+New best model found with validation loss: 1348.6115
+Epoch [130/1000], Training Loss: 1330.4066
+Validation Loss: 1348.5769
+New best model found with validation loss: 1348.5769
+Epoch [131/1000], Training Loss: 1329.5365
+Validation Loss: 1348.5511
+New best model found with validation loss: 1348.5511
+Epoch [132/1000], Training Loss: 1327.7746
+Validation Loss: 1348.5479
+New best model found with validation loss: 1348.5479
+Epoch [133/1000], Training Loss: 1327.0071
+Validation Loss: 1348.5468
+New best model found with validation loss: 1348.5468
+Epoch [134/1000], Training Loss: 1327.1113
+Validation Loss: 1348.5258
+New best model found with validation loss: 1348.5258
+Epoch [135/1000], Training Loss: 1329.3791
+Validation Loss: 1348.5334
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [136/1000], Training Loss: 1328.8164
+Validation Loss: 1348.5121
+New best model found with validation loss: 1348.5121
+Epoch [137/1000], Training Loss: 1328.7000
+Validation Loss: 1348.5031
+New best model found with validation loss: 1348.5031
+Epoch [138/1000], Training Loss: 1329.4945
+Validation Loss: 1348.4983
+New best model found with validation loss: 1348.4983
+Epoch [139/1000], Training Loss: 1329.2806
+Validation Loss: 1348.4917
+New best model found with validation loss: 1348.4917
+Epoch [140/1000], Training Loss: 1329.2234
+Validation Loss: 1348.4928
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [141/1000], Training Loss: 1328.7955
+Validation Loss: 1348.4912
+New best model found with validation loss: 1348.4912
+Epoch [142/1000], Training Loss: 1327.8786
+Validation Loss: 1348.4821
+New best model found with validation loss: 1348.4821
+Epoch [143/1000], Training Loss: 1329.5924
+Validation Loss: 1348.4861
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [144/1000], Training Loss: 1328.3407
+Validation Loss: 1348.4860
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [145/1000], Training Loss: 1328.9319
+Validation Loss: 1348.4842
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [146/1000], Training Loss: 1327.5500
+Validation Loss: 1348.4756
+New best model found with validation loss: 1348.4756
+Epoch [147/1000], Training Loss: 1329.5241
+Validation Loss: 1348.4703
+New best model found with validation loss: 1348.4703
+Epoch [148/1000], Training Loss: 1329.0945
+Validation Loss: 1348.4677
+New best model found with validation loss: 1348.4677
+Epoch [149/1000], Training Loss: 1328.7940
+Validation Loss: 1348.4666
+New best model found with validation loss: 1348.4666
+Epoch [150/1000], Training Loss: 1328.9285
+Validation Loss: 1348.4664
+New best model found with validation loss: 1348.4664
+Epoch [151/1000], Training Loss: 1329.3775
+Validation Loss: 1348.4615
+New best model found with validation loss: 1348.4615
+Epoch [152/1000], Training Loss: 1329.1846
+Validation Loss: 1348.4660
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [153/1000], Training Loss: 1329.1730
+Validation Loss: 1348.4611
+New best model found with validation loss: 1348.4611
+Epoch [154/1000], Training Loss: 1329.9339
+Validation Loss: 1348.4625
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [155/1000], Training Loss: 1328.3900
+Validation Loss: 1348.4587
+New best model found with validation loss: 1348.4587
+Epoch [156/1000], Training Loss: 1329.8824
+Validation Loss: 1348.4561
+New best model found with validation loss: 1348.4561
+Epoch [157/1000], Training Loss: 1328.2919
+Validation Loss: 1348.4607
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [158/1000], Training Loss: 1329.6980
+Validation Loss: 1348.4586
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [159/1000], Training Loss: 1329.1583
+Validation Loss: 1348.4580
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [160/1000], Training Loss: 1331.7116
+Validation Loss: 1348.4587
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [161/1000], Training Loss: 1330.2607
+Validation Loss: 1348.4612
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [162/1000], Training Loss: 1328.6555
+Validation Loss: 1348.4580
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [163/1000], Training Loss: 1328.7621
+Validation Loss: 1348.4607
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [164/1000], Training Loss: 1329.7735
+Validation Loss: 1348.4586
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [165/1000], Training Loss: 1328.8878
+Validation Loss: 1348.4577
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [166/1000], Training Loss: 1328.2788
+Validation Loss: 1348.4599
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 166 epochs.
+Best model for fold 2 saved successfully.
+
+Starting Fold 3/5...
+Initializing RegressionModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 3951.7895
+Validation Loss: 3681.0372
+New best model found with validation loss: 3681.0372
+Epoch [2/1000], Training Loss: 3644.9677
+Validation Loss: 3488.0154
+New best model found with validation loss: 3488.0154
+Epoch [3/1000], Training Loss: 3452.4291
+Validation Loss: 3295.7149
+New best model found with validation loss: 3295.7149
+Epoch [4/1000], Training Loss: 3256.9897
+Validation Loss: 3105.2950
+New best model found with validation loss: 3105.2950
+Epoch [5/1000], Training Loss: 3068.2065
+Validation Loss: 2920.6498
+New best model found with validation loss: 2920.6498
+Epoch [6/1000], Training Loss: 2880.4929
+Validation Loss: 2745.3732
+New best model found with validation loss: 2745.3732
+Epoch [7/1000], Training Loss: 2714.3992
+Validation Loss: 2582.5248
+New best model found with validation loss: 2582.5248
+Epoch [8/1000], Training Loss: 2553.4748
+Validation Loss: 2434.3433
+New best model found with validation loss: 2434.3433
+Epoch [9/1000], Training Loss: 2412.9274
+Validation Loss: 2302.5571
+New best model found with validation loss: 2302.5571
+Epoch [10/1000], Training Loss: 2285.1630
+Validation Loss: 2189.9553
+New best model found with validation loss: 2189.9553
+Epoch [11/1000], Training Loss: 2206.3526
+Validation Loss: 2141.0302
+New best model found with validation loss: 2141.0302
+Epoch [12/1000], Training Loss: 2158.2439
+Validation Loss: 2097.0688
+New best model found with validation loss: 2097.0688
+Epoch [13/1000], Training Loss: 2118.3059
+Validation Loss: 2059.1826
+New best model found with validation loss: 2059.1826
+Epoch [14/1000], Training Loss: 2080.0092
+Validation Loss: 2026.6877
+New best model found with validation loss: 2026.6877
+Epoch [15/1000], Training Loss: 2049.7576
+Validation Loss: 2000.2655
+New best model found with validation loss: 2000.2655
+Epoch [16/1000], Training Loss: 1998.0705
+Validation Loss: 1866.1982
+New best model found with validation loss: 1866.1982
+Epoch [17/1000], Training Loss: 1855.0996
+Validation Loss: 1789.0331
+New best model found with validation loss: 1789.0331
+Epoch [18/1000], Training Loss: 1789.7293
+Validation Loss: 1732.8180
+New best model found with validation loss: 1732.8180
+Epoch [19/1000], Training Loss: 1741.9038
+Validation Loss: 1680.9516
+New best model found with validation loss: 1680.9516
+Epoch [20/1000], Training Loss: 1696.1614
+Validation Loss: 1646.4529
+New best model found with validation loss: 1646.4529
+Epoch [21/1000], Training Loss: 1660.4004
+Validation Loss: 1623.9751
+New best model found with validation loss: 1623.9751
+Epoch [22/1000], Training Loss: 1640.6789
+Validation Loss: 1602.8450
+New best model found with validation loss: 1602.8450
+Epoch [23/1000], Training Loss: 1620.6851
+Validation Loss: 1584.5008
+New best model found with validation loss: 1584.5008
+Epoch [24/1000], Training Loss: 1605.2760
+Validation Loss: 1569.0983
+New best model found with validation loss: 1569.0983
+Epoch [25/1000], Training Loss: 1587.4684
+Validation Loss: 1555.3278
+New best model found with validation loss: 1555.3278
+Epoch [26/1000], Training Loss: 1575.3700
+Validation Loss: 1539.2075
+New best model found with validation loss: 1539.2075
+Epoch [27/1000], Training Loss: 1556.3409
+Validation Loss: 1525.5722
+New best model found with validation loss: 1525.5722
+Epoch [28/1000], Training Loss: 1537.1435
+Validation Loss: 1508.1054
+New best model found with validation loss: 1508.1054
+Epoch [29/1000], Training Loss: 1525.1343
+Validation Loss: 1491.9369
+New best model found with validation loss: 1491.9369
+Epoch [30/1000], Training Loss: 1508.2840
+Validation Loss: 1478.3589
+New best model found with validation loss: 1478.3589
+Epoch [31/1000], Training Loss: 1494.1538
+Validation Loss: 1467.3007
+New best model found with validation loss: 1467.3007
+Epoch [32/1000], Training Loss: 1486.4578
+Validation Loss: 1458.0606
+New best model found with validation loss: 1458.0606
+Epoch [33/1000], Training Loss: 1477.1067
+Validation Loss: 1451.6511
+New best model found with validation loss: 1451.6511
+Epoch [34/1000], Training Loss: 1470.4955
+Validation Loss: 1442.8251
+New best model found with validation loss: 1442.8251
+Epoch [35/1000], Training Loss: 1459.3257
+Validation Loss: 1437.4193
+New best model found with validation loss: 1437.4193
+Epoch [36/1000], Training Loss: 1451.0692
+Validation Loss: 1427.0538
+New best model found with validation loss: 1427.0538
+Epoch [37/1000], Training Loss: 1441.8502
+Validation Loss: 1419.1195
+New best model found with validation loss: 1419.1195
+Epoch [38/1000], Training Loss: 1434.1787
+Validation Loss: 1411.2211
+New best model found with validation loss: 1411.2211
+Epoch [39/1000], Training Loss: 1427.1507
+Validation Loss: 1403.4802
+New best model found with validation loss: 1403.4802
+Epoch [40/1000], Training Loss: 1415.6833
+Validation Loss: 1397.7429
+New best model found with validation loss: 1397.7429
+Epoch [41/1000], Training Loss: 1409.4520
+Validation Loss: 1391.9171
+New best model found with validation loss: 1391.9171
+Epoch [42/1000], Training Loss: 1405.4385
+Validation Loss: 1388.0538
+New best model found with validation loss: 1388.0538
+Epoch [43/1000], Training Loss: 1401.1270
+Validation Loss: 1383.7576
+New best model found with validation loss: 1383.7576
+Epoch [44/1000], Training Loss: 1397.6233
+Validation Loss: 1380.2532
+New best model found with validation loss: 1380.2532
+Epoch [45/1000], Training Loss: 1393.7996
+Validation Loss: 1383.2079
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [46/1000], Training Loss: 1388.9502
+Validation Loss: 1374.2045
+New best model found with validation loss: 1374.2045
+Epoch [47/1000], Training Loss: 1384.4052
+Validation Loss: 1369.6854
+New best model found with validation loss: 1369.6854
+Epoch [48/1000], Training Loss: 1381.3799
+Validation Loss: 1364.6777
+New best model found with validation loss: 1364.6777
+Epoch [49/1000], Training Loss: 1377.4403
+Validation Loss: 1360.5723
+New best model found with validation loss: 1360.5723
+Epoch [50/1000], Training Loss: 1373.0645
+Validation Loss: 1356.8672
+New best model found with validation loss: 1356.8672
+Epoch [51/1000], Training Loss: 1369.2882
+Validation Loss: 1354.4164
+New best model found with validation loss: 1354.4164
+Epoch [52/1000], Training Loss: 1366.2557
+Validation Loss: 1351.8314
+New best model found with validation loss: 1351.8314
+Epoch [53/1000], Training Loss: 1364.9974
+Validation Loss: 1349.7362
+New best model found with validation loss: 1349.7362
+Epoch [54/1000], Training Loss: 1360.9541
+Validation Loss: 1347.5963
+New best model found with validation loss: 1347.5963
+Epoch [55/1000], Training Loss: 1360.1791
+Validation Loss: 1345.8450
+New best model found with validation loss: 1345.8450
+Epoch [56/1000], Training Loss: 1356.9716
+Validation Loss: 1342.9553
+New best model found with validation loss: 1342.9553
+Epoch [57/1000], Training Loss: 1354.8006
+Validation Loss: 1340.8747
+New best model found with validation loss: 1340.8747
+Epoch [58/1000], Training Loss: 1352.0340
+Validation Loss: 1339.9513
+New best model found with validation loss: 1339.9513
+Epoch [59/1000], Training Loss: 1351.9477
+Validation Loss: 1336.9104
+New best model found with validation loss: 1336.9104
+Epoch [60/1000], Training Loss: 1346.8141
+Validation Loss: 1334.7829
+New best model found with validation loss: 1334.7829
+Epoch [61/1000], Training Loss: 1345.9056
+Validation Loss: 1333.6555
+New best model found with validation loss: 1333.6555
+Epoch [62/1000], Training Loss: 1344.0762
+Validation Loss: 1332.6082
+New best model found with validation loss: 1332.6082
+Epoch [63/1000], Training Loss: 1343.1159
+Validation Loss: 1331.5318
+New best model found with validation loss: 1331.5318
+Epoch [64/1000], Training Loss: 1341.5009
+Validation Loss: 1330.1597
+New best model found with validation loss: 1330.1597
+Epoch [65/1000], Training Loss: 1339.9517
+Validation Loss: 1328.8623
+New best model found with validation loss: 1328.8623
+Epoch [66/1000], Training Loss: 1338.7104
+Validation Loss: 1328.0641
+New best model found with validation loss: 1328.0641
+Epoch [67/1000], Training Loss: 1338.9855
+Validation Loss: 1326.6152
+New best model found with validation loss: 1326.6152
+Epoch [68/1000], Training Loss: 1337.0322
+Validation Loss: 1325.9338
+New best model found with validation loss: 1325.9338
+Epoch [69/1000], Training Loss: 1336.5774
+Validation Loss: 1324.5185
+New best model found with validation loss: 1324.5185
+Epoch [70/1000], Training Loss: 1336.1663
+Validation Loss: 1323.0214
+New best model found with validation loss: 1323.0214
+Epoch [71/1000], Training Loss: 1333.6354
+Validation Loss: 1322.4871
+New best model found with validation loss: 1322.4871
+Epoch [72/1000], Training Loss: 1332.9554
+Validation Loss: 1321.8575
+New best model found with validation loss: 1321.8575
+Epoch [73/1000], Training Loss: 1332.6409
+Validation Loss: 1321.3704
+New best model found with validation loss: 1321.3704
+Epoch [74/1000], Training Loss: 1330.1497
+Validation Loss: 1320.5060
+New best model found with validation loss: 1320.5060
+Epoch [75/1000], Training Loss: 1331.6882
+Validation Loss: 1320.0562
+New best model found with validation loss: 1320.0562
+Epoch [76/1000], Training Loss: 1331.7150
+Validation Loss: 1319.3827
+New best model found with validation loss: 1319.3827
+Epoch [77/1000], Training Loss: 1327.3021
+Validation Loss: 1318.9546
+New best model found with validation loss: 1318.9546
+Epoch [78/1000], Training Loss: 1328.0947
+Validation Loss: 1318.5332
+New best model found with validation loss: 1318.5332
+Epoch [79/1000], Training Loss: 1327.3062
+Validation Loss: 1317.8030
+New best model found with validation loss: 1317.8030
+Epoch [80/1000], Training Loss: 1328.3086
+Validation Loss: 1317.4067
+New best model found with validation loss: 1317.4067
+Epoch [81/1000], Training Loss: 1327.1114
+Validation Loss: 1316.8140
+New best model found with validation loss: 1316.8140
+Epoch [82/1000], Training Loss: 1325.0285
+Validation Loss: 1316.6991
+New best model found with validation loss: 1316.6991
+Epoch [83/1000], Training Loss: 1326.5166
+Validation Loss: 1316.3827
+New best model found with validation loss: 1316.3827
+Epoch [84/1000], Training Loss: 1326.0919
+Validation Loss: 1315.9280
+New best model found with validation loss: 1315.9280
+Epoch [85/1000], Training Loss: 1326.6724
+Validation Loss: 1315.6417
+New best model found with validation loss: 1315.6417
+Epoch [86/1000], Training Loss: 1325.2234
+Validation Loss: 1315.3186
+New best model found with validation loss: 1315.3186
+Epoch [87/1000], Training Loss: 1324.2686
+Validation Loss: 1315.0976
+New best model found with validation loss: 1315.0976
+Epoch [88/1000], Training Loss: 1323.8779
+Validation Loss: 1314.8320
+New best model found with validation loss: 1314.8320
+Epoch [89/1000], Training Loss: 1323.2702
+Validation Loss: 1314.5226
+New best model found with validation loss: 1314.5226
+Epoch [90/1000], Training Loss: 1323.4127
+Validation Loss: 1314.1949
+New best model found with validation loss: 1314.1949
+Epoch [91/1000], Training Loss: 1324.6613
+Validation Loss: 1314.0592
+New best model found with validation loss: 1314.0592
+Epoch [92/1000], Training Loss: 1322.3270
+Validation Loss: 1313.8463
+New best model found with validation loss: 1313.8463
+Epoch [93/1000], Training Loss: 1322.7554
+Validation Loss: 1313.7831
+New best model found with validation loss: 1313.7831
+Epoch [94/1000], Training Loss: 1322.5981
+Validation Loss: 1313.5578
+New best model found with validation loss: 1313.5578
+Epoch [95/1000], Training Loss: 1324.1874
+Validation Loss: 1313.2736
+New best model found with validation loss: 1313.2736
+Epoch [96/1000], Training Loss: 1323.0808
+Validation Loss: 1313.2400
+New best model found with validation loss: 1313.2400
+Epoch [97/1000], Training Loss: 1323.3491
+Validation Loss: 1313.0592
+New best model found with validation loss: 1313.0592
+Epoch [98/1000], Training Loss: 1321.4544
+Validation Loss: 1312.9455
+New best model found with validation loss: 1312.9455
+Epoch [99/1000], Training Loss: 1322.4237
+Validation Loss: 1312.8026
+New best model found with validation loss: 1312.8026
+Epoch [100/1000], Training Loss: 1321.2709
+Validation Loss: 1312.6850
+New best model found with validation loss: 1312.6850
+Epoch [101/1000], Training Loss: 1323.3507
+Validation Loss: 1312.5806
+New best model found with validation loss: 1312.5806
+Epoch [102/1000], Training Loss: 1322.3596
+Validation Loss: 1312.4711
+New best model found with validation loss: 1312.4711
+Epoch [103/1000], Training Loss: 1322.5547
+Validation Loss: 1312.3804
+New best model found with validation loss: 1312.3804
+Epoch [104/1000], Training Loss: 1321.8439
+Validation Loss: 1312.3805
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [105/1000], Training Loss: 1321.9523
+Validation Loss: 1312.2633
+New best model found with validation loss: 1312.2633
+Epoch [106/1000], Training Loss: 1322.7967
+Validation Loss: 1312.1564
+New best model found with validation loss: 1312.1564
+Epoch [107/1000], Training Loss: 1320.9533
+Validation Loss: 1312.0830
+New best model found with validation loss: 1312.0830
+Epoch [108/1000], Training Loss: 1322.1798
+Validation Loss: 1312.0528
+New best model found with validation loss: 1312.0528
+Epoch [109/1000], Training Loss: 1320.0774
+Validation Loss: 1311.9253
+New best model found with validation loss: 1311.9253
+Epoch [110/1000], Training Loss: 1321.3686
+Validation Loss: 1311.9246
+New best model found with validation loss: 1311.9246
+Epoch [111/1000], Training Loss: 1320.7803
+Validation Loss: 1311.8791
+New best model found with validation loss: 1311.8791
+Epoch [112/1000], Training Loss: 1322.1804
+Validation Loss: 1311.8129
+New best model found with validation loss: 1311.8129
+Epoch [113/1000], Training Loss: 1321.3477
+Validation Loss: 1311.8276
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [114/1000], Training Loss: 1320.6732
+Validation Loss: 1311.7256
+New best model found with validation loss: 1311.7256
+Epoch [115/1000], Training Loss: 1320.7401
+Validation Loss: 1311.7030
+New best model found with validation loss: 1311.7030
+Epoch [116/1000], Training Loss: 1321.6098
+Validation Loss: 1311.6893
+New best model found with validation loss: 1311.6893
+Epoch [117/1000], Training Loss: 1320.5872
+Validation Loss: 1311.6174
+New best model found with validation loss: 1311.6174
+Epoch [118/1000], Training Loss: 1319.8498
+Validation Loss: 1311.6016
+New best model found with validation loss: 1311.6016
+Epoch [119/1000], Training Loss: 1320.9870
+Validation Loss: 1311.5517
+New best model found with validation loss: 1311.5517
+Epoch [120/1000], Training Loss: 1322.0244
+Validation Loss: 1311.5638
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [121/1000], Training Loss: 1322.7572
+Validation Loss: 1311.5116
+New best model found with validation loss: 1311.5116
+Epoch [122/1000], Training Loss: 1320.7262
+Validation Loss: 1311.4900
+New best model found with validation loss: 1311.4900
+Epoch [123/1000], Training Loss: 1321.2947
+Validation Loss: 1311.4932
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [124/1000], Training Loss: 1321.2749
+Validation Loss: 1311.4702
+New best model found with validation loss: 1311.4702
+Epoch [125/1000], Training Loss: 1320.9347
+Validation Loss: 1311.4596
+New best model found with validation loss: 1311.4596
+Epoch [126/1000], Training Loss: 1322.6425
+Validation Loss: 1311.4316
+New best model found with validation loss: 1311.4316
+Epoch [127/1000], Training Loss: 1321.2122
+Validation Loss: 1311.4108
+New best model found with validation loss: 1311.4108
+Epoch [128/1000], Training Loss: 1321.1465
+Validation Loss: 1311.3731
+New best model found with validation loss: 1311.3731
+Epoch [129/1000], Training Loss: 1320.5313
+Validation Loss: 1311.3624
+New best model found with validation loss: 1311.3624
+Epoch [130/1000], Training Loss: 1319.5998
+Validation Loss: 1311.3474
+New best model found with validation loss: 1311.3474
+Epoch [131/1000], Training Loss: 1320.8468
+Validation Loss: 1311.3416
+New best model found with validation loss: 1311.3416
+Epoch [132/1000], Training Loss: 1322.1643
+Validation Loss: 1311.3361
+New best model found with validation loss: 1311.3361
+Epoch [133/1000], Training Loss: 1320.7867
+Validation Loss: 1311.3204
+New best model found with validation loss: 1311.3204
+Epoch [134/1000], Training Loss: 1323.0058
+Validation Loss: 1311.3092
+New best model found with validation loss: 1311.3092
+Epoch [135/1000], Training Loss: 1320.2438
+Validation Loss: 1311.3107
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [136/1000], Training Loss: 1321.5721
+Validation Loss: 1311.2941
+New best model found with validation loss: 1311.2941
+Epoch [137/1000], Training Loss: 1319.5515
+Validation Loss: 1311.2688
+New best model found with validation loss: 1311.2688
+Epoch [138/1000], Training Loss: 1321.5730
+Validation Loss: 1311.2668
+New best model found with validation loss: 1311.2668
+Epoch [139/1000], Training Loss: 1320.0192
+Validation Loss: 1311.2459
+New best model found with validation loss: 1311.2459
+Epoch [140/1000], Training Loss: 1321.4573
+Validation Loss: 1311.2391
+New best model found with validation loss: 1311.2391
+Epoch [141/1000], Training Loss: 1320.0331
+Validation Loss: 1311.2414
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [142/1000], Training Loss: 1321.7524
+Validation Loss: 1311.2400
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [143/1000], Training Loss: 1321.7271
+Validation Loss: 1311.2402
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [144/1000], Training Loss: 1321.7191
+Validation Loss: 1311.2373
+New best model found with validation loss: 1311.2373
+Epoch [145/1000], Training Loss: 1321.2079
+Validation Loss: 1311.2415
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [146/1000], Training Loss: 1320.4820
+Validation Loss: 1311.2357
+New best model found with validation loss: 1311.2357
+Epoch [147/1000], Training Loss: 1320.8196
+Validation Loss: 1311.2376
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [148/1000], Training Loss: 1320.5190
+Validation Loss: 1311.2377
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [149/1000], Training Loss: 1320.4088
+Validation Loss: 1311.2354
+New best model found with validation loss: 1311.2354
+Epoch [150/1000], Training Loss: 1320.4926
+Validation Loss: 1311.2409
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [151/1000], Training Loss: 1320.3494
+Validation Loss: 1311.2427
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [152/1000], Training Loss: 1320.3614
+Validation Loss: 1311.2378
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [153/1000], Training Loss: 1320.4943
+Validation Loss: 1311.2398
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [154/1000], Training Loss: 1322.1115
+Validation Loss: 1311.2332
+New best model found with validation loss: 1311.2332
+Epoch [155/1000], Training Loss: 1320.6399
+Validation Loss: 1311.2323
+New best model found with validation loss: 1311.2323
+Epoch [156/1000], Training Loss: 1319.8348
+Validation Loss: 1311.2340
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [157/1000], Training Loss: 1322.1537
+Validation Loss: 1311.2315
+New best model found with validation loss: 1311.2315
+Epoch [158/1000], Training Loss: 1322.4089
+Validation Loss: 1311.2333
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [159/1000], Training Loss: 1321.0003
+Validation Loss: 1311.2308
+New best model found with validation loss: 1311.2308
+Epoch [160/1000], Training Loss: 1321.1721
+Validation Loss: 1311.2294
+New best model found with validation loss: 1311.2294
+Epoch [161/1000], Training Loss: 1321.5676
+Validation Loss: 1311.2308
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [162/1000], Training Loss: 1319.2930
+Validation Loss: 1311.2296
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [163/1000], Training Loss: 1319.5947
+Validation Loss: 1311.2321
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [164/1000], Training Loss: 1320.6884
+Validation Loss: 1311.2316
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [165/1000], Training Loss: 1319.7555
+Validation Loss: 1311.2318
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [166/1000], Training Loss: 1319.9983
+Validation Loss: 1311.2282
+New best model found with validation loss: 1311.2282
+Epoch [167/1000], Training Loss: 1319.9188
+Validation Loss: 1311.2283
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [168/1000], Training Loss: 1318.7312
+Validation Loss: 1311.2311
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [169/1000], Training Loss: 1322.8006
+Validation Loss: 1311.2300
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [170/1000], Training Loss: 1320.4585
+Validation Loss: 1311.2337
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [171/1000], Training Loss: 1322.0282
+Validation Loss: 1311.2333
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [172/1000], Training Loss: 1322.0182
+Validation Loss: 1311.2304
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [173/1000], Training Loss: 1319.8674
+Validation Loss: 1311.2271
+New best model found with validation loss: 1311.2271
+Epoch [174/1000], Training Loss: 1320.9237
+Validation Loss: 1311.2291
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [175/1000], Training Loss: 1320.6747
+Validation Loss: 1311.2323
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [176/1000], Training Loss: 1319.5470
+Validation Loss: 1311.2307
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [177/1000], Training Loss: 1320.5267
+Validation Loss: 1311.2299
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [178/1000], Training Loss: 1320.3546
+Validation Loss: 1311.2299
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [179/1000], Training Loss: 1319.9907
+Validation Loss: 1311.2303
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [180/1000], Training Loss: 1318.6867
+Validation Loss: 1311.2325
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [181/1000], Training Loss: 1319.2449
+Validation Loss: 1311.2309
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [182/1000], Training Loss: 1322.3773
+Validation Loss: 1311.2317
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [183/1000], Training Loss: 1321.4882
+Validation Loss: 1311.2291
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 183 epochs.
+Best model for fold 3 saved successfully.
+
+Starting Fold 4/5...
+Initializing RegressionModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 3988.9926
+Validation Loss: 3849.9903
+New best model found with validation loss: 3849.9903
+Epoch [2/1000], Training Loss: 3683.9467
+Validation Loss: 3655.0655
+New best model found with validation loss: 3655.0655
+Epoch [3/1000], Training Loss: 3490.3198
+Validation Loss: 3457.0052
+New best model found with validation loss: 3457.0052
+Epoch [4/1000], Training Loss: 3294.2609
+Validation Loss: 3258.2288
+New best model found with validation loss: 3258.2288
+Epoch [5/1000], Training Loss: 3100.2787
+Validation Loss: 3063.9578
+New best model found with validation loss: 3063.9578
+Epoch [6/1000], Training Loss: 2911.3298
+Validation Loss: 2878.8023
+New best model found with validation loss: 2878.8023
+Epoch [7/1000], Training Loss: 2736.6383
+Validation Loss: 2705.9929
+New best model found with validation loss: 2705.9929
+Epoch [8/1000], Training Loss: 2574.2892
+Validation Loss: 2547.9992
+New best model found with validation loss: 2547.9992
+Epoch [9/1000], Training Loss: 2425.0560
+Validation Loss: 2406.8815
+New best model found with validation loss: 2406.8815
+Epoch [10/1000], Training Loss: 2295.8894
+Validation Loss: 2283.6247
+New best model found with validation loss: 2283.6247
+Epoch [11/1000], Training Loss: 2213.2411
+Validation Loss: 2229.3348
+New best model found with validation loss: 2229.3348
+Epoch [12/1000], Training Loss: 2165.2254
+Validation Loss: 2181.0256
+New best model found with validation loss: 2181.0256
+Epoch [13/1000], Training Loss: 2117.6254
+Validation Loss: 2137.9150
+New best model found with validation loss: 2137.9150
+Epoch [14/1000], Training Loss: 2082.0829
+Validation Loss: 2100.8493
+New best model found with validation loss: 2100.8493
+Epoch [15/1000], Training Loss: 2046.6254
+Validation Loss: 2069.7947
+New best model found with validation loss: 2069.7947
+Epoch [16/1000], Training Loss: 2021.9463
+Validation Loss: 2043.7514
+New best model found with validation loss: 2043.7514
+Epoch [17/1000], Training Loss: 1980.7202
+Validation Loss: 1979.2690
+New best model found with validation loss: 1979.2690
+Epoch [18/1000], Training Loss: 1830.0429
+Validation Loss: 1803.6446
+New best model found with validation loss: 1803.6446
+Epoch [19/1000], Training Loss: 1744.5932
+Validation Loss: 1743.3465
+New best model found with validation loss: 1743.3465
+Epoch [20/1000], Training Loss: 1687.3852
+Validation Loss: 1691.6421
+New best model found with validation loss: 1691.6421
+Epoch [21/1000], Training Loss: 1644.2179
+Validation Loss: 1663.9532
+New best model found with validation loss: 1663.9532
+Epoch [22/1000], Training Loss: 1621.2861
+Validation Loss: 1643.2283
+New best model found with validation loss: 1643.2283
+Epoch [23/1000], Training Loss: 1601.6907
+Validation Loss: 1624.5490
+New best model found with validation loss: 1624.5490
+Epoch [24/1000], Training Loss: 1578.4318
+Validation Loss: 1602.0901
+New best model found with validation loss: 1602.0901
+Epoch [25/1000], Training Loss: 1562.8707
+Validation Loss: 1587.5079
+New best model found with validation loss: 1587.5079
+Epoch [26/1000], Training Loss: 1544.1744
+Validation Loss: 1569.5505
+New best model found with validation loss: 1569.5505
+Epoch [27/1000], Training Loss: 1527.9887
+Validation Loss: 1553.3818
+New best model found with validation loss: 1553.3818
+Epoch [28/1000], Training Loss: 1509.8946
+Validation Loss: 1538.4383
+New best model found with validation loss: 1538.4383
+Epoch [29/1000], Training Loss: 1495.2023
+Validation Loss: 1518.9411
+New best model found with validation loss: 1518.9411
+Epoch [30/1000], Training Loss: 1483.3608
+Validation Loss: 1509.0657
+New best model found with validation loss: 1509.0657
+Epoch [31/1000], Training Loss: 1467.3632
+Validation Loss: 1499.1084
+New best model found with validation loss: 1499.1084
+Epoch [32/1000], Training Loss: 1459.4085
+Validation Loss: 1489.9486
+New best model found with validation loss: 1489.9486
+Epoch [33/1000], Training Loss: 1452.9167
+Validation Loss: 1480.7865
+New best model found with validation loss: 1480.7865
+Epoch [34/1000], Training Loss: 1445.7820
+Validation Loss: 1476.9841
+New best model found with validation loss: 1476.9841
+Epoch [35/1000], Training Loss: 1434.9263
+Validation Loss: 1466.2217
+New best model found with validation loss: 1466.2217
+Epoch [36/1000], Training Loss: 1427.3862
+Validation Loss: 1457.4309
+New best model found with validation loss: 1457.4309
+Epoch [37/1000], Training Loss: 1418.8178
+Validation Loss: 1447.8109
+New best model found with validation loss: 1447.8109
+Epoch [38/1000], Training Loss: 1411.4328
+Validation Loss: 1443.0814
+New best model found with validation loss: 1443.0814
+Epoch [39/1000], Training Loss: 1404.3416
+Validation Loss: 1433.5120
+New best model found with validation loss: 1433.5120
+Epoch [40/1000], Training Loss: 1395.3603
+Validation Loss: 1426.7734
+New best model found with validation loss: 1426.7734
+Epoch [41/1000], Training Loss: 1387.4334
+Validation Loss: 1418.9285
+New best model found with validation loss: 1418.9285
+Epoch [42/1000], Training Loss: 1384.5277
+Validation Loss: 1416.1299
+New best model found with validation loss: 1416.1299
+Epoch [43/1000], Training Loss: 1378.1121
+Validation Loss: 1410.8391
+New best model found with validation loss: 1410.8391
+Epoch [44/1000], Training Loss: 1372.1432
+Validation Loss: 1405.5898
+New best model found with validation loss: 1405.5898
+Epoch [45/1000], Training Loss: 1368.2741
+Validation Loss: 1399.7165
+New best model found with validation loss: 1399.7165
+Epoch [46/1000], Training Loss: 1363.5973
+Validation Loss: 1396.8194
+New best model found with validation loss: 1396.8194
+Epoch [47/1000], Training Loss: 1360.4427
+Validation Loss: 1391.7227
+New best model found with validation loss: 1391.7227
+Epoch [48/1000], Training Loss: 1355.8559
+Validation Loss: 1387.2838
+New best model found with validation loss: 1387.2838
+Epoch [49/1000], Training Loss: 1352.7213
+Validation Loss: 1383.1899
+New best model found with validation loss: 1383.1899
+Epoch [50/1000], Training Loss: 1346.4485
+Validation Loss: 1378.5913
+New best model found with validation loss: 1378.5913
+Epoch [51/1000], Training Loss: 1341.5628
+Validation Loss: 1375.6202
+New best model found with validation loss: 1375.6202
+Epoch [52/1000], Training Loss: 1340.2341
+Validation Loss: 1373.1000
+New best model found with validation loss: 1373.1000
+Epoch [53/1000], Training Loss: 1337.2570
+Validation Loss: 1373.0219
+New best model found with validation loss: 1373.0219
+Epoch [54/1000], Training Loss: 1335.9297
+Validation Loss: 1367.7709
+New best model found with validation loss: 1367.7709
+Epoch [55/1000], Training Loss: 1333.9375
+Validation Loss: 1365.3233
+New best model found with validation loss: 1365.3233
+Epoch [56/1000], Training Loss: 1328.5524
+Validation Loss: 1362.7205
+New best model found with validation loss: 1362.7205
+Epoch [57/1000], Training Loss: 1327.3811
+Validation Loss: 1360.8420
+New best model found with validation loss: 1360.8420
+Epoch [58/1000], Training Loss: 1322.3976
+Validation Loss: 1358.1727
+New best model found with validation loss: 1358.1727
+Epoch [59/1000], Training Loss: 1321.3920
+Validation Loss: 1356.6887
+New best model found with validation loss: 1356.6887
+Epoch [60/1000], Training Loss: 1318.5998
+Validation Loss: 1353.8316
+New best model found with validation loss: 1353.8316
+Epoch [61/1000], Training Loss: 1316.8506
+Validation Loss: 1351.5353
+New best model found with validation loss: 1351.5353
+Epoch [62/1000], Training Loss: 1316.1915
+Validation Loss: 1350.5265
+New best model found with validation loss: 1350.5265
+Epoch [63/1000], Training Loss: 1314.4307
+Validation Loss: 1348.7932
+New best model found with validation loss: 1348.7932
+Epoch [64/1000], Training Loss: 1312.9046
+Validation Loss: 1347.8350
+New best model found with validation loss: 1347.8350
+Epoch [65/1000], Training Loss: 1311.3619
+Validation Loss: 1346.3874
+New best model found with validation loss: 1346.3874
+Epoch [66/1000], Training Loss: 1310.6164
+Validation Loss: 1344.8275
+New best model found with validation loss: 1344.8275
+Epoch [67/1000], Training Loss: 1308.6470
+Validation Loss: 1343.5664
+New best model found with validation loss: 1343.5664
+Epoch [68/1000], Training Loss: 1307.3650
+Validation Loss: 1342.1258
+New best model found with validation loss: 1342.1258
+Epoch [69/1000], Training Loss: 1306.7047
+Validation Loss: 1341.3563
+New best model found with validation loss: 1341.3563
+Epoch [70/1000], Training Loss: 1303.0022
+Validation Loss: 1339.9627
+New best model found with validation loss: 1339.9627
+Epoch [71/1000], Training Loss: 1305.2558
+Validation Loss: 1338.9876
+New best model found with validation loss: 1338.9876
+Epoch [72/1000], Training Loss: 1302.8398
+Validation Loss: 1338.2368
+New best model found with validation loss: 1338.2368
+Epoch [73/1000], Training Loss: 1302.6090
+Validation Loss: 1337.4978
+New best model found with validation loss: 1337.4978
+Epoch [74/1000], Training Loss: 1302.6858
+Validation Loss: 1336.9298
+New best model found with validation loss: 1336.9298
+Epoch [75/1000], Training Loss: 1300.7301
+Validation Loss: 1336.4671
+New best model found with validation loss: 1336.4671
+Epoch [76/1000], Training Loss: 1302.0897
+Validation Loss: 1336.2502
+New best model found with validation loss: 1336.2502
+Epoch [77/1000], Training Loss: 1298.4658
+Validation Loss: 1334.8369
+New best model found with validation loss: 1334.8369
+Epoch [78/1000], Training Loss: 1298.9262
+Validation Loss: 1334.2005
+New best model found with validation loss: 1334.2005
+Epoch [79/1000], Training Loss: 1298.7740
+Validation Loss: 1333.5537
+New best model found with validation loss: 1333.5537
+Epoch [80/1000], Training Loss: 1297.8069
+Validation Loss: 1333.2654
+New best model found with validation loss: 1333.2654
+Epoch [81/1000], Training Loss: 1299.9770
+Validation Loss: 1332.5022
+New best model found with validation loss: 1332.5022
+Epoch [82/1000], Training Loss: 1297.5129
+Validation Loss: 1332.0801
+New best model found with validation loss: 1332.0801
+Epoch [83/1000], Training Loss: 1294.4261
+Validation Loss: 1331.7492
+New best model found with validation loss: 1331.7492
+Epoch [84/1000], Training Loss: 1296.9656
+Validation Loss: 1331.4767
+New best model found with validation loss: 1331.4767
+Epoch [85/1000], Training Loss: 1296.0963
+Validation Loss: 1331.0955
+New best model found with validation loss: 1331.0955
+Epoch [86/1000], Training Loss: 1296.5096
+Validation Loss: 1330.7610
+New best model found with validation loss: 1330.7610
+Epoch [87/1000], Training Loss: 1294.9731
+Validation Loss: 1330.4372
+New best model found with validation loss: 1330.4372
+Epoch [88/1000], Training Loss: 1294.8749
+Validation Loss: 1330.2310
+New best model found with validation loss: 1330.2310
+Epoch [89/1000], Training Loss: 1294.6669
+Validation Loss: 1329.8610
+New best model found with validation loss: 1329.8610
+Epoch [90/1000], Training Loss: 1294.7509
+Validation Loss: 1329.5300
+New best model found with validation loss: 1329.5300
+Epoch [91/1000], Training Loss: 1293.9999
+Validation Loss: 1329.1469
+New best model found with validation loss: 1329.1469
+Epoch [92/1000], Training Loss: 1294.6001
+Validation Loss: 1328.9905
+New best model found with validation loss: 1328.9905
+Epoch [93/1000], Training Loss: 1293.5187
+Validation Loss: 1328.7972
+New best model found with validation loss: 1328.7972
+Epoch [94/1000], Training Loss: 1292.6274
+Validation Loss: 1328.6578
+New best model found with validation loss: 1328.6578
+Epoch [95/1000], Training Loss: 1292.8432
+Validation Loss: 1328.4684
+New best model found with validation loss: 1328.4684
+Epoch [96/1000], Training Loss: 1293.3208
+Validation Loss: 1328.3616
+New best model found with validation loss: 1328.3616
+Epoch [97/1000], Training Loss: 1292.5443
+Validation Loss: 1328.1622
+New best model found with validation loss: 1328.1622
+Epoch [98/1000], Training Loss: 1293.3393
+Validation Loss: 1328.0099
+New best model found with validation loss: 1328.0099
+Epoch [99/1000], Training Loss: 1292.3379
+Validation Loss: 1327.9502
+New best model found with validation loss: 1327.9502
+Epoch [100/1000], Training Loss: 1292.1145
+Validation Loss: 1327.6473
+New best model found with validation loss: 1327.6473
+Epoch [101/1000], Training Loss: 1292.6347
+Validation Loss: 1327.5172
+New best model found with validation loss: 1327.5172
+Epoch [102/1000], Training Loss: 1290.7815
+Validation Loss: 1327.4682
+New best model found with validation loss: 1327.4682
+Epoch [103/1000], Training Loss: 1292.8664
+Validation Loss: 1327.3097
+New best model found with validation loss: 1327.3097
+Epoch [104/1000], Training Loss: 1291.4116
+Validation Loss: 1327.2549
+New best model found with validation loss: 1327.2549
+Epoch [105/1000], Training Loss: 1292.5205
+Validation Loss: 1327.2104
+New best model found with validation loss: 1327.2104
+Epoch [106/1000], Training Loss: 1291.0169
+Validation Loss: 1327.0807
+New best model found with validation loss: 1327.0807
+Epoch [107/1000], Training Loss: 1291.9445
+Validation Loss: 1327.0217
+New best model found with validation loss: 1327.0217
+Epoch [108/1000], Training Loss: 1292.5173
+Validation Loss: 1326.8946
+New best model found with validation loss: 1326.8946
+Epoch [109/1000], Training Loss: 1293.0291
+Validation Loss: 1326.8046
+New best model found with validation loss: 1326.8046
+Epoch [110/1000], Training Loss: 1292.1552
+Validation Loss: 1326.6771
+New best model found with validation loss: 1326.6771
+Epoch [111/1000], Training Loss: 1292.8326
+Validation Loss: 1326.6649
+New best model found with validation loss: 1326.6649
+Epoch [112/1000], Training Loss: 1292.2359
+Validation Loss: 1326.6069
+New best model found with validation loss: 1326.6069
+Epoch [113/1000], Training Loss: 1290.2924
+Validation Loss: 1326.5855
+New best model found with validation loss: 1326.5855
+Epoch [114/1000], Training Loss: 1289.4628
+Validation Loss: 1326.5266
+New best model found with validation loss: 1326.5266
+Epoch [115/1000], Training Loss: 1291.5250
+Validation Loss: 1326.4954
+New best model found with validation loss: 1326.4954
+Epoch [116/1000], Training Loss: 1291.6064
+Validation Loss: 1326.4619
+New best model found with validation loss: 1326.4619
+Epoch [117/1000], Training Loss: 1290.3269
+Validation Loss: 1326.4229
+New best model found with validation loss: 1326.4229
+Epoch [118/1000], Training Loss: 1292.6741
+Validation Loss: 1326.3696
+New best model found with validation loss: 1326.3696
+Epoch [119/1000], Training Loss: 1291.8504
+Validation Loss: 1326.3353
+New best model found with validation loss: 1326.3353
+Epoch [120/1000], Training Loss: 1291.3656
+Validation Loss: 1326.3201
+New best model found with validation loss: 1326.3201
+Epoch [121/1000], Training Loss: 1293.5510
+Validation Loss: 1326.2992
+New best model found with validation loss: 1326.2992
+Epoch [122/1000], Training Loss: 1290.9211
+Validation Loss: 1326.2722
+New best model found with validation loss: 1326.2722
+Epoch [123/1000], Training Loss: 1292.4981
+Validation Loss: 1326.2405
+New best model found with validation loss: 1326.2405
+Epoch [124/1000], Training Loss: 1291.6512
+Validation Loss: 1326.2279
+New best model found with validation loss: 1326.2279
+Epoch [125/1000], Training Loss: 1290.1719
+Validation Loss: 1326.2102
+New best model found with validation loss: 1326.2102
+Epoch [126/1000], Training Loss: 1290.4420
+Validation Loss: 1326.2151
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [127/1000], Training Loss: 1291.2997
+Validation Loss: 1326.1794
+New best model found with validation loss: 1326.1794
+Epoch [128/1000], Training Loss: 1290.3093
+Validation Loss: 1326.1435
+New best model found with validation loss: 1326.1435
+Epoch [129/1000], Training Loss: 1289.2050
+Validation Loss: 1326.1191
+New best model found with validation loss: 1326.1191
+Epoch [130/1000], Training Loss: 1289.6667
+Validation Loss: 1326.0878
+New best model found with validation loss: 1326.0878
+Epoch [131/1000], Training Loss: 1290.1459
+Validation Loss: 1326.0896
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [132/1000], Training Loss: 1291.5769
+Validation Loss: 1326.0750
+New best model found with validation loss: 1326.0750
+Epoch [133/1000], Training Loss: 1290.4462
+Validation Loss: 1326.0574
+New best model found with validation loss: 1326.0574
+Epoch [134/1000], Training Loss: 1291.5908
+Validation Loss: 1326.0427
+New best model found with validation loss: 1326.0427
+Epoch [135/1000], Training Loss: 1290.2435
+Validation Loss: 1326.0408
+New best model found with validation loss: 1326.0408
+Epoch [136/1000], Training Loss: 1289.9220
+Validation Loss: 1326.0367
+New best model found with validation loss: 1326.0367
+Epoch [137/1000], Training Loss: 1291.6245
+Validation Loss: 1326.0176
+New best model found with validation loss: 1326.0176
+Epoch [138/1000], Training Loss: 1290.7402
+Validation Loss: 1326.0131
+New best model found with validation loss: 1326.0131
+Epoch [139/1000], Training Loss: 1290.4260
+Validation Loss: 1325.9897
+New best model found with validation loss: 1325.9897
+Epoch [140/1000], Training Loss: 1290.7519
+Validation Loss: 1325.9887
+New best model found with validation loss: 1325.9887
+Epoch [141/1000], Training Loss: 1291.2121
+Validation Loss: 1325.9840
+New best model found with validation loss: 1325.9840
+Epoch [142/1000], Training Loss: 1291.6442
+Validation Loss: 1325.9866
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [143/1000], Training Loss: 1291.7161
+Validation Loss: 1325.9840
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [144/1000], Training Loss: 1291.9016
+Validation Loss: 1325.9778
+New best model found with validation loss: 1325.9778
+Epoch [145/1000], Training Loss: 1292.2480
+Validation Loss: 1325.9822
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [146/1000], Training Loss: 1292.8146
+Validation Loss: 1325.9794
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [147/1000], Training Loss: 1292.2099
+Validation Loss: 1325.9841
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [148/1000], Training Loss: 1292.6881
+Validation Loss: 1325.9762
+New best model found with validation loss: 1325.9762
+Epoch [149/1000], Training Loss: 1288.9050
+Validation Loss: 1325.9740
+New best model found with validation loss: 1325.9740
+Epoch [150/1000], Training Loss: 1290.2124
+Validation Loss: 1325.9742
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [151/1000], Training Loss: 1291.8857
+Validation Loss: 1325.9734
+New best model found with validation loss: 1325.9734
+Epoch [152/1000], Training Loss: 1289.8343
+Validation Loss: 1325.9758
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [153/1000], Training Loss: 1289.7144
+Validation Loss: 1325.9710
+New best model found with validation loss: 1325.9710
+Epoch [154/1000], Training Loss: 1288.1249
+Validation Loss: 1325.9751
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [155/1000], Training Loss: 1291.4819
+Validation Loss: 1325.9710
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [156/1000], Training Loss: 1291.1959
+Validation Loss: 1325.9672
+New best model found with validation loss: 1325.9672
+Epoch [157/1000], Training Loss: 1290.1272
+Validation Loss: 1325.9685
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [158/1000], Training Loss: 1291.2363
+Validation Loss: 1325.9743
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [159/1000], Training Loss: 1289.1110
+Validation Loss: 1325.9714
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [160/1000], Training Loss: 1289.9446
+Validation Loss: 1325.9762
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [161/1000], Training Loss: 1290.1730
+Validation Loss: 1325.9779
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [162/1000], Training Loss: 1290.8170
+Validation Loss: 1325.9749
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [163/1000], Training Loss: 1290.2508
+Validation Loss: 1325.9766
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [164/1000], Training Loss: 1288.1682
+Validation Loss: 1325.9778
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [165/1000], Training Loss: 1293.0224
+Validation Loss: 1325.9724
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [166/1000], Training Loss: 1290.3753
+Validation Loss: 1325.9749
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 166 epochs.
+Best model for fold 4 saved successfully.
+
+Starting Fold 5/5...
+Initializing RegressionModel with 2 GAT layers and residual connections...
+Initializing MCModel with 2 GAT layers and 1 row attention layers...
+Initializing CGModel with 2 GAT layers and residual connections...
+Initializing CoreModel with 1 self-attention layers...
+Using 4 GPUs with DataParallel.
+Epoch [1/1000], Training Loss: 3967.6580
+Validation Loss: 3759.9869
+New best model found with validation loss: 3759.9869
+Epoch [2/1000], Training Loss: 3658.9935
+Validation Loss: 3569.0690
+New best model found with validation loss: 3569.0690
+Epoch [3/1000], Training Loss: 3467.3832
+Validation Loss: 3374.5142
+New best model found with validation loss: 3374.5142
+Epoch [4/1000], Training Loss: 3273.6791
+Validation Loss: 3179.4290
+New best model found with validation loss: 3179.4290
+Epoch [5/1000], Training Loss: 3077.9533
+Validation Loss: 2989.3425
+New best model found with validation loss: 2989.3425
+Epoch [6/1000], Training Loss: 2892.1040
+Validation Loss: 2808.9362
+New best model found with validation loss: 2808.9362
+Epoch [7/1000], Training Loss: 2717.3005
+Validation Loss: 2641.6246
+New best model found with validation loss: 2641.6246
+Epoch [8/1000], Training Loss: 2558.2083
+Validation Loss: 2489.0809
+New best model found with validation loss: 2489.0809
+Epoch [9/1000], Training Loss: 2411.7548
+Validation Loss: 2353.3784
+New best model found with validation loss: 2353.3784
+Epoch [10/1000], Training Loss: 2285.8882
+Validation Loss: 2236.7374
+New best model found with validation loss: 2236.7374
+Epoch [11/1000], Training Loss: 2199.8418
+Validation Loss: 2186.4171
+New best model found with validation loss: 2186.4171
+Epoch [12/1000], Training Loss: 2154.4763
+Validation Loss: 2141.1192
+New best model found with validation loss: 2141.1192
+Epoch [13/1000], Training Loss: 2111.5072
+Validation Loss: 2101.5602
+New best model found with validation loss: 2101.5602
+Epoch [14/1000], Training Loss: 2073.8632
+Validation Loss: 2067.9574
+New best model found with validation loss: 2067.9574
+Epoch [15/1000], Training Loss: 2042.1361
+Validation Loss: 2039.9632
+New best model found with validation loss: 2039.9632
+Epoch [16/1000], Training Loss: 2015.7952
+Validation Loss: 1996.9580
+New best model found with validation loss: 1996.9580
+Epoch [17/1000], Training Loss: 1896.4950
+Validation Loss: 1837.5164
+New best model found with validation loss: 1837.5164
+Epoch [18/1000], Training Loss: 1809.4076
+Validation Loss: 1783.4895
+New best model found with validation loss: 1783.4895
+Epoch [19/1000], Training Loss: 1753.0539
+Validation Loss: 1763.0359
+New best model found with validation loss: 1763.0359
+Epoch [20/1000], Training Loss: 1716.4910
+Validation Loss: 1699.5714
+New best model found with validation loss: 1699.5714
+Epoch [21/1000], Training Loss: 1691.2299
+Validation Loss: 1685.2488
+New best model found with validation loss: 1685.2488
+Epoch [22/1000], Training Loss: 1666.3530
+Validation Loss: 1683.3105
+New best model found with validation loss: 1683.3105
+Epoch [23/1000], Training Loss: 1654.7952
+Validation Loss: 1652.9481
+New best model found with validation loss: 1652.9481
+Epoch [24/1000], Training Loss: 1634.2028
+Validation Loss: 1635.0556
+New best model found with validation loss: 1635.0556
+Epoch [25/1000], Training Loss: 1617.2646
+Validation Loss: 1615.3371
+New best model found with validation loss: 1615.3371
+Epoch [26/1000], Training Loss: 1609.0962
+Validation Loss: 1604.1868
+New best model found with validation loss: 1604.1868
+Epoch [27/1000], Training Loss: 1583.0477
+Validation Loss: 1595.6590
+New best model found with validation loss: 1595.6590
+Epoch [28/1000], Training Loss: 1566.1221
+Validation Loss: 1568.1532
+New best model found with validation loss: 1568.1532
+Epoch [29/1000], Training Loss: 1551.7330
+Validation Loss: 1562.2775
+New best model found with validation loss: 1562.2775
+Epoch [30/1000], Training Loss: 1536.9680
+Validation Loss: 1561.6350
+New best model found with validation loss: 1561.6350
+Epoch [31/1000], Training Loss: 1525.1122
+Validation Loss: 1530.4666
+New best model found with validation loss: 1530.4666
+Epoch [32/1000], Training Loss: 1517.8875
+Validation Loss: 1523.2609
+New best model found with validation loss: 1523.2609
+Epoch [33/1000], Training Loss: 1508.5634
+Validation Loss: 1516.5474
+New best model found with validation loss: 1516.5474
+Epoch [34/1000], Training Loss: 1497.8836
+Validation Loss: 1506.7585
+New best model found with validation loss: 1506.7585
+Epoch [35/1000], Training Loss: 1488.3739
+Validation Loss: 1498.6038
+New best model found with validation loss: 1498.6038
+Epoch [36/1000], Training Loss: 1483.9967
+Validation Loss: 1510.4161
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [37/1000], Training Loss: 1475.7915
+Validation Loss: 1486.2128
+New best model found with validation loss: 1486.2128
+Epoch [38/1000], Training Loss: 1466.6374
+Validation Loss: 1475.9421
+New best model found with validation loss: 1475.9421
+Epoch [39/1000], Training Loss: 1459.0091
+Validation Loss: 1468.8087
+New best model found with validation loss: 1468.8087
+Epoch [40/1000], Training Loss: 1449.4681
+Validation Loss: 1459.8418
+New best model found with validation loss: 1459.8418
+Epoch [41/1000], Training Loss: 1443.2861
+Validation Loss: 1454.5509
+New best model found with validation loss: 1454.5509
+Epoch [42/1000], Training Loss: 1436.9476
+Validation Loss: 1450.9536
+New best model found with validation loss: 1450.9536
+Epoch [43/1000], Training Loss: 1434.3002
+Validation Loss: 1446.9881
+New best model found with validation loss: 1446.9881
+Epoch [44/1000], Training Loss: 1429.1910
+Validation Loss: 1441.5347
+New best model found with validation loss: 1441.5347
+Epoch [45/1000], Training Loss: 1423.5105
+Validation Loss: 1438.2923
+New best model found with validation loss: 1438.2923
+Epoch [46/1000], Training Loss: 1420.7139
+Validation Loss: 1432.6839
+New best model found with validation loss: 1432.6839
+Epoch [47/1000], Training Loss: 1417.0921
+Validation Loss: 1428.7617
+New best model found with validation loss: 1428.7617
+Epoch [48/1000], Training Loss: 1411.8454
+Validation Loss: 1425.8251
+New best model found with validation loss: 1425.8251
+Epoch [49/1000], Training Loss: 1406.7095
+Validation Loss: 1420.7654
+New best model found with validation loss: 1420.7654
+Epoch [50/1000], Training Loss: 1402.6971
+Validation Loss: 1417.6819
+New best model found with validation loss: 1417.6819
+Epoch [51/1000], Training Loss: 1397.2173
+Validation Loss: 1414.4508
+New best model found with validation loss: 1414.4508
+Epoch [52/1000], Training Loss: 1396.4447
+Validation Loss: 1412.2406
+New best model found with validation loss: 1412.2406
+Epoch [53/1000], Training Loss: 1394.5807
+Validation Loss: 1409.7180
+New best model found with validation loss: 1409.7180
+Epoch [54/1000], Training Loss: 1393.8103
+Validation Loss: 1407.5517
+New best model found with validation loss: 1407.5517
+Epoch [55/1000], Training Loss: 1389.2317
+Validation Loss: 1404.9668
+New best model found with validation loss: 1404.9668
+Epoch [56/1000], Training Loss: 1387.4614
+Validation Loss: 1403.0084
+New best model found with validation loss: 1403.0084
+Epoch [57/1000], Training Loss: 1385.8085
+Validation Loss: 1400.4275
+New best model found with validation loss: 1400.4275
+Epoch [58/1000], Training Loss: 1382.2866
+Validation Loss: 1398.3930
+New best model found with validation loss: 1398.3930
+Epoch [59/1000], Training Loss: 1379.9975
+Validation Loss: 1395.9268
+New best model found with validation loss: 1395.9268
+Epoch [60/1000], Training Loss: 1377.5203
+Validation Loss: 1393.1679
+New best model found with validation loss: 1393.1679
+Epoch [61/1000], Training Loss: 1375.9396
+Validation Loss: 1391.8389
+New best model found with validation loss: 1391.8389
+Epoch [62/1000], Training Loss: 1372.9861
+Validation Loss: 1390.8305
+New best model found with validation loss: 1390.8305
+Epoch [63/1000], Training Loss: 1373.1917
+Validation Loss: 1389.4817
+New best model found with validation loss: 1389.4817
+Epoch [64/1000], Training Loss: 1371.1946
+Validation Loss: 1388.8712
+New best model found with validation loss: 1388.8712
+Epoch [65/1000], Training Loss: 1370.8859
+Validation Loss: 1387.3277
+New best model found with validation loss: 1387.3277
+Epoch [66/1000], Training Loss: 1368.2018
+Validation Loss: 1385.7581
+New best model found with validation loss: 1385.7581
+Epoch [67/1000], Training Loss: 1368.2349
+Validation Loss: 1384.5612
+New best model found with validation loss: 1384.5612
+Epoch [68/1000], Training Loss: 1364.7518
+Validation Loss: 1383.4386
+New best model found with validation loss: 1383.4386
+Epoch [69/1000], Training Loss: 1364.8731
+Validation Loss: 1382.4939
+New best model found with validation loss: 1382.4939
+Epoch [70/1000], Training Loss: 1364.7167
+Validation Loss: 1381.2824
+New best model found with validation loss: 1381.2824
+Epoch [71/1000], Training Loss: 1361.0294
+Validation Loss: 1380.0757
+New best model found with validation loss: 1380.0757
+Epoch [72/1000], Training Loss: 1362.1198
+Validation Loss: 1379.7199
+New best model found with validation loss: 1379.7199
+Epoch [73/1000], Training Loss: 1363.9209
+Validation Loss: 1379.0259
+New best model found with validation loss: 1379.0259
+Epoch [74/1000], Training Loss: 1361.1811
+Validation Loss: 1378.3227
+New best model found with validation loss: 1378.3227
+Epoch [75/1000], Training Loss: 1359.8891
+Validation Loss: 1378.4318
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [76/1000], Training Loss: 1357.7091
+Validation Loss: 1377.1036
+New best model found with validation loss: 1377.1036
+Epoch [77/1000], Training Loss: 1358.8727
+Validation Loss: 1376.3349
+New best model found with validation loss: 1376.3349
+Epoch [78/1000], Training Loss: 1357.8843
+Validation Loss: 1375.7775
+New best model found with validation loss: 1375.7775
+Epoch [79/1000], Training Loss: 1356.3190
+Validation Loss: 1374.9673
+New best model found with validation loss: 1374.9673
+Epoch [80/1000], Training Loss: 1355.6372
+Validation Loss: 1374.6964
+New best model found with validation loss: 1374.6964
+Epoch [81/1000], Training Loss: 1354.9264
+Validation Loss: 1374.0496
+New best model found with validation loss: 1374.0496
+Epoch [82/1000], Training Loss: 1353.7093
+Validation Loss: 1373.7973
+New best model found with validation loss: 1373.7973
+Epoch [83/1000], Training Loss: 1354.9648
+Validation Loss: 1373.4575
+New best model found with validation loss: 1373.4575
+Epoch [84/1000], Training Loss: 1355.5286
+Validation Loss: 1373.2221
+New best model found with validation loss: 1373.2221
+Epoch [85/1000], Training Loss: 1353.2054
+Validation Loss: 1372.8469
+New best model found with validation loss: 1372.8469
+Epoch [86/1000], Training Loss: 1352.9437
+Validation Loss: 1372.4113
+New best model found with validation loss: 1372.4113
+Epoch [87/1000], Training Loss: 1354.5616
+Validation Loss: 1372.2017
+New best model found with validation loss: 1372.2017
+Epoch [88/1000], Training Loss: 1352.1373
+Validation Loss: 1371.9543
+New best model found with validation loss: 1371.9543
+Epoch [89/1000], Training Loss: 1352.4224
+Validation Loss: 1371.7117
+New best model found with validation loss: 1371.7117
+Epoch [90/1000], Training Loss: 1351.6651
+Validation Loss: 1371.3364
+New best model found with validation loss: 1371.3364
+Epoch [91/1000], Training Loss: 1352.5757
+Validation Loss: 1371.1333
+New best model found with validation loss: 1371.1333
+Epoch [92/1000], Training Loss: 1353.1870
+Validation Loss: 1370.9400
+New best model found with validation loss: 1370.9400
+Epoch [93/1000], Training Loss: 1352.5784
+Validation Loss: 1370.8404
+New best model found with validation loss: 1370.8404
+Epoch [94/1000], Training Loss: 1352.8725
+Validation Loss: 1370.5055
+New best model found with validation loss: 1370.5055
+Epoch [95/1000], Training Loss: 1350.3397
+Validation Loss: 1370.4194
+New best model found with validation loss: 1370.4194
+Epoch [96/1000], Training Loss: 1352.9569
+Validation Loss: 1370.2090
+New best model found with validation loss: 1370.2090
+Epoch [97/1000], Training Loss: 1351.5249
+Validation Loss: 1370.0511
+New best model found with validation loss: 1370.0511
+Epoch [98/1000], Training Loss: 1351.7905
+Validation Loss: 1370.0033
+New best model found with validation loss: 1370.0033
+Epoch [99/1000], Training Loss: 1348.2931
+Validation Loss: 1369.7879
+New best model found with validation loss: 1369.7879
+Epoch [100/1000], Training Loss: 1350.1735
+Validation Loss: 1369.6227
+New best model found with validation loss: 1369.6227
+Epoch [101/1000], Training Loss: 1351.9611
+Validation Loss: 1369.5301
+New best model found with validation loss: 1369.5301
+Epoch [102/1000], Training Loss: 1349.4940
+Validation Loss: 1369.4281
+New best model found with validation loss: 1369.4281
+Epoch [103/1000], Training Loss: 1351.7897
+Validation Loss: 1369.4068
+New best model found with validation loss: 1369.4068
+Epoch [104/1000], Training Loss: 1352.1223
+Validation Loss: 1369.2950
+New best model found with validation loss: 1369.2950
+Epoch [105/1000], Training Loss: 1350.3987
+Validation Loss: 1369.3441
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [106/1000], Training Loss: 1350.0697
+Validation Loss: 1369.1302
+New best model found with validation loss: 1369.1302
+Epoch [107/1000], Training Loss: 1349.5274
+Validation Loss: 1369.0270
+New best model found with validation loss: 1369.0270
+Epoch [108/1000], Training Loss: 1349.4017
+Validation Loss: 1368.9326
+New best model found with validation loss: 1368.9326
+Epoch [109/1000], Training Loss: 1349.5872
+Validation Loss: 1368.9607
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [110/1000], Training Loss: 1349.1083
+Validation Loss: 1368.8179
+New best model found with validation loss: 1368.8179
+Epoch [111/1000], Training Loss: 1349.8810
+Validation Loss: 1368.7819
+New best model found with validation loss: 1368.7819
+Epoch [112/1000], Training Loss: 1350.4272
+Validation Loss: 1368.6992
+New best model found with validation loss: 1368.6992
+Epoch [113/1000], Training Loss: 1350.4634
+Validation Loss: 1368.6826
+New best model found with validation loss: 1368.6826
+Epoch [114/1000], Training Loss: 1350.6750
+Validation Loss: 1368.6775
+New best model found with validation loss: 1368.6775
+Epoch [115/1000], Training Loss: 1349.4980
+Validation Loss: 1368.6284
+New best model found with validation loss: 1368.6284
+Epoch [116/1000], Training Loss: 1350.7767
+Validation Loss: 1368.5953
+New best model found with validation loss: 1368.5953
+Epoch [117/1000], Training Loss: 1351.5735
+Validation Loss: 1368.5589
+New best model found with validation loss: 1368.5589
+Epoch [118/1000], Training Loss: 1350.4614
+Validation Loss: 1368.5289
+New best model found with validation loss: 1368.5289
+Epoch [119/1000], Training Loss: 1349.3689
+Validation Loss: 1368.4921
+New best model found with validation loss: 1368.4921
+Epoch [120/1000], Training Loss: 1347.7310
+Validation Loss: 1368.4714
+New best model found with validation loss: 1368.4714
+Epoch [121/1000], Training Loss: 1348.8432
+Validation Loss: 1368.4632
+New best model found with validation loss: 1368.4632
+Epoch [122/1000], Training Loss: 1348.6418
+Validation Loss: 1368.4310
+New best model found with validation loss: 1368.4310
+Epoch [123/1000], Training Loss: 1350.4213
+Validation Loss: 1368.3880
+New best model found with validation loss: 1368.3880
+Epoch [124/1000], Training Loss: 1349.1887
+Validation Loss: 1368.3839
+New best model found with validation loss: 1368.3839
+Epoch [125/1000], Training Loss: 1350.2318
+Validation Loss: 1368.3562
+New best model found with validation loss: 1368.3562
+Epoch [126/1000], Training Loss: 1349.8446
+Validation Loss: 1368.3324
+New best model found with validation loss: 1368.3324
+Epoch [127/1000], Training Loss: 1350.5275
+Validation Loss: 1368.3090
+New best model found with validation loss: 1368.3090
+Epoch [128/1000], Training Loss: 1349.4971
+Validation Loss: 1368.3026
+New best model found with validation loss: 1368.3026
+Epoch [129/1000], Training Loss: 1349.6187
+Validation Loss: 1368.2703
+New best model found with validation loss: 1368.2703
+Epoch [130/1000], Training Loss: 1348.7396
+Validation Loss: 1368.2401
+New best model found with validation loss: 1368.2401
+Epoch [131/1000], Training Loss: 1349.2752
+Validation Loss: 1368.2268
+New best model found with validation loss: 1368.2268
+Epoch [132/1000], Training Loss: 1350.6644
+Validation Loss: 1368.2282
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [133/1000], Training Loss: 1348.7837
+Validation Loss: 1368.2053
+New best model found with validation loss: 1368.2053
+Epoch [134/1000], Training Loss: 1348.5215
+Validation Loss: 1368.1945
+New best model found with validation loss: 1368.1945
+Epoch [135/1000], Training Loss: 1348.1754
+Validation Loss: 1368.1989
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [136/1000], Training Loss: 1349.7131
+Validation Loss: 1368.1919
+New best model found with validation loss: 1368.1919
+Epoch [137/1000], Training Loss: 1347.3280
+Validation Loss: 1368.1801
+New best model found with validation loss: 1368.1801
+Epoch [138/1000], Training Loss: 1349.3944
+Validation Loss: 1368.1567
+New best model found with validation loss: 1368.1567
+Epoch [139/1000], Training Loss: 1349.8454
+Validation Loss: 1368.1453
+New best model found with validation loss: 1368.1453
+Epoch [140/1000], Training Loss: 1347.7128
+Validation Loss: 1368.1219
+New best model found with validation loss: 1368.1219
+Epoch [141/1000], Training Loss: 1349.6527
+Validation Loss: 1368.1284
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [142/1000], Training Loss: 1348.4209
+Validation Loss: 1368.1276
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [143/1000], Training Loss: 1350.4908
+Validation Loss: 1368.1360
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [144/1000], Training Loss: 1350.1798
+Validation Loss: 1368.1370
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [145/1000], Training Loss: 1347.7278
+Validation Loss: 1368.1241
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [146/1000], Training Loss: 1349.4336
+Validation Loss: 1368.1270
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [147/1000], Training Loss: 1348.5251
+Validation Loss: 1368.1242
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [148/1000], Training Loss: 1350.0135
+Validation Loss: 1368.1289
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [149/1000], Training Loss: 1349.2046
+Validation Loss: 1368.1232
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [150/1000], Training Loss: 1347.8087
+Validation Loss: 1368.1200
+New best model found with validation loss: 1368.1200
+Epoch [151/1000], Training Loss: 1348.2305
+Validation Loss: 1368.1150
+New best model found with validation loss: 1368.1150
+Epoch [152/1000], Training Loss: 1347.6944
+Validation Loss: 1368.1205
+No improvement in validation loss. Early stop counter: 1/10
+Epoch [153/1000], Training Loss: 1348.0835
+Validation Loss: 1368.1251
+No improvement in validation loss. Early stop counter: 2/10
+Epoch [154/1000], Training Loss: 1348.8634
+Validation Loss: 1368.1226
+No improvement in validation loss. Early stop counter: 3/10
+Epoch [155/1000], Training Loss: 1350.6740
+Validation Loss: 1368.1236
+No improvement in validation loss. Early stop counter: 4/10
+Epoch [156/1000], Training Loss: 1350.5468
+Validation Loss: 1368.1193
+No improvement in validation loss. Early stop counter: 5/10
+Epoch [157/1000], Training Loss: 1349.4974
+Validation Loss: 1368.1179
+No improvement in validation loss. Early stop counter: 6/10
+Epoch [158/1000], Training Loss: 1348.5417
+Validation Loss: 1368.1196
+No improvement in validation loss. Early stop counter: 7/10
+Epoch [159/1000], Training Loss: 1350.3003
+Validation Loss: 1368.1176
+No improvement in validation loss. Early stop counter: 8/10
+Epoch [160/1000], Training Loss: 1348.8031
+Validation Loss: 1368.1182
+No improvement in validation loss. Early stop counter: 9/10
+Epoch [161/1000], Training Loss: 1349.8333
+Validation Loss: 1368.1214
+No improvement in validation loss. Early stop counter: 10/10
+Early stopping triggered after 161 epochs.
+Best model for fold 5 saved successfully.
+
+Cross-validation results:
+Fold 1: Validation Loss = 1332.7392
+Fold 2: Validation Loss = 1348.4561
+Fold 3: Validation Loss = 1311.2271
+Fold 4: Validation Loss = 1325.9672
+Fold 5: Validation Loss = 1368.1150
+Average Validation Loss: 1337.3009

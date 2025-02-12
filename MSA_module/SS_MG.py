@@ -17,16 +17,16 @@ torch.cuda.reset_peak_memory_stats()  # Optional: Reset memory tracking
 
 config = {
     'batch_size': 4,
-    'sequence_file': 'padded_sequences_train_3000.npz',
-    'data_file': 'padded_train_secondary_structure_3000.npz',
-    'edge_file': 'padded_edges_train_3000.npz',
+    'sequence_file': 'padded_sequences_train_filtered_3000.npz',
+    'data_file': 'padded_train_secondary_structure_filtered_3000.npz',
+    'edge_file': 'padded_edges_train_filtered_3000.npz',
     'max_len': 3000,
     'vocab_size': 23,
     'embed_dim': 256,
     'num_heads': 16,
-    'dropout': 0.0,
+    'dropout': 0.1,
     'num_layers': 1,
-    'num_gnn_layers': 1,
+    'num_gnn_layers': 2,
     'num_int_layers': 1,
     'num_classes': 8,
     'num_epochs': 1000,
@@ -114,7 +114,12 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
         print(f"Using {num_gpus} GPUs with DataParallel.")
         model = nn.DataParallel(model)
     model = model.to(device)
-
+    # Load parameters
+    core_params = torch.load('itfssitfsaitfssitfsaitfmodel_fold1_l1_g2_i1_dp0.1_core.pth', map_location=device)
+    # Update model parameters
+    model_state = model.state_dict()
+    model_state.update(core_params)
+    model.load_state_dict(model_state)
     # Loss function, optimizer, scaler, scheduler
 #    class_weights_tensor = torch.tensor([0.6, 3.5], dtype=torch.float).to(device)
 #    criterion = nn.CrossEntropyLoss(ignore_index=-1,weight=class_weights_tensor)
@@ -150,7 +155,6 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
                 output_seq = output_seq.view(-1, config['num_classes'])
                 pt_tensor = pt_tensor.view(-1)
                 loss = criterion(output_seq, pt_tensor) / config['accumulation_steps']
-
             scaler.scale(loss).backward()
 
             if current_gradient_noise_std > 0:
@@ -199,7 +203,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
 
     # Save the best model for the current fold
     if best_model_state is not None:
-        torch.save(best_model_state, f'ssmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
+        torch.save(best_model_state, f'itfssitfsaitfssitfsaitfssmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
         print(f"Best model for fold {fold} saved successfully.")
     else:
         print(f"No best model found for fold {fold}; check training configurations.")

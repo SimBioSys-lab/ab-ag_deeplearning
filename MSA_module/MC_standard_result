@@ -1,0 +1,59 @@
+Detailed Metrics:
+                               Model Fold  ... AUC-ROC  AUC-PR
+0   mcmodel_fold1_l0_g2_i1_dp0.0.pth    1  ...  0.9012  0.7791
+1   mcmodel_fold1_l0_g2_i1_dp0.0.pth    1  ...  0.9064  0.7524
+2   mcmodel_fold1_l0_g3_i1_dp0.0.pth    1  ...  0.9187  0.8050
+3   mcmodel_fold1_l0_g3_i1_dp0.0.pth    1  ...  0.9160  0.7708
+4   mcmodel_fold1_l1_g1_i1_dp0.0.pth    1  ...  0.9226  0.8158
+5   mcmodel_fold1_l1_g1_i1_dp0.0.pth    1  ...  0.9162  0.7698
+6   mcmodel_fold1_l1_g2_i1_dp0.0.pth    1  ...  0.9179  0.8023
+7   mcmodel_fold1_l1_g2_i1_dp0.0.pth    1  ...  0.9130  0.7582
+8   mcmodel_fold1_l2_g0_i1_dp0.0.pth    1  ...  0.7804  0.5548
+9   mcmodel_fold1_l2_g0_i1_dp0.0.pth    1  ...  0.8318  0.5843
+10  mcmodel_fold2_l0_g2_i1_dp0.0.pth    2  ...  0.8922  0.7509
+11  mcmodel_fold2_l0_g2_i1_dp0.0.pth    2  ...  0.9005  0.7311
+12  mcmodel_fold2_l0_g3_i1_dp0.0.pth    2  ...  0.9295  0.8286
+13  mcmodel_fold2_l0_g3_i1_dp0.0.pth    2  ...  0.9231  0.7860
+14  mcmodel_fold2_l1_g1_i1_dp0.0.pth    2  ...  0.9184  0.8057
+15  mcmodel_fold2_l1_g1_i1_dp0.0.pth    2  ...  0.9145  0.7647
+16  mcmodel_fold2_l1_g2_i1_dp0.0.pth    2  ...  0.9270  0.8163
+17  mcmodel_fold2_l1_g2_i1_dp0.0.pth    2  ...  0.9182  0.7668
+18  mcmodel_fold3_l0_g2_i1_dp0.0.pth    3  ...  0.9102  0.7808
+19  mcmodel_fold3_l0_g2_i1_dp0.0.pth    3  ...  0.9097  0.7528
+20  mcmodel_fold3_l0_g3_i1_dp0.0.pth    3  ...  0.9069  0.7870
+21  mcmodel_fold3_l0_g3_i1_dp0.0.pth    3  ...  0.9097  0.7494
+22  mcmodel_fold3_l1_g1_i1_dp0.0.pth    3  ...  0.9169  0.8048
+23  mcmodel_fold3_l1_g1_i1_dp0.0.pth    3  ...  0.9135  0.7647
+24  mcmodel_fold3_l1_g2_i1_dp0.0.pth    3  ...  0.9197  0.8022
+25  mcmodel_fold3_l1_g2_i1_dp0.0.pth    3  ...  0.9174  0.7698
+26  mcmodel_fold4_l0_g2_i1_dp0.0.pth    4  ...  0.9048  0.7705
+27  mcmodel_fold4_l0_g2_i1_dp0.0.pth    4  ...  0.9040  0.7400
+28  mcmodel_fold4_l0_g3_i1_dp0.0.pth    4  ...  0.9216  0.8062
+29  mcmodel_fold4_l0_g3_i1_dp0.0.pth    4  ...  0.9147  0.7621
+30  mcmodel_fold4_l1_g1_i1_dp0.0.pth    4  ...  0.9183  0.8051
+31  mcmodel_fold4_l1_g1_i1_dp0.0.pth    4  ...  0.9116  0.7563
+32  mcmodel_fold4_l1_g2_i1_dp0.0.pth    4  ...  0.9241  0.8063
+33  mcmodel_fold4_l1_g2_i1_dp0.0.pth    4  ...  0.9166  0.7678
+34  mcmodel_fold5_l0_g2_i1_dp0.0.pth    5  ...  0.9108  0.7836
+35  mcmodel_fold5_l0_g2_i1_dp0.0.pth    5  ...  0.9107  0.7535
+36  mcmodel_fold5_l0_g3_i1_dp0.0.pth    5  ...  0.9287  0.8254
+37  mcmodel_fold5_l0_g3_i1_dp0.0.pth    5  ...  0.9233  0.7897
+38  mcmodel_fold5_l1_g1_i1_dp0.0.pth    5  ...  0.9241  0.8164
+39  mcmodel_fold5_l1_g1_i1_dp0.0.pth    5  ...  0.9168  0.7682
+40  mcmodel_fold5_l1_g2_i1_dp0.0.pth    5  ...  0.9222  0.8098
+41  mcmodel_fold5_l1_g2_i1_dp0.0.pth    5  ...  0.9174  0.7747
+
+[42 rows x 6 columns]
+
+Average Metrics:
+        Structure  Category  AUC-ROC   AUC-PR
+0  l0_g2_i1_dp0.0  Antibody  0.90384  0.77298
+1  l0_g2_i1_dp0.0   Antigen  0.90626  0.74596
+2  l0_g3_i1_dp0.0  Antibody  0.92108  0.81044
+3  l0_g3_i1_dp0.0   Antigen  0.91736  0.77160
+4  l1_g1_i1_dp0.0  Antibody  0.92006  0.80956
+5  l1_g1_i1_dp0.0   Antigen  0.91452  0.76474
+6  l1_g2_i1_dp0.0  Antibody  0.92218  0.80738
+7  l1_g2_i1_dp0.0   Antigen  0.91652  0.76746
+8  l2_g0_i1_dp0.0  Antibody  0.78040  0.55480
+9  l2_g0_i1_dp0.0   Antigen  0.83180  0.58430

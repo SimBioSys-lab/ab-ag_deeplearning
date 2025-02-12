@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_CV.py", line 10, in <module>
+    from Models_test import ClassificationModel
+  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/Models_test.py", line 23
+    lass Attention(nn.Module):
+         ^^^^^^^^^
+SyntaxError: invalid syntax
+srun: error: gpub030: task 0: Exited with exit code 1
