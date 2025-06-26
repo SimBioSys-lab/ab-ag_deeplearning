@@ -7,7 +7,7 @@ import os
 import numpy as np
 from sklearn.model_selection import KFold
 from Dataloader_itf import SequenceParatopeDataset
-from Models_new import ClassificationModel
+from Models_full import ClassificationModel
 
 # Configuration for model and training
 torch.backends.cudnn.benchmark = True
@@ -17,20 +17,20 @@ torch.cuda.reset_peak_memory_stats()  # Optional: Reset memory tracking
 
 config = {
     'batch_size': 4,
-    'sequence_file': 'padded_sequences_train_filtered_3000.npz',
-    'data_file': 'padded_train_secondary_structure_filtered_3000.npz',
-    'edge_file': 'padded_edges_train_filtered_3000.npz',
-    'max_len': 3000,
+    'sequence_file': 'combined_np_train_sequences_1600.npz',
+    'data_file': 'combined_np_train_secondary_structure_1600.npz',
+    'edge_file': 'combined_np_train_edges_1600.npz',
+    'max_len': 1600,
     'vocab_size': 23,
     'embed_dim': 256,
     'num_heads': 16,
     'dropout': 0.1,
-    'num_layers': 1,
-    'num_gnn_layers': 2,
-    'num_int_layers': 1,
+    'num_layers': 0,
+    'num_gnn_layers': 20,
+    'num_int_layers': 8,
     'num_classes': 8,
     'num_epochs': 1000,
-    'learning_rate': 0.0001,
+    'learning_rate': 0.0002,
     'max_grad_norm': 0.1,
     'validation_split': 0.1,
     'early_stop_patience': 10,
@@ -115,14 +115,11 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
         model = nn.DataParallel(model)
     model = model.to(device)
     # Load parameters
-    core_params = torch.load('itfssitfsaitfssitfsaitfmodel_fold1_l1_g2_i1_dp0.1_core.pth', map_location=device)
+    core_params = torch.load('isicimodelFull10_fold5_l0_g20_i8_dp0.1_core.pth', map_location=device)
     # Update model parameters
     model_state = model.state_dict()
     model_state.update(core_params)
     model.load_state_dict(model_state)
-    # Loss function, optimizer, scaler, scheduler
-#    class_weights_tensor = torch.tensor([0.6, 3.5], dtype=torch.float).to(device)
-#    criterion = nn.CrossEntropyLoss(ignore_index=-1,weight=class_weights_tensor)
     criterion = nn.CrossEntropyLoss(ignore_index=-1)
     optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=1e-2)
     scaler = GradScaler()
@@ -203,7 +200,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
 
     # Save the best model for the current fold
     if best_model_state is not None:
-        torch.save(best_model_state, f'itfssitfsaitfssitfsaitfssmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
+        torch.save(best_model_state, f'isicismodelFull10_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
         print(f"Best model for fold {fold} saved successfully.")
     else:
         print(f"No best model found for fold {fold}; check training configurations.")

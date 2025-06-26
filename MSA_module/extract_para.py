@@ -1,17 +1,30 @@
 import torch
 
-# Define input and output paths
-input_path = "itfssitfsaitfssitfsaitfssitfmodel_fold5_l1_g2_i1_dp0.1.pth"
-output_path = "itfssitfsaitfssitfsaitfssitfmodel_fold5_l1_g2_i1_dp0.1_core.pth"
+# ------------------------------------------------------------------
+# 1.  Paths
+# ------------------------------------------------------------------
+in_ckpt  = "fold1_best.pth"
+out_ckpt = "PPI_model_l0_g20_i8_do0.15_dpr0.15_lr0.0002_fold1_core.pth"
 
-# Load the model's state dictionary
-state_dict = torch.load(input_path, map_location=torch.device('cpu'))
+# ------------------------------------------------------------------
+# 2.  Load full checkpoint
+# ------------------------------------------------------------------
+state = torch.load(in_ckpt, map_location="cpu")
 
-# Extract parameters containing "cg_model"
-cg_model_state_dict = {key: value for key, value in state_dict.items() if "mc_model" in key}
+# ------------------------------------------------------------------
+# 3.  Keep only the mc_model weights
+#     • drop leading "module." (DDP/DataParallel) if present
+# ------------------------------------------------------------------
+core_state = {
+    k.replace("module.", "", 1): v          # strip single leading "module."
+#    k: v
+    for k, v in state.items()
+    if "mc_model" in k                     # keep only mc_model sub-tree
+}
 
-# Save the filtered parameters to a new file
-torch.save(cg_model_state_dict, output_path)
-
-print(f"Filtered parameters containing 'cg_model' saved to {output_path}")
+# ------------------------------------------------------------------
+# 4.  Save
+# ------------------------------------------------------------------
+torch.save(core_state, out_ckpt)
+print(f"Saved mc_model-only weights to →  {out_ckpt}")
 

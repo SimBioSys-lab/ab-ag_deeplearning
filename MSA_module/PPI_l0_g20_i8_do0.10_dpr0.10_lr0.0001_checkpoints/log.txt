@@ -1,0 +1,85 @@
+2025-06-08 04:31:27,405 | INFO | CONFIG  {'sequence_file': 'PPI_sequences_1600.npz', 'data_file': 'PPI_interfaces_1600.npz', 'edge_file': 'PPI_edges_1600.npz', 'vocab_size': 23, 'seq_len': 1600, 'embed_dim': 256, 'num_heads': 16, 'dropout': 0.1, 'num_layers': 0, 'num_gnn_layers': 20, 'num_int_layers': 8, 'drop_path_rate': 0.1, 'num_classes': 2, 'batch_size': 4, 'num_epochs': 80, 'warmup_epochs': 10, 'swa_start': 60, 'learning_rate': 0.0001, 'weight_decay': 0.01, 'max_grad_norm': 0.1, 'accum_steps': 2, 'n_splits': 5, 'early_stop': 20, 'weight_start': 10.0, 'weight_end': 1.0, 'weight_anneal_epochs': 20}
+2025-06-08 04:31:27,459 | INFO | GPUs    4
+2025-06-08 04:31:28,160 | INFO | 
+── Fold 1/5
+2025-06-08 05:02:24,763 | INFO | Fold 1 | Ep 000 | LR=1.00e-05 | pw=10.0 | train=0.6173 | val=0.6257
+2025-06-08 05:05:04,763 | INFO | ✓ new best (val=0.6257) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 05:35:36,260 | INFO | Fold 1 | Ep 001 | LR=2.00e-05 | pw= 9.5 | train=0.5927 | val=0.5748
+2025-06-08 05:38:17,595 | INFO | ✓ new best (val=0.5748) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 06:08:13,775 | INFO | Fold 1 | Ep 002 | LR=3.00e-05 | pw= 9.1 | train=0.5681 | val=0.5579
+2025-06-08 06:10:53,528 | INFO | ✓ new best (val=0.5579) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 06:40:45,604 | INFO | Fold 1 | Ep 003 | LR=4.00e-05 | pw= 8.6 | train=0.5435 | val=0.5383
+2025-06-08 06:43:26,142 | INFO | ✓ new best (val=0.5383) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 07:13:29,616 | INFO | Fold 1 | Ep 004 | LR=5.00e-05 | pw= 8.2 | train=0.5249 | val=0.5134
+2025-06-08 07:16:13,567 | INFO | ✓ new best (val=0.5134) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 07:46:23,610 | INFO | Fold 1 | Ep 005 | LR=6.00e-05 | pw= 7.8 | train=0.5089 | val=0.5236
+2025-06-08 08:18:49,852 | INFO | Fold 1 | Ep 006 | LR=7.00e-05 | pw= 7.3 | train=0.4984 | val=0.5026
+2025-06-08 08:21:27,392 | INFO | ✓ new best (val=0.5026) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 08:51:19,602 | INFO | Fold 1 | Ep 007 | LR=8.00e-05 | pw= 6.9 | train=0.4886 | val=0.4924
+2025-06-08 08:54:00,196 | INFO | ✓ new best (val=0.4924) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 09:23:35,295 | INFO | Fold 1 | Ep 008 | LR=9.00e-05 | pw= 6.4 | train=0.4794 | val=0.5049
+2025-06-08 09:56:01,478 | INFO | Fold 1 | Ep 009 | LR=1.00e-04 | pw= 6.0 | train=0.4689 | val=0.4654
+2025-06-08 09:58:34,955 | INFO | ✓ new best (val=0.4654) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 10:28:37,374 | INFO | Fold 1 | Ep 010 | LR=1.00e-04 | pw= 5.5 | train=0.4571 | val=0.4557
+2025-06-08 10:31:16,969 | INFO | ✓ new best (val=0.4557) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 11:01:16,168 | INFO | Fold 1 | Ep 011 | LR=9.99e-05 | pw= 5.0 | train=0.4451 | val=0.4648
+2025-06-08 11:33:38,745 | INFO | Fold 1 | Ep 012 | LR=9.98e-05 | pw= 4.6 | train=0.4343 | val=0.4477
+2025-06-08 11:36:16,909 | INFO | ✓ new best (val=0.4477) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 12:06:02,560 | INFO | Fold 1 | Ep 013 | LR=9.95e-05 | pw= 4.2 | train=0.4219 | val=0.4324
+2025-06-08 12:08:35,172 | INFO | ✓ new best (val=0.4324) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 12:38:00,833 | INFO | Fold 1 | Ep 014 | LR=9.92e-05 | pw= 3.7 | train=0.4091 | val=0.4304
+2025-06-08 12:40:37,151 | INFO | ✓ new best (val=0.4304) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 13:10:51,455 | INFO | Fold 1 | Ep 015 | LR=9.87e-05 | pw= 3.2 | train=0.3958 | val=0.4232
+2025-06-08 13:13:25,969 | INFO | ✓ new best (val=0.4232) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 13:42:48,583 | INFO | Fold 1 | Ep 016 | LR=9.82e-05 | pw= 2.8 | train=0.3794 | val=0.3991
+2025-06-08 13:45:34,944 | INFO | ✓ new best (val=0.3991) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 14:15:04,376 | INFO | Fold 1 | Ep 017 | LR=9.76e-05 | pw= 2.3 | train=0.3611 | val=0.3908
+2025-06-08 14:17:40,598 | INFO | ✓ new best (val=0.3908) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 14:47:31,882 | INFO | Fold 1 | Ep 018 | LR=9.68e-05 | pw= 1.9 | train=0.3369 | val=0.3607
+2025-06-08 14:50:10,251 | INFO | ✓ new best (val=0.3607) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 15:19:46,928 | INFO | Fold 1 | Ep 019 | LR=9.60e-05 | pw= 1.4 | train=0.3067 | val=0.3271
+2025-06-08 15:22:22,602 | INFO | ✓ new best (val=0.3271) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 15:52:29,468 | INFO | Fold 1 | Ep 020 | LR=9.50e-05 | pw= 1.0 | train=0.2635 | val=0.2829
+2025-06-08 15:55:06,748 | INFO | ✓ new best (val=0.2829) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 16:24:47,690 | INFO | Fold 1 | Ep 021 | LR=9.40e-05 | pw= 1.0 | train=0.2579 | val=0.2801
+2025-06-08 16:27:24,335 | INFO | ✓ new best (val=0.2801) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 16:56:55,200 | INFO | Fold 1 | Ep 022 | LR=9.29e-05 | pw= 1.0 | train=0.2530 | val=0.2811
+2025-06-08 17:29:28,795 | INFO | Fold 1 | Ep 023 | LR=9.17e-05 | pw= 1.0 | train=0.2483 | val=0.2877
+2025-06-08 18:01:49,942 | INFO | Fold 1 | Ep 024 | LR=9.05e-05 | pw= 1.0 | train=0.2440 | val=0.2709
+2025-06-08 18:04:26,985 | INFO | ✓ new best (val=0.2709) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 18:34:51,477 | INFO | Fold 1 | Ep 025 | LR=8.91e-05 | pw= 1.0 | train=0.2394 | val=0.2713
+2025-06-08 19:07:33,709 | INFO | Fold 1 | Ep 026 | LR=8.77e-05 | pw= 1.0 | train=0.2348 | val=0.2666
+2025-06-08 19:10:18,482 | INFO | ✓ new best (val=0.2666) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 19:40:04,251 | INFO | Fold 1 | Ep 027 | LR=8.61e-05 | pw= 1.0 | train=0.2314 | val=0.2682
+2025-06-08 20:12:08,052 | INFO | Fold 1 | Ep 028 | LR=8.46e-05 | pw= 1.0 | train=0.2279 | val=0.2708
+2025-06-08 20:44:16,481 | INFO | Fold 1 | Ep 029 | LR=8.29e-05 | pw= 1.0 | train=0.2239 | val=0.2678
+2025-06-08 21:16:30,247 | INFO | Fold 1 | Ep 030 | LR=8.12e-05 | pw= 1.0 | train=0.2199 | val=0.2689
+2025-06-08 21:48:36,433 | INFO | Fold 1 | Ep 031 | LR=7.94e-05 | pw= 1.0 | train=0.2166 | val=0.2675
+2025-06-08 22:20:56,936 | INFO | Fold 1 | Ep 032 | LR=7.75e-05 | pw= 1.0 | train=0.2137 | val=0.2653
+2025-06-08 22:23:29,655 | INFO | ✓ new best (val=0.2653) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 22:53:08,401 | INFO | Fold 1 | Ep 033 | LR=7.56e-05 | pw= 1.0 | train=0.2097 | val=0.2610
+2025-06-08 22:55:43,220 | INFO | ✓ new best (val=0.2610) → PPI_l0_g20_i8_do0.10_dpr0.10_lr0.0001_checkpoints/fold1_best.pth
+2025-06-08 23:25:10,284 | INFO | Fold 1 | Ep 034 | LR=7.37e-05 | pw= 1.0 | train=0.2072 | val=0.2680
+2025-06-08 23:57:21,420 | INFO | Fold 1 | Ep 035 | LR=7.17e-05 | pw= 1.0 | train=0.2037 | val=0.2715
+2025-06-09 00:29:27,642 | INFO | Fold 1 | Ep 036 | LR=6.97e-05 | pw= 1.0 | train=0.2014 | val=0.2651
+2025-06-09 01:02:06,915 | INFO | Fold 1 | Ep 037 | LR=6.76e-05 | pw= 1.0 | train=0.1980 | val=0.2610
+2025-06-09 01:34:13,950 | INFO | Fold 1 | Ep 038 | LR=6.55e-05 | pw= 1.0 | train=0.1950 | val=0.2621
+2025-06-09 02:06:34,284 | INFO | Fold 1 | Ep 039 | LR=6.33e-05 | pw= 1.0 | train=0.1924 | val=0.2639
+2025-06-09 02:38:58,866 | INFO | Fold 1 | Ep 040 | LR=6.11e-05 | pw= 1.0 | train=0.1901 | val=0.2716
+2025-06-09 03:11:42,641 | INFO | Fold 1 | Ep 041 | LR=5.89e-05 | pw= 1.0 | train=0.1878 | val=0.2681
+2025-06-09 03:44:12,415 | INFO | Fold 1 | Ep 042 | LR=5.67e-05 | pw= 1.0 | train=0.1854 | val=0.2788
+2025-06-09 04:16:58,921 | INFO | Fold 1 | Ep 043 | LR=5.45e-05 | pw= 1.0 | train=0.1824 | val=0.2680
+2025-06-09 04:50:21,170 | INFO | Fold 1 | Ep 044 | LR=5.22e-05 | pw= 1.0 | train=0.1795 | val=0.2680
+2025-06-09 05:23:16,943 | INFO | Fold 1 | Ep 045 | LR=5.00e-05 | pw= 1.0 | train=0.1775 | val=0.2672
+2025-06-09 05:55:39,166 | INFO | Fold 1 | Ep 046 | LR=4.78e-05 | pw= 1.0 | train=0.1753 | val=0.2630
+2025-06-09 06:28:20,270 | INFO | Fold 1 | Ep 047 | LR=4.55e-05 | pw= 1.0 | train=0.1730 | val=0.2679
+2025-06-09 07:00:57,450 | INFO | Fold 1 | Ep 048 | LR=4.33e-05 | pw= 1.0 | train=0.1712 | val=0.2712
+2025-06-09 07:33:45,792 | INFO | Fold 1 | Ep 049 | LR=4.11e-05 | pw= 1.0 | train=0.1690 | val=0.2723
+2025-06-09 08:06:20,565 | INFO | Fold 1 | Ep 050 | LR=3.89e-05 | pw= 1.0 | train=0.1674 | val=0.2785
+2025-06-09 08:38:37,532 | INFO | Fold 1 | Ep 051 | LR=3.67e-05 | pw= 1.0 | train=0.1653 | val=0.2704
+2025-06-09 09:11:22,497 | INFO | Fold 1 | Ep 052 | LR=3.45e-05 | pw= 1.0 | train=0.1634 | val=0.2695
+2025-06-09 09:44:07,098 | INFO | Fold 1 | Ep 053 | LR=3.24e-05 | pw= 1.0 | train=0.1615 | val=0.2795
+2025-06-09 09:46:45,641 | INFO | Early stopping
+2025-06-09 09:46:45,973 | INFO | Saved final best → iPPImodel_l0_g20_i8_do0.10_dpr0.10_lr0.0001_fold1.pth
+2025-06-09 09:46:45,973 | INFO | 
+── Fold 2/5

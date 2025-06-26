@@ -18,5 +18,13 @@
 
 
 module load cuda/11.8.0
-srun python PT_test.py
-#srun python PT_test_mc.py
+#srun python PT_test_ct.py
+srun python PT_test_TT.py
+#srun python PT_test_TT_single.py
+
+#srun python PT_test_comb45.py
+#srun python PT_test_comb10.py
+#python pad_edges.py
+#srun python PT_test_NF.py
+#srun python PT_test_NM.py
+#srun python CTM_test.py

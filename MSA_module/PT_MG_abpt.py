@@ -7,7 +7,7 @@ import os
 import numpy as np
 from sklearn.model_selection import KFold
 from Dataloader_itf import SequenceParatopeDataset
-from Models_new import ClassificationModel
+from Models_test import ClassificationModel
 
 # Configuration for model and training
 torch.backends.cudnn.benchmark = True
@@ -17,16 +17,16 @@ torch.cuda.reset_peak_memory_stats()  # Optional: Reset memory tracking
 
 config = {
     'batch_size': 4,
-    'sequence_file': 'padded_sequences_train_3000.npz',
-    'data_file': 'antibody_train_interfaces_aligned_3000.npz',
-    'edge_file': 'padded_edges_train_3000.npz',
-    'max_len': 3000,
+    'sequence_file': 'padded_train_sequences_2400.npz',
+    'data_file': 'antibody_train_interfaces_aligned_2400.npz',
+    'edge_file': 'padded_train_edges_2400.npz',
+    'max_len': 2400,
     'vocab_size': 23,
     'embed_dim': 256,
-    'num_heads': 16,
-    'dropout': 0.0,
+    'num_heads': 4,
+    'dropout': 0.1,
     'num_layers': 1,
-    'num_gnn_layers': 2,
+    'num_gnn_layers': 1,
     'num_int_layers': 1,
     'num_classes': 2,
     'num_epochs': 1000,
@@ -114,10 +114,14 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
         print(f"Using {num_gpus} GPUs with DataParallel.")
         model = nn.DataParallel(model)
     model = model.to(device)
+#    # Load parameters
+#    core_params = torch.load('ismodel_fold3_l1_g1_i1_dp0.1_core.pth', map_location=device)
+#    # Update model parameters
+#    model_state = model.state_dict()
+#    model_state.update(core_params)
+#    model.load_state_dict(model_state)
 
     # Loss function, optimizer, scaler, scheduler
-#    class_weights_tensor = torch.tensor([0.6, 3.5], dtype=torch.float).to(device)
-#    criterion = nn.CrossEntropyLoss(ignore_index=-1,weight=class_weights_tensor)
     criterion = nn.CrossEntropyLoss(ignore_index=-1)
     optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=1e-2)
     scaler = GradScaler()
@@ -146,11 +150,10 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
                 continue
 
             with autocast(device_type='cuda', enabled=torch.cuda.is_available()):
-                output_seq = model(sequence_tensor, padded_edges)
+                output_seq, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges, return_attention=True)
                 output_seq = output_seq.view(-1, config['num_classes'])
                 pt_tensor = pt_tensor.view(-1)
                 loss = criterion(output_seq, pt_tensor) / config['accumulation_steps']
-
             scaler.scale(loss).backward()
 
             if current_gradient_noise_std > 0:
@@ -199,7 +202,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
 
     # Save the best model for the current fold
     if best_model_state is not None:
-        torch.save(best_model_state, f'mcabptmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
+        torch.save(best_model_state, f'PTabptmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
         print(f"Best model for fold {fold} saved successfully.")
     else:
         print(f"No best model found for fold {fold}; check training configurations.")

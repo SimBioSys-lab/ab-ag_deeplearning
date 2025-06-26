@@ -1,2 +1,0 @@
-/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_MG_ab.py:72: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
-  edge_pad[:, :edge_index.shape[0]] = torch.tensor(edge_index.T, dtype=torch.long)

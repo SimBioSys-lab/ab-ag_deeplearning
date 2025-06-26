@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_test_ab.py", line 17, in <module>
-    with open('mcabaimodel_files', 'r') as f:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'mcabaimodel_files'
-srun: error: gpub082: task 0: Exited with exit code 1

@@ -19,4 +19,4 @@
 # Load CUDA
 module load cuda/11.8.0
 
-srun python SASA_MG.py 
+srun python SASA_MG1.py 

@@ -4,9 +4,9 @@ import numpy as np
 np.set_printoptions(threshold=np.inf)
 
 # Load the NPZ files
-seq = np.load('padded_sequences_test_3000.npz')
-itf = np.load('padded_interfaces_test_3000.npz')
-edge = np.load('padded_edges_test_3000.npz')
+seq = np.load('MIPE_tv_sequences_1600.npz')
+itf = np.load('MIPE_tv_interfaces_1600.npz')
+edge = np.load('MIPE_tv_edges_1600.npz')
 
 for key in seq.keys():
     if key in itf.keys():
@@ -21,7 +21,7 @@ for key in seq.keys():
             print(f"Mismatch indices for {key}: {mismatch_indices}")
 
 # Print details for the specific key "3ztn"
-key = '3ztn'
+key = '8tco'
 if key in seq.keys():
     print(f"\nDetails for key '{key}':\n")
     print("Sequence:")

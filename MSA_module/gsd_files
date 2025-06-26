@@ -1,6 +1,9 @@
-mcmodel_fold1_l1_g2_i1_dp0.1.pth
-itfssitfmodel_fold3_l1_g2_i1_dp0.1.pth
-itfssitfsaitfmodel_fold5_l1_g2_i1_dp0.1.pth
-itfssitfsaitfssitfmodel_fold2_l1_g2_i1_dp0.1.pth
-itfssitfsaitfssitfsaitfmodel_fold1_l1_g2_i1_dp0.1.pth
-itfssitfsaitfssitfsaitfssitfmodel_fold5_l1_g2_i1_dp0.1.pth
+imodelFull10_fold2_l0_g20_i8_dp0.1.pth
+isimodelFull10_fold4_l0_g20_i8_dp0.1.pth
+isicimodelFull10_fold5_l0_g20_i8_dp0.1.pth
+isicisimodelFull10_fold4_l0_g20_i8_dp0.1.pth
+isicisicimodelFull10_fold1_l0_g20_i8_dp0.1.pth
+isicisicimodelFull10_fold2_l0_g20_i8_dp0.1.pth
+isicisicimodelFull10_fold3_l0_g20_i8_dp0.1.pth
+isicisicimodelFull10_fold4_l0_g20_i8_dp0.1.pth
+isicisicimodelFull10_fold5_l0_g20_i8_dp0.1.pth

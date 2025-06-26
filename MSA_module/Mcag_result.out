@@ -1,130 +1,70 @@
 
-Testing model: mcagmodel_fold1_l1_g1_i1_dp0.0.pth
+Testing model: PTagmodel_fold1_l1_g1_i1_dp0.1.pth
 Initializing ClassificationModel with 1 GAT layers and residual connections...
 Initializing MCModel with 1 GAT layers and 1 row attention layers...
 Initializing CGModel with 1 GAT layers and residual connections...
 Initializing CoreModel with 1 self-attention layers...
 
-Metrics for Antigen:
-  Accuracy: 73.99%
-  Precision: 0.1167
-  Recall: 0.4693
-  AUC-ROC: 0.6968
-  AUC-PR: 0.1159
+Overall Metrics:
+  Accuracy: 89.94%
+  Precision: 0.5788
+  Recall: 0.2619
+  AUC-ROC: 0.8843
+  AUC-PR: 0.4730
+Saved last_attention matrices to PTagmodel_fold1_l1_g1_i1_dp0.1.pth.npz
 
-Testing model: mcagmodel_fold1_l1_g2_i1_dp0.1.pth
-Initializing ClassificationModel with 2 GAT layers and residual connections...
-Initializing MCModel with 2 GAT layers and 1 row attention layers...
-Initializing CGModel with 2 GAT layers and residual connections...
-Initializing CoreModel with 1 self-attention layers...
-
-Metrics for Antigen:
-  Accuracy: 71.63%
-  Precision: 0.0995
-  Recall: 0.4292
-  AUC-ROC: 0.6717
-  AUC-PR: 0.0933
-
-Testing model: mcagmodel_fold2_l1_g1_i1_dp0.0.pth
+Testing model: PTagmodel_fold2_l1_g1_i1_dp0.1.pth
 Initializing ClassificationModel with 1 GAT layers and residual connections...
 Initializing MCModel with 1 GAT layers and 1 row attention layers...
 Initializing CGModel with 1 GAT layers and residual connections...
 Initializing CoreModel with 1 self-attention layers...
 
-Metrics for Antigen:
-  Accuracy: 77.95%
-  Precision: 0.1124
-  Recall: 0.3573
-  AUC-ROC: 0.6768
-  AUC-PR: 0.1258
+Overall Metrics:
+  Accuracy: 89.88%
+  Precision: 0.5881
+  Recall: 0.2203
+  AUC-ROC: 0.8821
+  AUC-PR: 0.4678
+Saved last_attention matrices to PTagmodel_fold2_l1_g1_i1_dp0.1.pth.npz
 
-Testing model: mcagmodel_fold2_l1_g2_i1_dp0.1.pth
-Initializing ClassificationModel with 2 GAT layers and residual connections...
-Initializing MCModel with 2 GAT layers and 1 row attention layers...
-Initializing CGModel with 2 GAT layers and residual connections...
-Initializing CoreModel with 1 self-attention layers...
-
-Metrics for Antigen:
-  Accuracy: 79.01%
-  Precision: 0.1224
-  Recall: 0.3721
-  AUC-ROC: 0.6934
-  AUC-PR: 0.1150
-
-Testing model: mcagmodel_fold3_l1_g1_i1_dp0.0.pth
+Testing model: PTagmodel_fold3_l1_g1_i1_dp0.1.pth
 Initializing ClassificationModel with 1 GAT layers and residual connections...
 Initializing MCModel with 1 GAT layers and 1 row attention layers...
 Initializing CGModel with 1 GAT layers and residual connections...
 Initializing CoreModel with 1 self-attention layers...
 
-Metrics for Antigen:
-  Accuracy: 81.65%
-  Precision: 0.1388
-  Recall: 0.3615
-  AUC-ROC: 0.7057
-  AUC-PR: 0.1517
+Overall Metrics:
+  Accuracy: 89.88%
+  Precision: 0.5722
+  Recall: 0.2597
+  AUC-ROC: 0.8838
+  AUC-PR: 0.4698
+Saved last_attention matrices to PTagmodel_fold3_l1_g1_i1_dp0.1.pth.npz
 
-Testing model: mcagmodel_fold3_l1_g2_i1_dp0.1.pth
-Initializing ClassificationModel with 2 GAT layers and residual connections...
-Initializing MCModel with 2 GAT layers and 1 row attention layers...
-Initializing CGModel with 2 GAT layers and residual connections...
-Initializing CoreModel with 1 self-attention layers...
-
-Metrics for Antigen:
-  Accuracy: 77.30%
-  Precision: 0.0981
-  Recall: 0.3129
-  AUC-ROC: 0.6756
-  AUC-PR: 0.0921
-
-Testing model: mcagmodel_fold4_l1_g1_i1_dp0.0.pth
+Testing model: PTagmodel_fold4_l1_g1_i1_dp0.1.pth
 Initializing ClassificationModel with 1 GAT layers and residual connections...
 Initializing MCModel with 1 GAT layers and 1 row attention layers...
 Initializing CGModel with 1 GAT layers and residual connections...
 Initializing CoreModel with 1 self-attention layers...
 
-Metrics for Antigen:
-  Accuracy: 81.18%
-  Precision: 0.1406
-  Recall: 0.3827
-  AUC-ROC: 0.7225
-  AUC-PR: 0.1449
+Overall Metrics:
+  Accuracy: 89.95%
+  Precision: 0.5708
+  Recall: 0.2934
+  AUC-ROC: 0.8814
+  AUC-PR: 0.4620
+Saved last_attention matrices to PTagmodel_fold4_l1_g1_i1_dp0.1.pth.npz
 
-Testing model: mcagmodel_fold4_l1_g2_i1_dp0.1.pth
-Initializing ClassificationModel with 2 GAT layers and residual connections...
-Initializing MCModel with 2 GAT layers and 1 row attention layers...
-Initializing CGModel with 2 GAT layers and residual connections...
-Initializing CoreModel with 1 self-attention layers...
-
-Metrics for Antigen:
-  Accuracy: 78.40%
-  Precision: 0.1267
-  Recall: 0.4059
-  AUC-ROC: 0.6961
-  AUC-PR: 0.1299
-
-Testing model: mcagmodel_fold5_l1_g1_i1_dp0.0.pth
+Testing model: PTagmodel_fold5_l1_g1_i1_dp0.1.pth
 Initializing ClassificationModel with 1 GAT layers and residual connections...
 Initializing MCModel with 1 GAT layers and 1 row attention layers...
 Initializing CGModel with 1 GAT layers and residual connections...
 Initializing CoreModel with 1 self-attention layers...
 
-Metrics for Antigen:
-  Accuracy: 77.68%
-  Precision: 0.1318
-  Recall: 0.4482
-  AUC-ROC: 0.7107
-  AUC-PR: 0.1555
-
-Testing model: mcagmodel_fold5_l1_g2_i1_dp0.1.pth
-Initializing ClassificationModel with 2 GAT layers and residual connections...
-Initializing MCModel with 2 GAT layers and 1 row attention layers...
-Initializing CGModel with 2 GAT layers and residual connections...
-Initializing CoreModel with 1 self-attention layers...
-
-Metrics for Antigen:
-  Accuracy: 80.21%
-  Precision: 0.1162
-  Recall: 0.3192
-  AUC-ROC: 0.6979
-  AUC-PR: 0.1076
+Overall Metrics:
+  Accuracy: 89.84%
+  Precision: 0.5707
+  Recall: 0.2529
+  AUC-ROC: 0.8771
+  AUC-PR: 0.4586
+Saved last_attention matrices to PTagmodel_fold5_l1_g1_i1_dp0.1.pth.npz

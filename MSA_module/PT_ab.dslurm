@@ -20,5 +20,5 @@
 module load cuda/11.8.0 
 
 #srun python PT_MSA_GNN.py 
-srun python PT_MG_ab3.py
+srun python PT_MG_ab.py
 #sbatch PT_test.dslurm

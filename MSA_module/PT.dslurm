@@ -20,4 +20,13 @@
 module load cuda/11.8.0
 
 #srun python PT_MSA_GNN.py 
-srun python PT_MG_CV.py
+srun python PT_MG_CV2.py
+#srun python PT_MG_FL.py
+#python combine_npz.py
+#sbatch CTM.dslurm
+#srun python PT_MDG.py
+#sbatch PT_test.dslurm
+#python align_npz.py
+#python cut_data.py
+#python pad_edges.py
+#srun python PT_MG_TT.py

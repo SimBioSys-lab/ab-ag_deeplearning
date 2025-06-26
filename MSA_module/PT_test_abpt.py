@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import roc_auc_score, precision_recall_curve, auc, precision_score, recall_score
 import numpy as np
 from Dataloader_itf import SequenceParatopeDataset
-from Models_new import ClassificationModel
+from Models_test import ClassificationModel
 from torch.amp import autocast
 import csv
 import os
@@ -20,10 +20,10 @@ with open('mcabptmodel_files', 'r') as f:
 # Test configuration
 test_config = {
     'batch_size': 1,
-    'sequence_file': 'padded_sequences_test_3000.npz',
-    'data_file': 'antibody_test_interfaces_aligned_3000.npz',
-    'edge_file': 'padded_edges_test_3000.npz',
-    'max_len': 3000,
+    'sequence_file': 'padded_test_sequences_2400.npz',
+    'data_file': 'antibody_test_interfaces_aligned_2400.npz',
+    'edge_file': 'padded_test_edges_2400.npz',
+    'max_len': 2400,
     'vocab_size': 23,
     'num_classes': 2
 }
@@ -49,10 +49,16 @@ test_dataset = SequenceParatopeDataset(
     edge_file=test_config['edge_file'],
     max_len=test_config['max_len']
 )
-test_loader = DataLoader(test_dataset, batch_size=test_config['batch_size'], collate_fn=custom_collate_fn, shuffle=False)
+test_loader = DataLoader(test_dataset, batch_size=test_config['batch_size'], 
+                           collate_fn=custom_collate_fn, shuffle=False)
 
 # Set device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+# Load the interfaces NPZ file and get its keys.
+# (We assume that the keys in this file correspond one-to-one with the samples in test_loader.)
+interfaces_npz = np.load(test_config['data_file'], allow_pickle=True)
+interface_keys = list(interfaces_npz.keys())
 
 # Test each model
 for model_file in models:
@@ -64,7 +70,7 @@ for model_file in models:
     num_gnn_layers = int(parts[3][1])
     num_int_layers = int(parts[4][1])
     embed_dim = 256
-    num_heads = 16
+    num_heads = 4
     dropout = float(parts[5][2:5])
     # Initialize model
     model = ClassificationModel(
@@ -79,7 +85,6 @@ for model_file in models:
         num_classes=test_config['num_classes']
     )
     model = model.to(device)
-
     # Load model weights
     checkpoint = torch.load(model_file, map_location=device)
     if 'module.' in list(checkpoint.keys())[0]:
@@ -95,38 +100,51 @@ for model_file in models:
         "Antigen": {"true": [], "pred": [], "probs": []}
     }
 
+    # Prepare to save predictions to CSV
     with open(f"{model_file}_predictions.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["Chain Type", "True Label", "Predicted Label", "Probability"])
 
+        # This dictionary will store the last_attention matrices using keys from the interfaces NPZ.
+        last_attention_dict = {}
+        sample_idx = 0  # To index into interface_keys
+
         with torch.no_grad():
             for padded_edges, sequence_tensor, pt_tensor in test_loader:
-                sequence_tensor, pt_tensor, padded_edges = (
-                    sequence_tensor.to(device),
-                    pt_tensor.to(device),
-                    padded_edges.to(device),
-                )
+                # Move tensors to device
+                padded_edges = padded_edges.to(device)
+                sequence_tensor = sequence_tensor.to(device)
+                pt_tensor = pt_tensor.to(device)
 
-                # Perform inference
+                # Perform inference and get last_attention from the model.
                 with autocast("cuda"):
-                    outputs = model(sequence_tensor, padded_edges)
+                    outputs, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges, 
+                                                    return_attention=True)
+#                print('attn_shape:', last_attention.shape)
                 outputs = outputs.squeeze(1)
                 probs = torch.softmax(outputs, dim=-1)
                 preds = torch.argmax(probs, dim=-1)
 
-                # Extract EOCs
+                # Store the last_attention matrix for this sample
+                # (batch_size==1 so we use sample_idx from interface_keys)
+                if sample_idx < len(interface_keys):
+                    last_attention_dict[interface_keys[sample_idx]] = last_attention.cpu().numpy()
+                else:
+                    last_attention_dict[f"sample_{sample_idx}"] = last_attention.cpu().numpy()
+                sample_idx += 1
+
+                # Extract EOCs from the sequence (assumes channel 0 holds the sequence integers)
                 EOCs = np.where(sequence_tensor[0, 0, :].cpu().numpy() == 22)[0]
 
                 # Define chain types and splits
                 chain_types = ["Lchain", "Hchain"] + [f"AGchain_{i}" for i in range(len(EOCs) - 2)]
                 chain_splits = [0] + EOCs.tolist()
-
-                # Ensure metrics are initialized for AGchains
+                # Ensure metrics are initialized for AGchains if not already present
                 for chain_type in chain_types[2:]:
                     if chain_type not in metrics:
                         metrics[chain_type] = {"true": [], "pred": [], "probs": []}
 
-                # Process metrics for each chain
+                # Process metrics for each chain type
                 for i, chain_type in enumerate(chain_types):
                     start, end = chain_splits[i], chain_splits[i + 1]
                     mask = pt_tensor[0, start:end] >= 0
@@ -138,12 +156,12 @@ for model_file in models:
                     predicted_labels = preds[0, start:end][mask].cpu().numpy()
                     probabilities = probs[0, start:end, 1][mask].cpu().numpy()
 
-                    # Log metrics
+                    # Log metrics for this chain
                     metrics[chain_type]["true"].extend(true_labels)
                     metrics[chain_type]["pred"].extend(predicted_labels)
                     metrics[chain_type]["probs"].extend(probabilities)
 
-                    # Combine Antibody and Antigen metrics
+                    # Combine antibody (Lchain, Hchain) and antigen metrics
                     if chain_type in ["Lchain", "Hchain"]:
                         metrics["Antibody"]["true"].extend(true_labels)
                         metrics["Antibody"]["pred"].extend(predicted_labels)
@@ -153,11 +171,11 @@ for model_file in models:
                         metrics["Antigen"]["pred"].extend(predicted_labels)
                         metrics["Antigen"]["probs"].extend(probabilities)
 
-                    # Write predictions to CSV
+                    # Write predictions for this chain to CSV
                     for t, p, pr in zip(true_labels, predicted_labels, probabilities):
                         writer.writerow([chain_type, t, p, pr])
 
-    # Calculate and print final metrics
+    # After processing all batches, calculate and print final metrics
     for chain_type, data in metrics.items():
         true = data["true"]
         pred = data["pred"]
@@ -180,4 +198,8 @@ for model_file in models:
         print(f"  Recall: {recall:.4f}")
         print(f"  AUC-ROC: {auc_roc:.4f}")
         print(f"  AUC-PR: {auc_pr:.4f}")
+
+    # Save the last_attention matrices to an NPZ file.
+    np.savez(f"{model_file}.npz", **last_attention_dict)
+    print(f"Saved last_attention matrices to {model_file}.npz")
 

@@ -1,11 +1,11 @@
 import numpy as np
 
 # Configuration
-Threshold = 3000  # Set your desired threshold
-output_file = f"para_val_ab_interfaces_{Threshold}.npz"  # Output file for padded interfaces
+Threshold = 1600  # Set your desired threshold
+output_file = f"cleaned_para_test_interfaces10_{Threshold}.npz"  # Output file for padded interfaces
 
-# Load the combined_val_interfaces.npz file
-interfaces = np.load("para_val_ab_interfaces.npz", allow_pickle=True)
+# Load the combined_test_interfaces.npz file
+interfaces = np.load("cleaned_para_test_interfaces10.npz", allow_pickle=True)
 
 # Dictionary to store processed interfaces
 padded_interfaces = {}

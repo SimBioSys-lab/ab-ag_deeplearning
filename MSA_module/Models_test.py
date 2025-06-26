@@ -55,10 +55,8 @@ class Attention(nn.Module):
         # Optionally apply tied attention (averaging along the row dimension)
         if tied:
             rowwise_average = torch.mean(dots, dim=3, keepdim=True)
-            b_sqrt = math.sqrt(dots.size(0))
-            dots = rowwise_average / b_sqrt
-            dots = rowwise_average.expand_as(dots)
-
+            scaling_factor = math.sqrt(dots.size(0))  # Consider verifying if this is the intended scaling
+            dots = (rowwise_average / scaling_factor).expand_as(dots)
         # Softmax to get probabilities
         attn = dots.softmax(dim=-1)
         attn = self.dropout(attn)
@@ -90,7 +88,7 @@ class AxialAttention(nn.Module):
         self.norm = nn.LayerNorm(dim)
         self.attn = Attention(dim=dim, heads=heads, dropout=dropout, **kwargs)
 
-    def forward(self, x, edges=None, mask=None, return_attention=False):
+    def forward(self, x, edges=None, mask=None, return_attention=False, tied=False):
         # Ensure that only one type of axial attention is used
         assert self.row_attn ^ self.col_attn, "Has to be either row or column attention, not both."
 
@@ -107,8 +105,7 @@ class AxialAttention(nn.Module):
             # Process rows: treat height (h) as the sequence length
             input_fold_eq = "b h w d -> (b h) w d"
             output_fold_eq = "(b h) w d -> b h w d"
-            tied = True
-
+            tied = tied
         x = rearrange(x, input_fold_eq)
 
         # Forward pass through attention, optionally retrieving attention scores
@@ -127,7 +124,6 @@ class MSASelfAttentionBlock(nn.Module):
         super().__init__()
         self.row_attn = AxialAttention(dim=dim, heads=heads, dropout=dropout, row_attn=True, col_attn=False)
         self.col_attn = AxialAttention(dim=dim, heads=heads, dropout=dropout, row_attn=False, col_attn=True)
-
     def forward(self, x, mask=None, pairwise_repr=None):
         x = self.row_attn(x, mask=mask, edges=pairwise_repr)
         x = self.col_attn(x, mask=mask)
@@ -148,7 +144,6 @@ class CoreModel(nn.Module):
         self.norm_layers = nn.ModuleList([
             nn.LayerNorm(embed_dim) for _ in range(num_layers)
         ])
-
     def forward(self, sequences):
         # Embedding layer
         output = self.embedding(sequences)
@@ -158,7 +153,6 @@ class CoreModel(nn.Module):
             residual = output  # Save the input as residual
             output = attention_layer(output)
             output = norm_layer(output + residual)  # Add residual and normalize
-
         return output
 
 class CGModel(nn.Module):
@@ -192,7 +186,7 @@ class CGModel(nn.Module):
 
         # GAT layers for graph-based sequence refinement
         self.gnn_layers = nn.ModuleList(
-            [GATConv(embed_dim, embed_dim, heads=1, concat=False) for _ in range(num_gnn_layers)]
+            [GATConv(embed_dim, embed_dim//num_heads, heads=num_heads, concat=True) for _ in range(num_gnn_layers)]
         )
         # Layer normalization for residual connections after each GAT layer
         self.norm_layers = nn.ModuleList([nn.LayerNorm(embed_dim) for _ in range(num_gnn_layers)])
@@ -209,11 +203,11 @@ class CGModel(nn.Module):
         batch_size, _, max_edges = padded_edges.shape
         seq_len = sequences.shape[2]  # Assuming all graphs have the same number of nodes
 
-        # Recover original edge indices by filtering out `-1`s
+        # Recover original edge indices by filtering out -1s
         edge_indices = []
         batch = []
         for i in range(batch_size):
-            valid_edges = padded_edges[i][:, padded_edges[i][0] != -1]  # Filter out `-1`s
+            valid_edges = padded_edges[i][:, padded_edges[i][0] != -1]  # Filter out -1s
             valid_edges = valid_edges + i * seq_len  # Adjust for batch offset
             edge_indices.append(valid_edges)
             batch.append(torch.full((valid_edges.shape[1],), i, dtype=torch.long, device=valid_edges.device))
@@ -231,7 +225,6 @@ class CGModel(nn.Module):
         positional_embeddings = self.positional_embeddings[:seq_len, :].unsqueeze(0)  # Shape: (1, seq_len, embed_dim)
         positional_embeddings = positional_embeddings.expand(batch_size, -1, -1)  # Expand to batch size
         output = output + self.dropout(positional_embeddings)
-
 
         # Apply the fully connected layer with a residual connection
         embedding = self.fc(output) + output  # Residual connection
@@ -263,7 +256,7 @@ class MCModel(nn.Module):
         self.row_norm_layers = nn.ModuleList([nn.LayerNorm(embed_dim) for _ in range(num_int_layers)])
         self.dropout = nn.Dropout(dropout)
 
-    def forward(self, sequences, padded_edges, mask=None, pairwise_repr=None, return_attention=False):
+    def forward(self, sequences, padded_edges, mask=None, pairwise_repr=None, return_attention=False, tied=False):
         # Core model forward pass
         output = self.cg_model(sequences, padded_edges)
         last_attn = None  # will hold attention from the last axial attention layer
@@ -272,8 +265,8 @@ class MCModel(nn.Module):
         for idx, (row_attn, norm) in enumerate(zip(self.row_attn_layers, self.row_norm_layers)):
             # If we are in the last axial attention layer and want to export attention scores:
             if return_attention and idx == len(self.row_attn_layers) - 1:
-                # Here we assume that AxialAttention.forward accepts `return_attention`
-                row_out, attn = row_attn(output, mask=mask, edges=None, return_attention=True)
+                # Here we assume that AxialAttention.forward accepts return_attention
+                row_out, attn = row_attn(output, mask=mask, edges=None, return_attention=return_attention, tied=tied)
                 last_attn = attn
             else:
                 row_out = row_attn(output, mask=mask, edges=None)
@@ -312,7 +305,7 @@ class ClassificationModel(nn.Module):
         # Final classification layer maps the refined embedding to the desired number of classes.
         self.fc_classification = nn.Linear(embed_dim, num_classes)
 
-    def forward(self, sequences, padded_edges, return_attention=False):
+    def forward(self, sequences, padded_edges, return_attention=False, tied=False):
         """
         Args:
             sequences (torch.Tensor): Input sequences of shape [batch_size, seq_len, feature_dim].
@@ -327,7 +320,7 @@ class ClassificationModel(nn.Module):
         # Get refined embeddings from MCModel.
         # If return_attention is True, MCModel is expected to return a tuple (refined_embedding, last_attn)
         if return_attention:
-            refined_embedding, last_attn = self.mc_model(sequences, padded_edges, return_attention=True)
+            refined_embedding, last_attn = self.mc_model(sequences, padded_edges, return_attention=return_attention, tied=tied)
         else:
             refined_embedding = self.mc_model(sequences, padded_edges)
 
@@ -376,3 +369,57 @@ class RegressionModel(nn.Module):
         # Final regression output
         predictions = torch.relu(self.fc_regression(refined_embedding))  # Shape: [batch_size, seq_len, 1]
         return predictions
+
+class CTMModel(nn.Module):
+    def __init__(self, vocab_size, seq_len, embed_dim, num_heads, dropout,
+                 num_layers, num_gnn_layers, num_classes, num_int_layers):
+        """
+        Args:
+            vocab_size (int): Vocabulary size for input sequences.
+            seq_len (int): Length of the input sequences.
+            embed_dim (int): Embedding dimension.
+            num_heads (int): Number of attention heads.
+            dropout (float): Dropout rate.
+            num_layers (int): Number of transformer (or axial) layers.
+            num_gnn_layers (int): Number of graph neural network layers.
+            num_classes (int): Number of output classes. For binary contact prediction, use 2.
+            num_int_layers (int): Number of intermediate layers (if any) in MCModel.
+        """
+        super().__init__()
+        print(f"Initializing CTMModel with {num_gnn_layers} GAT layers and residual connections...")
+
+        # Instantiate the MCModel (assumed to return refined embeddings and attention scores)
+        self.mc_model = MCModel(vocab_size, seq_len, embed_dim, num_heads, dropout,
+                                num_layers, num_gnn_layers, num_int_layers)
+
+        # Since we are not averaging over heads, the attention tensor remains
+        # with shape [B, num_heads, seq_len, seq_len]. The Conv2d layer maps from
+        # num_heads input channels to num_classes output channels.
+        self.fc_linear = nn.Linear(num_heads, num_classes)
+
+    def forward(self, sequences, padded_edges, return_attention=True, tied=False):
+        """
+        Args:
+            sequences (torch.Tensor): Input sequences of shape [batch_size, seq_len, feature_dim].
+            padded_edges (torch.Tensor): Padded edge indices of shape [batch_size, 2, max_edges].
+            return_attention (bool): Whether to also return the intermediate attention scores.
+            tied (bool): An optional flag passed to MCModel (if needed).
+        Returns:
+            If return_attention is False:
+                torch.Tensor: Logits of shape [batch_size, num_classes, seq_len, seq_len].
+            Else:
+                Tuple[torch.Tensor, torch.Tensor]: (logits, last_attn)
+                    - logits: as above.
+                    - last_attn: raw attention scores from MCModel with shape [batch_size, num_heads, seq_len, seq_len].
+        """
+        # Get refined embeddings and attention scores from MCModel.
+        # We assume MCModel returns a tuple: (refined_embedding, last_attn)
+        # where last_attn has shape [batch_size, num_heads, seq_len, seq_len]
+        refined_embedding, last_attn = self.mc_model(sequences, padded_edges, return_attention=return_attention, tied=tied)
+        x = last_attn.permute(0, 2, 3, 1)
+        x = self.fc_linear(x)
+        logits = x.permute(0, 3, 1, 2)
+        if return_attention:
+            return logits, last_attn
+        else:
+            return logits

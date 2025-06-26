@@ -6,3 +6,5 @@
 *.ds
 *.csv
 *.pth
+*.err
+*.out

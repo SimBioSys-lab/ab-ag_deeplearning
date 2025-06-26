@@ -6,7 +6,8 @@ from torch.amp import autocast, GradScaler
 import os
 import numpy as np
 from Dataloader_itf import SequenceParatopeDataset
-from Models_new import ClassificationModel
+from Models_fullnew import ClassificationModel
+import torch.nn.functional as F
 
 # Configuration for model and training
 torch.backends.cudnn.benchmark = True
@@ -14,27 +15,62 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
 torch.cuda.reset_peak_memory_stats()
 
+# Define Focal Loss based on CrossEntropyLoss
+class FocalLossCE(nn.Module):
+    def __init__(self, gamma=2.0, weight=None, reduction='mean', ignore_index=-1):
+        """
+        Focal Loss for multi-class classification.
+
+        Args:
+            gamma (float): Focusing parameter.
+            weight (Tensor, optional): A manual rescaling weight given to each class.
+            reduction (str): 'mean' | 'sum' | 'none'
+            ignore_index (int): Specifies a target value that is ignored and does not contribute to the input gradient.
+        """
+        super(FocalLossCE, self).__init__()
+        self.gamma = gamma
+        self.weight = weight
+        self.reduction = reduction
+        self.ignore_index = ignore_index
+
+    def forward(self, logits, targets):
+        # Compute standard cross-entropy loss (per example)
+        ce_loss = F.cross_entropy(logits, targets, reduction='none', weight=self.weight, ignore_index=self.ignore_index)
+        # Compute the probability of the true class for each example
+        pt = torch.exp(-ce_loss)
+        # Compute focal loss
+        focal_loss = (1 - pt) ** self.gamma * ce_loss
+
+        if self.reduction == 'mean':
+            return focal_loss.mean()
+        elif self.reduction == 'sum':
+            return focal_loss.sum()
+        else:
+            return focal_loss
+
+
 config = {
     'batch_size': 4,
-    'sequence_file_train': 'para_train_sequences_3000.npz',
-    'data_file_train': 'para_train_interfaces_3000.npz',
-    'edge_file_train': 'para_train_edges_3000.npz',
-    'sequence_file_val': 'para_val_sequences_3000.npz',
-    'data_file_val': 'para_val_interfaces_3000.npz',
-    'edge_file_val': 'para_val_edges_3000.npz',
-    'max_len': 3000,
+    'sequence_file_train': 'cleaned_para_train_sequences_1600.npz',
+    'data_file_train': 'cleaned_para_train_interfaces_1600.npz',
+    'edge_file_train': 'cleaned_para_train_edges_1600.npz',
+    'sequence_file_val': 'cleaned_para_val_sequences_1600.npz',
+    'data_file_val': 'cleaned_para_val_interfaces_1600.npz',
+    'edge_file_val': 'cleaned_para_val_edges_1600.npz',
+    'max_len': 1600,
     'vocab_size': 23,
     'embed_dim': 256,
     'num_heads': 16,
     'dropout': 0.1,
-    'num_layers': 1,
-    'num_gnn_layers': 2,
-    'num_int_layers': 1,
+    'num_layers': 0,
+    'num_gnn_layers': 20,
+    'num_int_layers': 8,
+    'drop_path_rate': 0.1,
     'num_classes': 2,
     'num_epochs': 1000,
     'learning_rate': 0.0001,
     'max_grad_norm': 0.1,
-    'early_stop_patience': 10,
+    'early_stop_patience': 15,
     'initial_gradient_noise_std': 0.05,
     'accumulation_steps': 2
 }
@@ -101,18 +137,30 @@ model = ClassificationModel(
     num_layers=config['num_layers'],
     num_gnn_layers=config['num_gnn_layers'],
     num_int_layers=config['num_int_layers'],
-    num_classes=config['num_classes']
+    num_classes=config['num_classes'],
+    drop_path_rate=config['drop_path_rate']
 )
 if num_gpus > 1:
     print(f"Using {num_gpus} GPUs with DataParallel.")
     model = nn.DataParallel(model)
 model = model.to(device)
+# Load parameters
+core_params = torch.load('isicparamodelFullNew10_l0_g20_i8_dp0.1_core.pth', map_location=device)
+# Update model parameters
+model_state = model.state_dict()
+model_state.update(core_params)
+model.load_state_dict(model_state)
 
+
+#class_weight = torch.tensor([1.0, 1.0])
+#class_weight = class_weight.to(device)
 # Loss function, optimizer, scaler, scheduler
+#criterion = nn.CrossEntropyLoss(ignore_index=-1, weight=class_weight)
+#criterion = FocalLossCE(gamma=2.0, weight=class_weight, reduction='mean', ignore_index=-1)
 criterion = nn.CrossEntropyLoss(ignore_index=-1)
 optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=1e-2)
 scaler = GradScaler()
-scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5)
+scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=2, gamma=0.9)
 
 # Training loop
 best_val_loss = float('inf')
@@ -173,7 +221,7 @@ for epoch in range(config['num_epochs']):
 
     if avg_val_loss < best_val_loss:
         best_val_loss = avg_val_loss
-        torch.save(model.state_dict(), f"PTttmodel_l{config['num_layers']}_g{config['num_gnn_layers']}_i{config['num_int_layers']}_dp{config['dropout']}.pth")
+        torch.save(model.state_dict(), f"isiciparamodelFullNew10_l{config['num_layers']}_g{config['num_gnn_layers']}_i{config['num_int_layers']}_dp{config['dropout']}.pth")
         print(f"New best model saved with validation loss: {avg_val_loss:.4f}")
         early_stop_counter = 0
     else:

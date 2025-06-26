@@ -1,0 +1,138 @@
+2025-06-23 11:57:51,858 | INFO | CONFIG {'sequence_file': 'MIPE_tv_sequences_1600.npz', 'data_file': 'MIPE_tv_interfaces_1600.npz', 'edge_file': 'MIPE_tv_edges_1600.npz', 'vocab_size': 23, 'seq_len': 1600, 'embed_dim': 256, 'num_heads': 16, 'dropout': 0.3, 'num_layers': 0, 'num_gnn_layers': 20, 'num_int_layers': 8, 'drop_path_rate': 0.2, 'num_classes': 2, 'batch_size': 4, 'num_epochs': 60, 'warmup_epochs': 5, 'learning_rate': 8e-05, 'weight_decay': 0.01, 'max_grad_norm': 0.1, 'accum_steps': 2, 'n_splits': 5, 'early_stop': 15, 'weight_start': 1.0, 'weight_end': 1.0, 'weight_anneal_epochs': 10}
+2025-06-23 11:57:51,912 | INFO | GPUs   4
+2025-06-23 11:57:52,138 | INFO | 
+── Fold 1/5 ──
+2025-06-23 11:58:39,677 | INFO | Fold 1 | Ep 000 | LR=1.60e-05 | pw= 1.0 | train=0.2978 | val=0.1947
+2025-06-23 11:58:39,890 | INFO | ✓ new best (val=0.1947) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold1_best.pth
+2025-06-23 11:59:22,194 | INFO | Fold 1 | Ep 001 | LR=3.20e-05 | pw= 1.0 | train=0.1631 | val=0.1564
+2025-06-23 11:59:22,399 | INFO | ✓ new best (val=0.1564) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold1_best.pth
+2025-06-23 12:00:06,232 | INFO | Fold 1 | Ep 002 | LR=4.80e-05 | pw= 1.0 | train=0.1484 | val=0.1509
+2025-06-23 12:00:06,441 | INFO | ✓ new best (val=0.1509) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold1_best.pth
+2025-06-23 12:00:49,430 | INFO | Fold 1 | Ep 003 | LR=6.40e-05 | pw= 1.0 | train=0.1432 | val=0.1495
+2025-06-23 12:00:49,707 | INFO | ✓ new best (val=0.1495) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold1_best.pth
+2025-06-23 12:01:33,446 | INFO | Fold 1 | Ep 004 | LR=8.00e-05 | pw= 1.0 | train=0.1365 | val=0.1503
+2025-06-23 12:02:20,839 | INFO | Fold 1 | Ep 005 | LR=8.00e-05 | pw= 1.0 | train=0.1315 | val=0.1528
+2025-06-23 12:03:06,523 | INFO | Fold 1 | Ep 006 | LR=7.99e-05 | pw= 1.0 | train=0.1266 | val=0.1534
+2025-06-23 12:03:49,583 | INFO | Fold 1 | Ep 007 | LR=7.97e-05 | pw= 1.0 | train=0.1221 | val=0.1566
+2025-06-23 12:04:33,707 | INFO | Fold 1 | Ep 008 | LR=7.94e-05 | pw= 1.0 | train=0.1190 | val=0.1627
+2025-06-23 12:05:23,250 | INFO | Fold 1 | Ep 009 | LR=7.90e-05 | pw= 1.0 | train=0.1144 | val=0.1586
+2025-06-23 12:06:05,544 | INFO | Fold 1 | Ep 010 | LR=7.84e-05 | pw= 1.0 | train=0.1098 | val=0.1648
+2025-06-23 12:06:48,219 | INFO | Fold 1 | Ep 011 | LR=7.77e-05 | pw= 1.0 | train=0.1075 | val=0.1655
+2025-06-23 12:07:36,929 | INFO | Fold 1 | Ep 012 | LR=7.68e-05 | pw= 1.0 | train=0.1043 | val=0.1721
+2025-06-23 12:08:22,750 | INFO | Fold 1 | Ep 013 | LR=7.59e-05 | pw= 1.0 | train=0.1021 | val=0.1737
+2025-06-23 12:09:05,195 | INFO | Fold 1 | Ep 014 | LR=7.48e-05 | pw= 1.0 | train=0.0996 | val=0.1826
+2025-06-23 12:09:53,894 | INFO | Fold 1 | Ep 015 | LR=7.37e-05 | pw= 1.0 | train=0.0975 | val=0.1787
+2025-06-23 12:10:43,370 | INFO | Fold 1 | Ep 016 | LR=7.24e-05 | pw= 1.0 | train=0.0961 | val=0.1783
+2025-06-23 12:11:26,301 | INFO | Fold 1 | Ep 017 | LR=7.10e-05 | pw= 1.0 | train=0.0938 | val=0.1876
+2025-06-23 12:12:12,721 | INFO | Fold 1 | Ep 018 | LR=6.95e-05 | pw= 1.0 | train=0.0921 | val=0.1909
+2025-06-23 12:12:12,722 | INFO | Early stopping
+2025-06-23 12:12:13,190 | INFO | Saved final best → iPPIMIPEmodel_l0_g20_i8_do0.30_dpr0.20_lr8e-05_fold1.pth
+2025-06-23 12:12:13,190 | INFO | 
+── Fold 2/5 ──
+2025-06-23 12:12:56,216 | INFO | Fold 2 | Ep 000 | LR=1.60e-05 | pw= 1.0 | train=0.3824 | val=0.2008
+2025-06-23 12:12:56,455 | INFO | ✓ new best (val=0.2008) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold2_best.pth
+2025-06-23 12:13:43,455 | INFO | Fold 2 | Ep 001 | LR=3.20e-05 | pw= 1.0 | train=0.1690 | val=0.1591
+2025-06-23 12:13:43,670 | INFO | ✓ new best (val=0.1591) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold2_best.pth
+2025-06-23 12:14:28,212 | INFO | Fold 2 | Ep 002 | LR=4.80e-05 | pw= 1.0 | train=0.1507 | val=0.1536
+2025-06-23 12:14:28,428 | INFO | ✓ new best (val=0.1536) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold2_best.pth
+2025-06-23 12:15:14,388 | INFO | Fold 2 | Ep 003 | LR=6.40e-05 | pw= 1.0 | train=0.1443 | val=0.1551
+2025-06-23 12:15:58,056 | INFO | Fold 2 | Ep 004 | LR=8.00e-05 | pw= 1.0 | train=0.1392 | val=0.1526
+2025-06-23 12:15:58,335 | INFO | ✓ new best (val=0.1526) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold2_best.pth
+2025-06-23 12:16:43,554 | INFO | Fold 2 | Ep 005 | LR=8.00e-05 | pw= 1.0 | train=0.1337 | val=0.1547
+2025-06-23 12:17:28,039 | INFO | Fold 2 | Ep 006 | LR=7.99e-05 | pw= 1.0 | train=0.1283 | val=0.1568
+2025-06-23 12:18:11,549 | INFO | Fold 2 | Ep 007 | LR=7.97e-05 | pw= 1.0 | train=0.1232 | val=0.1641
+2025-06-23 12:18:56,745 | INFO | Fold 2 | Ep 008 | LR=7.94e-05 | pw= 1.0 | train=0.1185 | val=0.1639
+2025-06-23 12:19:40,067 | INFO | Fold 2 | Ep 009 | LR=7.90e-05 | pw= 1.0 | train=0.1148 | val=0.1673
+2025-06-23 12:20:22,712 | INFO | Fold 2 | Ep 010 | LR=7.84e-05 | pw= 1.0 | train=0.1102 | val=0.1739
+2025-06-23 12:21:05,701 | INFO | Fold 2 | Ep 011 | LR=7.77e-05 | pw= 1.0 | train=0.1082 | val=0.1796
+2025-06-23 12:21:56,429 | INFO | Fold 2 | Ep 012 | LR=7.68e-05 | pw= 1.0 | train=0.1046 | val=0.1819
+2025-06-23 12:22:43,340 | INFO | Fold 2 | Ep 013 | LR=7.59e-05 | pw= 1.0 | train=0.1013 | val=0.1831
+2025-06-23 12:23:34,762 | INFO | Fold 2 | Ep 014 | LR=7.48e-05 | pw= 1.0 | train=0.0999 | val=0.1858
+2025-06-23 12:24:19,886 | INFO | Fold 2 | Ep 015 | LR=7.37e-05 | pw= 1.0 | train=0.0974 | val=0.1897
+2025-06-23 12:25:07,042 | INFO | Fold 2 | Ep 016 | LR=7.24e-05 | pw= 1.0 | train=0.0962 | val=0.1926
+2025-06-23 12:25:49,824 | INFO | Fold 2 | Ep 017 | LR=7.10e-05 | pw= 1.0 | train=0.0932 | val=0.1991
+2025-06-23 12:26:38,109 | INFO | Fold 2 | Ep 018 | LR=6.95e-05 | pw= 1.0 | train=0.0920 | val=0.1951
+2025-06-23 12:27:20,542 | INFO | Fold 2 | Ep 019 | LR=6.79e-05 | pw= 1.0 | train=0.0904 | val=0.1985
+2025-06-23 12:27:20,543 | INFO | Early stopping
+2025-06-23 12:27:21,126 | INFO | Saved final best → iPPIMIPEmodel_l0_g20_i8_do0.30_dpr0.20_lr8e-05_fold2.pth
+2025-06-23 12:27:21,126 | INFO | 
+── Fold 3/5 ──
+2025-06-23 12:28:09,101 | INFO | Fold 3 | Ep 000 | LR=1.60e-05 | pw= 1.0 | train=0.3193 | val=0.1909
+2025-06-23 12:28:09,383 | INFO | ✓ new best (val=0.1909) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold3_best.pth
+2025-06-23 12:28:53,065 | INFO | Fold 3 | Ep 001 | LR=3.20e-05 | pw= 1.0 | train=0.1701 | val=0.1543
+2025-06-23 12:28:53,278 | INFO | ✓ new best (val=0.1543) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold3_best.pth
+2025-06-23 12:29:36,808 | INFO | Fold 3 | Ep 002 | LR=4.80e-05 | pw= 1.0 | train=0.1514 | val=0.1458
+2025-06-23 12:29:37,080 | INFO | ✓ new best (val=0.1458) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold3_best.pth
+2025-06-23 12:30:24,428 | INFO | Fold 3 | Ep 003 | LR=6.40e-05 | pw= 1.0 | train=0.1461 | val=0.1457
+2025-06-23 12:30:24,708 | INFO | ✓ new best (val=0.1457) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold3_best.pth
+2025-06-23 12:31:11,643 | INFO | Fold 3 | Ep 004 | LR=8.00e-05 | pw= 1.0 | train=0.1402 | val=0.1468
+2025-06-23 12:32:07,288 | INFO | Fold 3 | Ep 005 | LR=8.00e-05 | pw= 1.0 | train=0.1326 | val=0.1561
+2025-06-23 12:32:55,963 | INFO | Fold 3 | Ep 006 | LR=7.99e-05 | pw= 1.0 | train=0.1297 | val=0.1542
+2025-06-23 12:33:49,506 | INFO | Fold 3 | Ep 007 | LR=7.97e-05 | pw= 1.0 | train=0.1244 | val=0.1648
+2025-06-23 12:34:35,332 | INFO | Fold 3 | Ep 008 | LR=7.94e-05 | pw= 1.0 | train=0.1196 | val=0.1651
+2025-06-23 12:35:25,751 | INFO | Fold 3 | Ep 009 | LR=7.90e-05 | pw= 1.0 | train=0.1154 | val=0.1702
+2025-06-23 12:36:16,005 | INFO | Fold 3 | Ep 010 | LR=7.84e-05 | pw= 1.0 | train=0.1110 | val=0.1753
+2025-06-23 12:37:00,058 | INFO | Fold 3 | Ep 011 | LR=7.77e-05 | pw= 1.0 | train=0.1082 | val=0.1803
+2025-06-23 12:37:43,630 | INFO | Fold 3 | Ep 012 | LR=7.68e-05 | pw= 1.0 | train=0.1041 | val=0.1761
+2025-06-23 12:38:28,632 | INFO | Fold 3 | Ep 013 | LR=7.59e-05 | pw= 1.0 | train=0.1032 | val=0.1825
+2025-06-23 12:39:22,287 | INFO | Fold 3 | Ep 014 | LR=7.48e-05 | pw= 1.0 | train=0.0992 | val=0.1908
+2025-06-23 12:40:21,401 | INFO | Fold 3 | Ep 015 | LR=7.37e-05 | pw= 1.0 | train=0.0969 | val=0.1999
+2025-06-23 12:41:06,667 | INFO | Fold 3 | Ep 016 | LR=7.24e-05 | pw= 1.0 | train=0.0957 | val=0.1978
+2025-06-23 12:41:52,026 | INFO | Fold 3 | Ep 017 | LR=7.10e-05 | pw= 1.0 | train=0.0939 | val=0.1945
+2025-06-23 12:42:36,039 | INFO | Fold 3 | Ep 018 | LR=6.95e-05 | pw= 1.0 | train=0.0917 | val=0.1985
+2025-06-23 12:42:36,039 | INFO | Early stopping
+2025-06-23 12:42:36,567 | INFO | Saved final best → iPPIMIPEmodel_l0_g20_i8_do0.30_dpr0.20_lr8e-05_fold3.pth
+2025-06-23 12:42:36,567 | INFO | 
+── Fold 4/5 ──
+2025-06-23 12:43:30,289 | INFO | Fold 4 | Ep 000 | LR=1.60e-05 | pw= 1.0 | train=0.4249 | val=0.1932
+2025-06-23 12:43:30,549 | INFO | ✓ new best (val=0.1932) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold4_best.pth
+2025-06-23 12:44:19,972 | INFO | Fold 4 | Ep 001 | LR=3.20e-05 | pw= 1.0 | train=0.1719 | val=0.1495
+2025-06-23 12:44:20,177 | INFO | ✓ new best (val=0.1495) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold4_best.pth
+2025-06-23 12:45:10,531 | INFO | Fold 4 | Ep 002 | LR=4.80e-05 | pw= 1.0 | train=0.1535 | val=0.1465
+2025-06-23 12:45:10,741 | INFO | ✓ new best (val=0.1465) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold4_best.pth
+2025-06-23 12:45:56,453 | INFO | Fold 4 | Ep 003 | LR=6.40e-05 | pw= 1.0 | train=0.1459 | val=0.1460
+2025-06-23 12:45:56,721 | INFO | ✓ new best (val=0.1460) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold4_best.pth
+2025-06-23 12:46:42,197 | INFO | Fold 4 | Ep 004 | LR=8.00e-05 | pw= 1.0 | train=0.1411 | val=0.1488
+2025-06-23 12:47:25,510 | INFO | Fold 4 | Ep 005 | LR=8.00e-05 | pw= 1.0 | train=0.1346 | val=0.1497
+2025-06-23 12:48:08,906 | INFO | Fold 4 | Ep 006 | LR=7.99e-05 | pw= 1.0 | train=0.1281 | val=0.1555
+2025-06-23 12:48:52,896 | INFO | Fold 4 | Ep 007 | LR=7.97e-05 | pw= 1.0 | train=0.1246 | val=0.1599
+2025-06-23 12:49:41,117 | INFO | Fold 4 | Ep 008 | LR=7.94e-05 | pw= 1.0 | train=0.1195 | val=0.1645
+2025-06-23 12:50:26,643 | INFO | Fold 4 | Ep 009 | LR=7.90e-05 | pw= 1.0 | train=0.1164 | val=0.1679
+2025-06-23 12:51:24,424 | INFO | Fold 4 | Ep 010 | LR=7.84e-05 | pw= 1.0 | train=0.1118 | val=0.1739
+2025-06-23 12:52:09,221 | INFO | Fold 4 | Ep 011 | LR=7.77e-05 | pw= 1.0 | train=0.1076 | val=0.1828
+2025-06-23 12:53:01,853 | INFO | Fold 4 | Ep 012 | LR=7.68e-05 | pw= 1.0 | train=0.1061 | val=0.1811
+2025-06-23 12:53:46,485 | INFO | Fold 4 | Ep 013 | LR=7.59e-05 | pw= 1.0 | train=0.1032 | val=0.1787
+2025-06-23 12:54:36,030 | INFO | Fold 4 | Ep 014 | LR=7.48e-05 | pw= 1.0 | train=0.0995 | val=0.1914
+2025-06-23 12:55:21,111 | INFO | Fold 4 | Ep 015 | LR=7.37e-05 | pw= 1.0 | train=0.0988 | val=0.1891
+2025-06-23 12:56:14,590 | INFO | Fold 4 | Ep 016 | LR=7.24e-05 | pw= 1.0 | train=0.0961 | val=0.1899
+2025-06-23 12:56:57,028 | INFO | Fold 4 | Ep 017 | LR=7.10e-05 | pw= 1.0 | train=0.0951 | val=0.1968
+2025-06-23 12:57:44,553 | INFO | Fold 4 | Ep 018 | LR=6.95e-05 | pw= 1.0 | train=0.0926 | val=0.1940
+2025-06-23 12:57:44,553 | INFO | Early stopping
+2025-06-23 12:57:45,102 | INFO | Saved final best → iPPIMIPEmodel_l0_g20_i8_do0.30_dpr0.20_lr8e-05_fold4.pth
+2025-06-23 12:57:45,102 | INFO | 
+── Fold 5/5 ──
+2025-06-23 12:58:28,550 | INFO | Fold 5 | Ep 000 | LR=1.60e-05 | pw= 1.0 | train=0.3967 | val=0.2076
+2025-06-23 12:58:28,803 | INFO | ✓ new best (val=0.2076) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold5_best.pth
+2025-06-23 12:59:23,047 | INFO | Fold 5 | Ep 001 | LR=3.20e-05 | pw= 1.0 | train=0.1757 | val=0.1549
+2025-06-23 12:59:23,253 | INFO | ✓ new best (val=0.1549) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold5_best.pth
+2025-06-23 13:00:10,036 | INFO | Fold 5 | Ep 002 | LR=4.80e-05 | pw= 1.0 | train=0.1543 | val=0.1465
+2025-06-23 13:00:10,244 | INFO | ✓ new best (val=0.1465) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold5_best.pth
+2025-06-23 13:00:58,205 | INFO | Fold 5 | Ep 003 | LR=6.40e-05 | pw= 1.0 | train=0.1459 | val=0.1454
+2025-06-23 13:00:58,435 | INFO | ✓ new best (val=0.1454) → PPIMIPE_l0_g20_i8_do0.30_dpr0.20_lr8e-05_checkpoints/fold5_best.pth
+2025-06-23 13:01:43,306 | INFO | Fold 5 | Ep 004 | LR=8.00e-05 | pw= 1.0 | train=0.1421 | val=0.1458
+2025-06-23 13:02:30,280 | INFO | Fold 5 | Ep 005 | LR=8.00e-05 | pw= 1.0 | train=0.1367 | val=0.1494
+2025-06-23 13:03:17,927 | INFO | Fold 5 | Ep 006 | LR=7.99e-05 | pw= 1.0 | train=0.1307 | val=0.1502
+2025-06-23 13:04:09,595 | INFO | Fold 5 | Ep 007 | LR=7.97e-05 | pw= 1.0 | train=0.1260 | val=0.1522
+2025-06-23 13:04:54,937 | INFO | Fold 5 | Ep 008 | LR=7.94e-05 | pw= 1.0 | train=0.1217 | val=0.1561
+2025-06-23 13:05:42,422 | INFO | Fold 5 | Ep 009 | LR=7.90e-05 | pw= 1.0 | train=0.1167 | val=0.1667
+2025-06-23 13:06:28,974 | INFO | Fold 5 | Ep 010 | LR=7.84e-05 | pw= 1.0 | train=0.1136 | val=0.1635
+2025-06-23 13:07:21,669 | INFO | Fold 5 | Ep 011 | LR=7.77e-05 | pw= 1.0 | train=0.1095 | val=0.1760
+2025-06-23 13:08:05,292 | INFO | Fold 5 | Ep 012 | LR=7.68e-05 | pw= 1.0 | train=0.1068 | val=0.1715
+2025-06-23 13:08:47,895 | INFO | Fold 5 | Ep 013 | LR=7.59e-05 | pw= 1.0 | train=0.1051 | val=0.1724
+2025-06-23 13:09:36,067 | INFO | Fold 5 | Ep 014 | LR=7.48e-05 | pw= 1.0 | train=0.1016 | val=0.1787
+2025-06-23 13:10:29,647 | INFO | Fold 5 | Ep 015 | LR=7.37e-05 | pw= 1.0 | train=0.1008 | val=0.1801
+2025-06-23 13:11:20,064 | INFO | Fold 5 | Ep 016 | LR=7.24e-05 | pw= 1.0 | train=0.0975 | val=0.1848
+2025-06-23 13:12:18,441 | INFO | Fold 5 | Ep 017 | LR=7.10e-05 | pw= 1.0 | train=0.0962 | val=0.1888
+2025-06-23 13:13:06,083 | INFO | Fold 5 | Ep 018 | LR=6.95e-05 | pw= 1.0 | train=0.0944 | val=0.1900
+2025-06-23 13:13:06,083 | INFO | Early stopping
+2025-06-23 13:13:07,133 | INFO | Saved final best → iPPIMIPEmodel_l0_g20_i8_do0.30_dpr0.20_lr8e-05_fold5.pth

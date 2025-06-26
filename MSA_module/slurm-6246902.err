@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/work/hdd/bdtb/xliu27/ab-ag_deeplearning/MSA_module/PT_test_mc.py", line 65, in <module>
-    num_int_layers = int(parts[4][1])
-                     ^^^^^^^^^^^^^^^^
-ValueError: invalid literal for int() with base 10: 'p'
-srun: error: gpub021: task 0: Exited with exit code 1

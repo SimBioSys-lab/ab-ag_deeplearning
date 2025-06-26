@@ -4,7 +4,7 @@ import pandas as pd
 results = []
 
 # Read the file line by line
-with open("MC_result.out", "r") as file:
+with open("NM4.5.out", "r") as file:
     current_model = None
     current_fold = None
     model_structure = None

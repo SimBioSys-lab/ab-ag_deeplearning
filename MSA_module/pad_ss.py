@@ -1,11 +1,11 @@
 import numpy as np
 
 # Configuration
-Threshold = 3000  # Set your desired threshold
-output_file = f"padded_train_secondary_structure_{Threshold}.npz"  # Output file for padded secondary structure data
+Threshold = 1600  # Set your desired threshold
+output_file = f"cleaned_para_val_secondary_structure_{Threshold}.npz"  # Output file for padded secondary structure data
 
 # Load the secondary structure data file
-secondary_structure_data = np.load("combined_train_secondary_structure.npz", allow_pickle=True)
+secondary_structure_data = np.load("cleaned_para_val_ss.npz", allow_pickle=True)
 
 # Dictionary to store processed secondary structure data
 padded_secondary_structure = {}

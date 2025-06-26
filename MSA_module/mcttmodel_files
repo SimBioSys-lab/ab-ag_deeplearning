@@ -1,2 +1,4 @@
-PTttmodel_d1_l1_g2_i1_dp0.0.pth
-PTttmodel_d1_l1_g2_i1_dp0.1.pth
+PTttmodel_l0_g10_i4_dp0.1.pth
+PTttmodel_l0_g10_i4_dp0.2.pth
+PTttmodel_l0_g20_i8_dp0.1.pth
+PTttmodel_l0_g20_i8_dp0.2.pth

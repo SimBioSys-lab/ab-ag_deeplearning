@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import roc_auc_score, precision_recall_curve, auc, precision_score, recall_score
 import numpy as np
 from Dataloader_itf import SequenceParatopeDataset
-from Models_test import ClassificationModel
+from Models_fullnew import ClassificationModel
 from torch.amp import autocast
 import csv
 import os
@@ -14,16 +14,16 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
 
 # Read model filenames
-with open('gsd_files', 'r') as f:
+with open('fn10_files', 'r') as f:
     models = [line.strip() for line in f if line.strip()]
 
 # Test configuration
 test_config = {
     'batch_size': 1,
-    'sequence_file': 'padded_sequences_test_3000.npz',
-    'data_file': 'padded_interfaces_test_3000.npz',
-    'edge_file': 'padded_edges_test_3000.npz',
-    'max_len': 3000,
+    'sequence_file': 'combined_np_test_sequences_1600.npz',
+    'data_file': 'combined_np_test_interface10_1600.npz',
+    'edge_file': 'combined_np_test_edges_1600.npz',
+    'max_len': 1600,
     'vocab_size': 23,
     'num_classes': 2
 }
@@ -70,7 +70,7 @@ for model_file in models:
     num_gnn_layers = int(parts[3][1])
     num_int_layers = int(parts[4][1])
     embed_dim = 256
-    num_heads = 16
+    num_heads = 8
     dropout = float(parts[5][2:5])
     # Initialize model
     model = ClassificationModel(
@@ -120,7 +120,7 @@ for model_file in models:
                 with autocast("cuda"):
                     outputs, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges, 
                                                     return_attention=True)
-                print('attn_shape:', last_attention.shape)
+#                print('attn_shape:', last_attention.shape)
                 outputs = outputs.squeeze(1)
                 probs = torch.softmax(outputs, dim=-1)
                 preds = torch.argmax(probs, dim=-1)
