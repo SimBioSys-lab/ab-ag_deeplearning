@@ -3,8 +3,8 @@ import torch
 # ------------------------------------------------------------------
 # 1.  Paths
 # ------------------------------------------------------------------
-in_ckpt  = "fold1_best.pth"
-out_ckpt = "PPI_model_l0_g20_i8_do0.15_dpr0.15_lr0.0002_fold1_core.pth"
+in_ckpt  = "isicParareg_l1_g10_i5_do0.1_dpr0.1_fold5.pth"
+out_ckpt = "isicParareg_l1_g10_i5_do0.1_dpr0.1_fold5_core.pth"
 
 # ------------------------------------------------------------------
 # 2.  Load full checkpoint
@@ -16,8 +16,8 @@ state = torch.load(in_ckpt, map_location="cpu")
 #     • drop leading "module." (DDP/DataParallel) if present
 # ------------------------------------------------------------------
 core_state = {
-    k.replace("module.", "", 1): v          # strip single leading "module."
-#    k: v
+#    k.replace("module.", "", 1): v          # strip single leading "module."
+    k: v
     for k, v in state.items()
     if "mc_model" in k                     # keep only mc_model sub-tree
 }

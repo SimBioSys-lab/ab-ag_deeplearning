@@ -7,28 +7,28 @@ from torch.optim.swa_utils import AveragedModel, SWALR, update_bn
 from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import KFold
 from Dataloader_itf import SequenceParatopeDataset
-from Models_NMnew import ClassificationModel
+from Models_fullNM import ClassificationModel
 
 # ───────────────────────────────────────── CONFIG
 config = {
     # data / model
-    'sequence_file':  'cleaned_para_tv_sequences_1600.npz',
-    'data_file':      'cleaned_para_tv_interfaces_1600.npz',
-    'edge_file':      'cleaned_para_tv_edges_1600.npz',
-    'vocab_size':     23,
+    'sequence_file':  'para_tv_esmsequences_1600.npz',
+    'data_file':      'para_tv_esminterfaces_1600.npz',
+    'edge_file':      'para_tv_esmedges_1600.npz',
+    'vocab_size':     31,
     'seq_len':        1600,
     'embed_dim':      256,
     'num_heads':      16,
-    'dropout':        0.2,
-    'num_layers':     0,
-    'num_gnn_layers': 20,
-    'num_int_layers': 8,
-    'drop_path_rate': 0.2,
+    'dropout':        0.1,
+    'num_layers':     1,
+    'num_gnn_layers': 10,
+    'num_int_layers': 5,
+    'drop_path_rate': 0.1,
     'num_classes':    2,
     # optimisation
     'batch_size':     4,
-    'num_epochs':     100,
-    'warmup_epochs':  5,
+    'num_epochs':     50,
+    'warmup_epochs':  10,
     'swa_start':      20,
     'learning_rate':  2e-4,
     'weight_decay':   1e-2,
@@ -36,11 +36,11 @@ config = {
     'accum_steps':    2,
     # early-stop & CV
     'n_splits':       5,
-    'early_stop':     15,
+    'early_stop':     20,
     # pos-weight anneal
-    'weight_start':   10.0,
+    'weight_start':   20.0,
     'weight_end':     1.0,
-    'weight_anneal_epochs': 10,
+    'weight_anneal_epochs': 20,
 }
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(config)
@@ -61,6 +61,39 @@ def custom_collate_fn(batch):
     edges = torch.stack(pads)
     return edges, seqs, labels
 
+# Define Focal Loss based on CrossEntropyLoss
+class FocalLossCE(nn.Module):
+    def __init__(self, gamma=2.0, weight=None, reduction='mean', ignore_index=-1):
+        """
+        Focal Loss for multi-class classification.
+
+        Args:
+            gamma (float): Focusing parameter.
+            weight (Tensor, optional): A manual rescaling weight given to each class.
+            reduction (str): 'mean' | 'sum' | 'none'
+            ignore_index (int): Specifies a target value that is ignored and does not contribute to the input gradient.
+        """
+        super(FocalLossCE, self).__init__()
+        self.gamma = gamma
+        self.weight = weight
+        self.reduction = reduction
+        self.ignore_index = ignore_index
+
+    def forward(self, logits, targets):
+        # Compute standard cross-entropy loss (per example)
+        ce_loss = F.cross_entropy(logits, targets, reduction='none', weight=self.weight, ignore_index=self.ignore_index)
+        # Compute the probability of the true class for each example
+        pt = torch.exp(-ce_loss)
+        # Compute focal loss
+        focal_loss = (1 - pt) ** self.gamma * ce_loss
+
+        if self.reduction == 'mean':
+            return focal_loss.mean()
+        elif self.reduction == 'sum':
+            return focal_loss.sum()
+        else:
+            return focal_loss
+
 # ───────────────────────────────────────── Train / Val
 def train_one_epoch(model, loader, criterion, optimizer, scaler):
     model.train()
@@ -80,7 +113,6 @@ def train_one_epoch(model, loader, criterion, optimizer, scaler):
             scaler.update()
         running += loss.item()*config['accum_steps']
     return running/len(loader)
-
 @torch.no_grad()
 def validate(model, loader, criterion):
     model.eval()
@@ -118,13 +150,12 @@ for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(dataset))),1):
         print(f"Using {num_gpus} GPUs with DataParallel.")
         model = nn.DataParallel(model)
     model = model.to(device)
-
-    # Load parameters
-    core_params = torch.load('ismodelNMNew45_l0_g20_i8_dp0.1_core.pth', map_location=device)
-    # Update model parameters
-    model_state = model.state_dict()
-    model_state.update(core_params)
-    model.load_state_dict(model_state)
+#    # Load parameters
+#    core_params = torch.load('isParamodelnewesm_l1_g10_i5_do0.10_dpr0.10_lr0.0002_fold3_core.pth', map_location=device)
+#    # Update model parameters
+#    model_state = model.state_dict()
+#    model_state.update(core_params)
+#    model.load_state_dict(model_state)
 
 
     # two param groups so we could freeze something later if desired
@@ -156,7 +187,6 @@ for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(dataset))),1):
         vl_loss=validate(model,vl_loader,criterion)
         print(f"Ep{epoch:03d}  LR={optimizer.param_groups[0]['lr']:.2e} "
               f"pw={pw:.1f}  train={tr_loss:.4f}  val={vl_loss:.4f}")
-
         # scheduler / SWA
         if epoch < config['swa_start']:
             scheduler.step()
@@ -181,10 +211,9 @@ for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(dataset))),1):
     if epoch>=config['swa_start']:
         update_bn(tr_loader, swa_model)
         best_state = swa_model.state_dict()
-    ckpt=(f"isimodelNM_l{config['num_layers']}_g{config['num_gnn_layers']}"
+    ckpt=(f"iparaNMmodelnewesm_l{config['num_layers']}_g{config['num_gnn_layers']}"
           f"_i{config['num_int_layers']}_do{config['dropout']:.2f}"
           f"_dpr{config['drop_path_rate']:.2f}_lr{config['learning_rate']}"
           f"_fold{fold}.pth")
     torch.save(best_state, ckpt)
     print("Saved", ckpt)
-

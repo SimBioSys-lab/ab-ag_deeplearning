@@ -1,97 +1,71 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def add_bar_labels_inside(rects, ax, fmt="{:.3f}", offset_ratio=0.05, color="black"):
-    """
-    Place a text label inside each bar near the bottom.
-
-    Args:
-        rects (list): List of matplotlib.patches.Rectangle objects (bars).
-        ax (matplotlib.axes.Axes): The Axes object to draw the text on.
-        fmt (str): Format string for bar labels.
-        offset_ratio (float): Fraction of bar height to place the label above the bottom.
-        color (str): Color of the text.
-    """
-    for rect in rects:
-        height = rect.get_height()
-        label_y = height * offset_ratio  # label position from bottom
-        ax.annotate(fmt.format(height),
-                    xy=(rect.get_x() + rect.get_width() / 2, label_y),
-                    xytext=(0, 0),
-                    textcoords="offset points",
-                    ha="center", va="bottom",
-                    rotation=90,
-                    color=color)
-
-def plot_grouped_bars(ax, data, metrics, variants, bar_width=0.08, group_gap_scale=0.8, y_max=1.0, title="", label_color="black"):
-    """
-    Plot grouped bars for a given dataset on the provided Axes object.
-    
-    Args:
-        ax (matplotlib.axes.Axes): The Axes object to plot on.
-        data (np.ndarray): Shape (n_metrics, n_variants).
-        metrics (list): List of metric names (x-axis labels).
-        variants (list): List of variant/model names (legend labels).
-        bar_width (float): Width of each bar.
-        group_gap_scale (float): Factor to scale the gap between metric groups (<1 reduces gap).
-        y_max (float): Upper limit for the y-axis.
-        title (str): Title for the subplot.
-        label_color (str): Color for the text labels.
-    """
-    n_metrics, n_variants = data.shape
-    # Generate x positions for each metric group, then scale to reduce the gap.
-    x = np.arange(n_metrics) * group_gap_scale
-
-    for i in range(n_variants):
-        rects = ax.bar(
-            x + i * bar_width,
-            data[:, i],
-            bar_width,
-            label=variants[i]
-        )
-        add_bar_labels_inside(rects, ax, color=label_color)
-    
-    ax.set_title(title)
-    # Center xticks relative to the group
-    ax.set_xticks(x + (n_variants - 1) * bar_width / 2)
-    ax.set_xticklabels(metrics)
-    ax.set_ylim([0, y_max])
-    ax.set_ylabel("Performance")
+def annotate_points(ax, x, y, fmt="{:.3f}", fontsize=9):
+    """Annotate each point slightly above its marker."""
+    for xi, yi in zip(x, y):
+        ax.annotate(fmt.format(yi), (xi, yi),
+                    xytext=(0, 6), textcoords="offset points",
+                    ha="center", va="bottom", fontsize=fontsize)
 
 def main():
-    # Define metrics and variants
-    metrics = ["AUC", "AUPR"]
+    # Variants (x-axis)
     variants = [
-        "MGI(w/o Feeding Forward Layers)",
         "MGI(w/o DyM Layers)",
+        "MGI(w/o MSA Module)",
         "MGI(w/o GNN Module)",
-        "MGI(w/o Interactive Module)",
+        "MGI(w/o Attention Module)",
         "MGI"
     ]
+    
+    # Reduce spacing between x-axis groups
+    x = np.arange(len(variants)) * 0.7
 
-    # Example data for Paratope and Epitope
+    # Data (metrics x variants)
     paratope_data = np.array([
-        [0.961, 0.830, 0.822, 0.964, 0.966],  # AUC
-        [0.700, 0.679, 0.276, 0.722, 0.726]   # AUPR
+        [0.982, 0.982, 0.964, 0.980, 0.982],  # AUC
+        [0.753, 0.747, 0.584, 0.726, 0.751]   # AUPR
     ])
     epitope_data = np.array([
-        [0.941, 0.800, 0.687, 0.899, 0.940],  # AUC
-        [0.536, 0.408, 0.070, 0.365, 0.545]   # AUPR
+        [0.809, 0.801, 0.766, 0.798, 0.812],  # AUC
+        [0.466, 0.449, 0.409, 0.454, 0.472]   # AUPR
     ])
 
-    # Create two subplots: one for Paratope and one for Epitope
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10), sharex=True)
 
-    # Plot Paratope data with narrower bars and reduced group gap
-    plot_grouped_bars(ax1, paratope_data, metrics, variants, bar_width=0.08, group_gap_scale=0.8, y_max=1.0,
-                      title="Paratope", label_color="white")  # Use white if bars are dark
-    ax1.legend(ncol=3)
+    # === AUC subplot ===
+    ax1.plot(x, paratope_data[0], marker='o', linewidth=2.5, markersize=8,
+             color="tab:blue", label="Paratope AUC")
+    annotate_points(ax1, x, paratope_data[0])
+    ax1.plot(x, epitope_data[0], marker='o', linewidth=2.5, markersize=8,
+             color="tab:green", label="Epitope AUC")
+    annotate_points(ax1, x, epitope_data[0])
 
-    # Plot Epitope data with narrower bars and reduced group gap
-    plot_grouped_bars(ax2, epitope_data, metrics, variants, bar_width=0.08, group_gap_scale=0.8, y_max=1.0,
-                      title="Epitope", label_color="black")
-    
-    plt.tight_layout()
+    ax1.set_ylabel("AUC")
+    ax1.set_ylim(0.75, 1.0)   # zoom for AUC
+    ax1.set_title("MGI Ablations: AUC")
+    ax1.grid(True, linestyle="--", alpha=0.4)
+    ax1.legend()
+
+    # === AUPR subplot ===
+    ax2.plot(x, paratope_data[1], marker='s', linestyle='--',
+             linewidth=2.5, markersize=8,
+             color="tab:orange", label="Paratope AUPR")
+    annotate_points(ax2, x, paratope_data[1])
+    ax2.plot(x, epitope_data[1], marker='s', linestyle='--',
+             linewidth=2.5, markersize=8,
+             color="tab:red", label="Epitope AUPR")
+    annotate_points(ax2, x, epitope_data[1])
+
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(variants, rotation=0, ha="center")
+    ax2.set_ylabel("AUPR")
+    ax2.set_ylim(0.35, 0.8)   # zoom for AUPR
+    ax2.set_title("MGI Ablations: AUPR")
+    ax2.grid(True, linestyle="--", alpha=0.4)
+    ax2.legend()
+
+    fig.tight_layout()
     plt.show()
 
 if __name__ == "__main__":

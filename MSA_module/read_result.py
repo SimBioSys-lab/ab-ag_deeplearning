@@ -1,10 +1,12 @@
 import pandas as pd
+import sys
 
+file_name = sys.argv[1]
 # Initialize an empty list to store the results
 results = []
 
 # Read the file line by line
-with open("NM4.5.out", "r") as file:
+with open(file_name, "r") as file:
     current_model = None
     current_fold = None
     model_structure = None
@@ -20,9 +22,9 @@ with open("NM4.5.out", "r") as file:
         # Check if the line contains the model name
         if line.startswith("Testing model:"):
             current_model = line.split(":")[1].strip()
-            current_fold = current_model.split("_")[1][-1]  # Extract fold number
-            model_structure = "_".join(current_model.split("_")[2:5])  # Extract model structure
-            dropout = float(current_model.split("_")[-1][2:-4])  # Extract dropout value
+            current_fold = current_model.split("_")[-1].split('.')[0][4:]  # Extract fold number
+            model_structure = "_".join(current_model.split("_")[1:7])  # Extract model structure
+            dropout = float(current_model.split("_")[4][2:])  # Extract dropout value
             category = None  # Reset the category when starting a new model
 
         # Check for category (e.g., Lchain, Hchain, Antibody, Antigen)
@@ -30,7 +32,7 @@ with open("NM4.5.out", "r") as file:
             category = line.split("Metrics for ")[1][:-1]  # Extract category (e.g., Lchain, Hchain, etc.)
 
         # Skip AGchain_0, AGchain_1, and AGchain_2
-        if category in {"AGchain_0", "AGchain_1", "AGchain_2", "Lchain", "Hchain"}:
+        if category in {"AGchain_0", "AGchain_1", "AGchain_2", "AGchain_3", "Lchain", "Hchain"}:
             continue
 
         # Extract AUC-ROC and AUC-PR values

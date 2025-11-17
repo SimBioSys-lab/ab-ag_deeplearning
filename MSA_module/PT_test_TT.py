@@ -14,20 +14,19 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
 
 # Read model filenames
-with open('tt45model_files', 'r') as f:
+with open('para_newesm_i_files', 'r') as f:
     models = [line.strip() for line in f if line.strip()]
 
 # Test configuration
 test_config = {
     'batch_size': 1,
-    'sequence_file': 'cleaned_para_test_sequences_1600.npz',
-    'data_file': 'cleaned_para_test_interfaces_1600.npz',
-    'edge_file': 'cleaned_para_test_edges_1600.npz',
+    'sequence_file': 'para_test_esmsequences_1600.npz',
+    'data_file': 'para_test_esminterfaces_1600.npz',
+    'edge_file': 'para_test_esmedges_1600.npz',
     'max_len': 1600,
-    'vocab_size': 23,
+    'vocab_size': 31,
     'num_classes': 2
 }
-
 # Custom collate function
 def custom_collate_fn(batch):
     sequences, pt, edge = zip(*batch)
@@ -49,7 +48,7 @@ test_dataset = SequenceParatopeDataset(
     edge_file=test_config['edge_file'],
     max_len=test_config['max_len']
 )
-test_loader = DataLoader(test_dataset, batch_size=test_config['batch_size'], 
+test_loader = DataLoader(test_dataset, batch_size=test_config['batch_size'],
                            collate_fn=custom_collate_fn, shuffle=False)
 
 # Set device
@@ -66,16 +65,13 @@ for model_file in models:
     print(f"\nTesting model: {model_file}")
     # Parse model configuration from filename
     parts = model_file.split('_')
-#    num_layers = int(parts[2][1:])
-#    num_gnn_layers = int(parts[3][1:])
-#    num_int_layers = int(parts[4][1:])
     num_layers = int(parts[1][1:])
     num_gnn_layers = int(parts[2][1:])
     num_int_layers = int(parts[3][1:])
     embed_dim = 256
     num_heads = 16
-    drop_path_rate=0.1
-    dropout = float(parts[4][2:-4])
+    dropout = float(parts[4][2:])
+    drop_path_rate = float(parts[5][3:])
     # Initialize model
     model = ClassificationModel(
         vocab_size=test_config['vocab_size'],
@@ -90,11 +86,28 @@ for model_file in models:
         num_classes=test_config['num_classes']
     )
     model = model.to(device)
-    # Load model weights
-    checkpoint = torch.load(model_file, map_location=device)
-    if 'module.' in list(checkpoint.keys())[0]:
-        checkpoint = {k[len('module.'):]: v for k, v in checkpoint.items()}
-    model.load_state_dict(checkpoint)
+#    # Load model weights
+#    checkpoint = torch.load(model_file, map_location=device)
+#    if 'module.' in list(checkpoint.keys())[0]:
+#        checkpoint = {k[len('module.'):]: v for k, v in checkpoint.items()}
+#    model.load_state_dict(checkpoint)
+    # ─── Load checkpoint and normalise keys ───────────────────────────
+    checkpoint = torch.load(model_file, map_location=device,weights_only=True)
+    
+    # 1) remove the SWA buffer that isn’t a real parameter
+    checkpoint.pop("n_averaged", None)
+    
+    # 2) strip leading "module." (DataParallel / DDP wrapper)
+    checkpoint = {k.replace("module.", "", 1): v for k, v in checkpoint.items()}
+    checkpoint = {k.replace("module.", "", 1): v for k, v in checkpoint.items()}
+    
+    # 3) load into model
+    missing, unexpected = model.load_state_dict(checkpoint, strict=False)
+    
+    if missing:
+        print("Missing keys :", missing)
+    if unexpected:
+        print("Unexpected  :", unexpected)
     model.eval()
 
     # Initialize metrics for each chain and the combined antibody and antigen
@@ -123,7 +136,7 @@ for model_file in models:
 
                 # Perform inference and get last_attention from the model.
                 with autocast("cuda"):
-                    outputs, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges, 
+                    outputs, last_attention = model(sequences=sequence_tensor, padded_edges=padded_edges,
                                                     return_attention=True)
 #                print('attn_shape:', last_attention.shape)
                 outputs = outputs.squeeze(1)
@@ -143,7 +156,7 @@ for model_file in models:
 #                sample_idx += 1
 
                 # Extract EOCs from the sequence (assumes channel 0 holds the sequence integers)
-                EOCs = np.where(sequence_tensor[0, 0, :].cpu().numpy() == 22)[0]
+                EOCs = np.where(sequence_tensor[0, 0, :].cpu().numpy() == 24)[0]
 
                 # Define chain types and splits
                 chain_types = ["Lchain", "Hchain"] + [f"AGchain_{i}" for i in range(len(EOCs) - 2)]

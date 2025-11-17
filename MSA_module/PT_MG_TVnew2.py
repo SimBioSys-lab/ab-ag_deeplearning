@@ -40,9 +40,9 @@ cfg = {
 
     # optimisation
     'batch_size':     4,
-    'num_epochs':     60,
-    'warmup_epochs':  5,
-    'swa_start':      30,
+    'num_epochs':     50,
+    'warmup_epochs':  10,
+    'swa_start':      20,
     'learning_rate':  2e-4,
     'weight_decay':   1e-2,
     'max_grad_norm':  0.1,
@@ -53,9 +53,9 @@ cfg = {
     'early_stop':     20,
 
     # pos-weight schedule
-    'weight_start':   1.0,
+    'weight_start':   10.0,
     'weight_end':     1.0,
-    'weight_anneal_epochs': 20,
+    'weight_anneal_epochs': 10,
 }
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -123,12 +123,12 @@ for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(ds))),1):
         num_gnn_layers=cfg['num_gnn_layers'], num_int_layers=cfg['num_int_layers'],
         num_classes=2, drop_path_rate=cfg['drop_path_rate']
     ).to(device)
-#    # Load parameters
-#    core_params = torch.load('PPI_model_l0_g20_i8_do0.15_dpr0.15_lr0.0002_fold1_core.pth', map_location=device)
-#    # Update model parameters
-#    model_state = model.state_dict()
-#    model_state.update(core_params)
-#    model.load_state_dict(model_state)
+    # Load parameters
+    core_params = torch.load('isParamodel_l0_g20_i8_dp0.1_core.pth', map_location=device)
+    # Update model parameters
+    model_state = model.state_dict()
+    model_state.update(core_params)
+    model.load_state_dict(model_state)
 
     optim_ = optim.AdamW(model.parameters(), lr=cfg['learning_rate'],
                          weight_decay=cfg['weight_decay'])
@@ -172,12 +172,12 @@ for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(ds))),1):
             if patience >= cfg['early_stop']:
                 print("Early stop"); break
 
-#    # batch-norm refresh & save
-#    if epoch >= cfg['swa_start']:
-#        update_bn(tr_loader, swa_model)
-#        best_state = swa_model.state_dict()
+    # batch-norm refresh & save
+    if epoch >= cfg['swa_start']:
+        update_bn(tr_loader, swa_model)
+        best_state = swa_model.state_dict()
 
-    name = (f"iParamodel_l{cfg['num_layers']}_g{cfg['num_gnn_layers']}"
+    name = (f"isiParamodel_l{cfg['num_layers']}_g{cfg['num_gnn_layers']}"
             f"_i{cfg['num_int_layers']}_do{cfg['dropout']:.2f}"
             f"_dpr{cfg['drop_path_rate']:.2f}_lr{cfg['learning_rate']}"
             f"_fold{fold}.pth")

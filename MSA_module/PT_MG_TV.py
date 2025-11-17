@@ -1,66 +1,54 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import os, math, logging, torch, numpy as np
+import math, os, torch, numpy as np
 import torch.nn as nn
 import torch.optim as optim
 from torch.cuda.amp import autocast, GradScaler
 from torch.optim.lr_scheduler import LambdaLR
+from torch.optim.swa_utils import AveragedModel, SWALR, update_bn
 from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import KFold
-
 from Dataloader_itf import SequenceParatopeDataset
-from Models_fullnew   import ClassificationModel
+from Models_fullnew import ClassificationModel
 
-# ───────────────────────────────── CONFIG
-cfg = {
-    # data / model paths
-    'sequence_file':  'MIPE_tv_sequences_1600.npz',
-    'data_file':      'MIPE_tv_interfaces_1600.npz',
-    'edge_file':      'MIPE_tv_edges_1600.npz',
-
-    'vocab_size': 23,   'seq_len': 1600,
-    'embed_dim':  256,  'num_heads': 16,
-    'dropout':    0.25, 'num_layers': 0,
-    'num_gnn_layers': 10, 'num_int_layers': 4,
-    'drop_path_rate': 0.15,'num_classes': 2,
-
+# ───────────────────────────────────────── CONFIG
+config = {
+    # data / model
+    'sequence_file':  'para_tv_esmsequences_1600.npz',
+    'data_file':      'para_tv_esminterfaces_1600.npz',
+    'edge_file':      'para_tv_esmedges_1600.npz',
+    'vocab_size':     31,
+    'seq_len':        1600,
+    'embed_dim':      256,
+    'num_heads':      16,
+    'dropout':        0.1,
+    'num_layers':     1,
+    'num_gnn_layers': 12,
+    'num_int_layers': 4,
+    'drop_path_rate': 0.1,
+    'num_classes':    2,
     # optimisation
-    'batch_size': 4,     'num_epochs': 60,
-    'warmup_epochs': 5,                        # ← swa_start removed
-    'learning_rate': 1e-4,'weight_decay': 1e-2,
-    'max_grad_norm': .1,  'accum_steps': 2,
-
+    'batch_size':     4,
+    'num_epochs':     50,
+    'warmup_epochs':  10,
+    'swa_start':      20,
+    'learning_rate':  2e-4,
+    'weight_decay':   1e-2,
+    'max_grad_norm':  0.1,
+    'accum_steps':    2,
     # early-stop & CV
-    'n_splits': 5,       'early_stop': 15,
-
-    # pos-weight anneal 10 → 1 over 40 epochs
-    'weight_start': 1., 'weight_end': 1.,
-    'weight_anneal_epochs': 10,
+    'n_splits':       5,
+    'early_stop':     20,
+    # pos-weight anneal
+    'weight_start':   20.0,
+    'weight_end':     1.0,
+    'weight_anneal_epochs': 20,
 }
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(config)
+num_gpus = torch.cuda.device_count()
+print(f"Number of GPUs available: {num_gpus}")
 
-# ───────────────────────────────── SET-UP
-ckpt_dir = (f"MIPE_l{cfg['num_layers']}_g{cfg['num_gnn_layers']}"
-            f"_i{cfg['num_int_layers']}_do{cfg['dropout']:.2f}"
-            f"_dpr{cfg['drop_path_rate']:.2f}_lr{cfg['learning_rate']}"
-            "_checkpoints")
-os.makedirs(ckpt_dir, exist_ok=True)
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-    handlers=[logging.StreamHandler(),
-              logging.FileHandler(os.path.join(ckpt_dir, "log.txt"),
-                                  mode="a", encoding="utf-8")],
-)
-log = logging.info
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-scaler = GradScaler()
-log("CONFIG " + str(cfg))
-log(f"GPUs   {torch.cuda.device_count()}")
-
-# ───────────────────────────────── Collate
-def custom_collate(batch):
+# ───────────────────────────────────────── Collate
+def custom_collate_fn(batch):
     seqs, labels, edges = zip(*batch)
     seqs   = torch.stack(seqs)
     labels = torch.tensor(np.array(labels), dtype=torch.long)
@@ -70,135 +58,162 @@ def custom_collate(batch):
         pad = -torch.ones((2, max_e), dtype=torch.long)
         pad[:, :e.shape[0]] = e.T.clone().detach()
         pads.append(pad)
-    return torch.stack(pads), seqs, labels
+    edges = torch.stack(pads)
+    return edges, seqs, labels
 
-# ───────────────────────────────── Train / Val
-def train_one_epoch(model, loader, crit, opt):
-    model.train(); run=0.0
+# Define Focal Loss based on CrossEntropyLoss
+class FocalLossCE(nn.Module):
+    def __init__(self, gamma=2.0, weight=None, reduction='mean', ignore_index=-1):
+        """
+        Focal Loss for multi-class classification.
+
+        Args:
+            gamma (float): Focusing parameter.
+            weight (Tensor, optional): A manual rescaling weight given to each class.
+            reduction (str): 'mean' | 'sum' | 'none'
+            ignore_index (int): Specifies a target value that is ignored and does not contribute to the input gradient.
+        """
+        super(FocalLossCE, self).__init__()
+        self.gamma = gamma
+        self.weight = weight
+        self.reduction = reduction
+        self.ignore_index = ignore_index
+
+    def forward(self, logits, targets):
+        # Compute standard cross-entropy loss (per example)
+        ce_loss = F.cross_entropy(logits, targets, reduction='none', weight=self.weight, ignore_index=self.ignore_index)
+        # Compute the probability of the true class for each example
+        pt = torch.exp(-ce_loss)
+        # Compute focal loss
+        focal_loss = (1 - pt) ** self.gamma * ce_loss
+
+        if self.reduction == 'mean':
+            return focal_loss.mean()
+        elif self.reduction == 'sum':
+            return focal_loss.sum()
+        else:
+            return focal_loss
+
+# ───────────────────────────────────────── Train / Val
+def train_one_epoch(model, loader, criterion, optimizer, scaler):
+    model.train()
+    running = 0.0
     for i,(e,s,l) in enumerate(loader):
         e,s,l = e.to(device), s.to(device), l.to(device)
-        if i % cfg['accum_steps']==0:
-            opt.zero_grad(set_to_none=True)
+        if i % config['accum_steps']==0:
+            optimizer.zero_grad(set_to_none=True)
         with autocast():
             out,_=model(sequences=s, padded_edges=e, return_attention=True)
-            loss=crit(out.view(-1,2), l.view(-1))/cfg['accum_steps']
+            loss = criterion(out.view(-1,2), l.view(-1))/config['accum_steps']
         scaler.scale(loss).backward()
-        if (i+1)%cfg['accum_steps']==0:
-            scaler.unscale_(opt)
-            nn.utils.clip_grad_norm_(model.parameters(), cfg['max_grad_norm'])
-            scaler.step(opt); scaler.update()
-        run+=loss.item()*cfg['accum_steps']
-    return run/len(loader)
-
+        if (i+1)%config['accum_steps']==0:
+            scaler.unscale_(optimizer)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), config['max_grad_norm'])
+            scaler.step(optimizer)
+            scaler.update()
+        running += loss.item()*config['accum_steps']
+    return running/len(loader)
 @torch.no_grad()
-def validate(model, loader, crit):
-    model.eval(); tot=0.0
+def validate(model, loader, criterion):
+    model.eval()
+    v=0.0
     for e,s,l in loader:
         e,s,l = e.to(device), s.to(device), l.to(device)
-        out   = model(sequences=s, padded_edges=e)
-        tot  += crit(out.view(-1,2), l.view(-1)).item()
-    return tot/len(loader)
+        out = model(sequences=s, padded_edges=e)
+        v  += criterion(out.view(-1,2), l.view(-1)).item()
+    return v/len(loader)
 
-# ───────────────────────────────── Dataset & CV
-ds = SequenceParatopeDataset(cfg['data_file'],
-                             cfg['sequence_file'],
-                             cfg['edge_file'],
-                             cfg['seq_len'])
-kf = KFold(n_splits=cfg['n_splits'], shuffle=True, random_state=42)
+# ───────────────────────────────────────── Dataset & CV
+dataset = SequenceParatopeDataset(
+    data_file=config['data_file'],
+    sequence_file=config['sequence_file'],
+    edge_file=config['edge_file'],
+    max_len=config['seq_len'])
+kf = KFold(n_splits=config['n_splits'], shuffle=True, random_state=42)
 
-# ───────────────────────────────── Main loop
-for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(ds))),1):
-    log(f"\n── Fold {fold}/{cfg['n_splits']} ──")
-
-    tr_loader = DataLoader(Subset(ds,tr_idx), batch_size=cfg['batch_size'],
-                           shuffle=True, collate_fn=custom_collate)
-    vl_loader = DataLoader(Subset(ds,vl_idx), batch_size=cfg['batch_size'],
-                           shuffle=False, collate_fn=custom_collate)
+# ───────────────────────────────────────── Main loop
+scaler = GradScaler()
+for fold,(tr_idx,vl_idx) in enumerate(kf.split(np.arange(len(dataset))),1):
+    print(f"\n── Fold {fold}/{config['n_splits']}")
+    tr_loader=DataLoader(Subset(dataset,tr_idx),batch_size=config['batch_size'],
+                         shuffle=True,collate_fn=custom_collate_fn)
+    vl_loader=DataLoader(Subset(dataset,vl_idx),batch_size=config['batch_size'],
+                         shuffle=False,collate_fn=custom_collate_fn)
 
     model = ClassificationModel(
-        vocab_size=cfg['vocab_size'], seq_len=cfg['seq_len'],
-        embed_dim=cfg['embed_dim'], num_heads=cfg['num_heads'],
-        dropout=cfg['dropout'], num_layers=cfg['num_layers'],
-        num_gnn_layers=cfg['num_gnn_layers'], num_int_layers=cfg['num_int_layers'],
-        num_classes=2, drop_path_rate=cfg['drop_path_rate']).to(device)
+        vocab_size=config['vocab_size'], seq_len=config['seq_len'],
+        embed_dim=config['embed_dim'], num_heads=config['num_heads'],
+        dropout=config['dropout'], num_layers=config['num_layers'],
+        num_gnn_layers=config['num_gnn_layers'], num_int_layers=config['num_int_layers'],
+        num_classes=2, drop_path_rate=config['drop_path_rate'])
+    if num_gpus > 1:
+        print(f"Using {num_gpus} GPUs with DataParallel.")
+        model = nn.DataParallel(model)
+    model = model.to(device)
 #    # Load parameters
-#    core_params = torch.load('PPI_model_l0_g20_i8_do0.15_dpr0.15_lr0.0002_fold1_core.pth', map_location=device)
+#    core_params = torch.load('isicisParamodelnewesm_l1_g10_i5_do0.10_dpr0.10_lr0.0001_fold1_core.pth', map_location=device)
 #    # Update model parameters
 #    model_state = model.state_dict()
 #    model_state.update(core_params)
 #    model.load_state_dict(model_state)
 
-    optim_ = optim.AdamW(model.parameters(), lr=cfg['learning_rate'],
-                         weight_decay=cfg['weight_decay'])
 
-    # warm-up → cosine (80 epochs)
-    def lr_lambda(ep):
-        if ep < cfg['warmup_epochs']:
-            return (ep+1)/cfg['warmup_epochs']
-        p = (ep-cfg['warmup_epochs'])/(cfg['num_epochs']-cfg['warmup_epochs'])
-        return 0.5*(1+math.cos(math.pi*p))
-    scheduler = LambdaLR(optim_, lr_lambda=lr_lambda)
+    # two param groups so we could freeze something later if desired
+    optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'],
+                            weight_decay=config['weight_decay'])
 
-    # ─── auto-resume
-    prefix = f"fold{fold}_"
-    ckpts  = sorted(f for f in os.listdir(ckpt_dir) if f.startswith(prefix))
-    start_e, best_val, patience = 0, float("inf"), 0
-    best_state = model.state_dict()                     # fallback
-    if ckpts:
-        last = os.path.join(ckpt_dir, ckpts[-1])
-        log("Resuming from "+last)
-        chk = torch.load(last, map_location=device)
-        model.load_state_dict(chk['model'])
-        optim_.load_state_dict(chk['optim'])
-        scheduler.load_state_dict(chk['sched'])
-        scaler.load_state_dict(chk['scaler'])
-        start_e, best_val, patience = chk['epoch']+1, chk['best_val'], chk['patience']
+    # warm-up → cosine schedule (group-wise)
+    def lr_lambda(epoch):
+        if epoch < config['warmup_epochs']:
+            return (epoch+1)/config['warmup_epochs']
+        progress = (epoch-config['warmup_epochs'])/(config['num_epochs']-config['warmup_epochs'])
+        return 0.5*(1+math.cos(math.pi*progress))
+    scheduler = LambdaLR(optimizer, lr_lambda=lr_lambda)
 
-    best_path = os.path.join(ckpt_dir, f"{prefix}best.pth")
+    # SWA objects
+    swa_model      = AveragedModel(model)
+    swa_scheduler  = SWALR(optimizer, swa_lr=config['learning_rate']*0.05)
 
-    # ─── epoch loop
-    for epoch in range(start_e, cfg['num_epochs']):
-        # dynamic pos-weight
-        t=min(epoch,cfg['weight_anneal_epochs'])
-        pw=((cfg['weight_anneal_epochs']-t)/cfg['weight_anneal_epochs'])* \
-           (cfg['weight_start']-cfg['weight_end'])+cfg['weight_end']
-        crit = nn.CrossEntropyLoss(torch.tensor([1.0,pw],device=device),
-                                   ignore_index=-1)
+    best_val=float('inf'); patience=0
+    for epoch in range(config['num_epochs']):
+        # dynamic pos-weight (20→1 over first 20 epochs)
+        t=min(epoch,config['weight_anneal_epochs'])
+        pw = ((config['weight_anneal_epochs']-t)/config['weight_anneal_epochs'])* \
+             (config['weight_start']-config['weight_end']) + config['weight_end']
+        criterion = nn.CrossEntropyLoss(weight=torch.tensor([1.0,pw], device=device),
+                                        ignore_index=-1)
 
-        tr= train_one_epoch(model, tr_loader, crit, optim_)
-        vl= validate(model, vl_loader, crit)
-        log(f"Fold {fold} | Ep {epoch:03d} | "
-            f"LR={optim_.param_groups[0]['lr']:.2e} | "
-            f"pw={pw:4.1f} | train={tr:.4f} | val={vl:.4f}")
-
-        scheduler.step()
-
-        # early stop on best-val
-        if vl < best_val:
-            best_val, best_state = vl, model.state_dict(); patience = 0
-            torch.save(best_state, best_path)
-            log(f"✓ new best (val={best_val:.4f}) → {best_path}")
+        tr_loss=train_one_epoch(model,tr_loader,criterion,optimizer,scaler)
+        vl_loss=validate(model,vl_loader,criterion)
+        print(f"Ep{epoch:03d}  LR={optimizer.param_groups[0]['lr']:.2e} "
+              f"pw={pw:.1f}  train={tr_loss:.4f}  val={vl_loss:.4f}")
+        # scheduler / SWA
+        if epoch < config['swa_start']:
+            scheduler.step()
         else:
-            patience += 1
-            if patience >= cfg['early_stop']:
-                log("Early stopping"); break
+            swa_model.update_parameters(model)
+            swa_scheduler.step()
 
-        # rolling ckpt (keep last 3)
-        roll = os.path.join(ckpt_dir, f"{prefix}e{epoch:03d}.pth")
-        torch.save({'epoch':epoch,'model':model.state_dict(),
-                    'optim':optim_.state_dict(),'sched':scheduler.state_dict(),
-                    'scaler':scaler.state_dict(),
-                    'best_val':best_val,'patience':patience}, roll)
-        ckpts = sorted(f for f in os.listdir(ckpt_dir) if f.startswith(prefix))
-        for old in ckpts[:-3]:
-            os.remove(os.path.join(ckpt_dir, old))
+        # early stop on *SWA* val if we're past swa_start, else on model val
+        eval_val = validate(swa_model if epoch>=config['swa_start'] else model,
+                            vl_loader, criterion)
+        if eval_val < best_val:
+            best_val,best_state = eval_val, \
+                (swa_model if epoch>=config['swa_start'] else model).state_dict()
+            patience=0
+        else:
+            patience+=1
+            if patience>=config['early_stop']:
+                print("Early stop triggered")
+                break
 
-    # ─── save final best
-    torch.save(best_state, best_path)          # ensure best snapshot exists
-    final = (f"iPPIMIPEmodel_l{cfg['num_layers']}_g{cfg['num_gnn_layers']}"
-             f"_i{cfg['num_int_layers']}_do{cfg['dropout']:.2f}"
-             f"_dpr{cfg['drop_path_rate']:.2f}_lr{cfg['learning_rate']}"
-             f"_fold{fold}.pth")
-    torch.save(best_state, final)
-    log("Saved final best → "+final)
-
+    # final BN update & save
+    if epoch>=config['swa_start']:
+        update_bn(tr_loader, swa_model)
+        best_state = swa_model.state_dict()
+    ckpt=(f"iParamodelnewesm_l{config['num_layers']}_g{config['num_gnn_layers']}"
+          f"_i{config['num_int_layers']}_do{config['dropout']:.2f}"
+          f"_dpr{config['drop_path_rate']:.2f}_lr{config['learning_rate']}"
+          f"_fold{fold}.pth")
+    torch.save(best_state, ckpt)
+    print("Saved", ckpt)

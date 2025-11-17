@@ -19,5 +19,7 @@
 # Load CUDA
 module load cuda/11.8.0
 
-srun python SS_MG_TT.py 
-#srun python SS_MG_NM.py
+srun python SS_MG_TV.py 
+#srun python SS_MG_TVihd.py
+
+#srun python SS_MG_TVMIPE.py

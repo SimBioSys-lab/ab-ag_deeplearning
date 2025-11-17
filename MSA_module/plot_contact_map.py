@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
 
-att_mat = np.load('global_maps_train10.npz')
+att_mat = np.load('global_maps_ihd_esmtrain.npz')
 # Example: Create a dummy array with shape (1, 4, 2400, 2400)
 # Replace this with your actual array.
-arr = att_mat['6iea'][:1600,:1600]
+arr = att_mat['1ahw']
 #heatmap=arr
 ### Average over the second dimension (axis=1).
 ##averaged_arr = np.mean(arr, axis=1)  # Resulting shape is (1, 2400, 2400)

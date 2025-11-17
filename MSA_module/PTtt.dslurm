@@ -21,7 +21,20 @@ module load cuda/11.8.0
 
 #srun python PT_MSA_GNN.py 
 #srun python PT_MG_TT2.py
-#srun python PT_MG_TVNS.py
-#srun python PT_MG_TVnew2.py
-srun python PT_MG_TVCL.py
+#srun python PT_MG_TVNM.py
+#srun python PT_MG_TVihd_reg.py
+#ls isiciIHDreg*pth > IHD_reg_isici_files
+#srun python PT_test_IHDreg.py IHD_reg_isici_files > IHD_reg_isici.out
+#srun python PT_MG_TVMIPENM.py
+#srun python PT_MG_TVMIPE_newreg.py
+#ls iMIPEreg*pth > MIPE_reg_i_files
+#srun python PT_test_MIPEreg.py MIPE_reg_i_files > MIPE_reg_i.out
+srun python PT_MG_TV_reg.py
+ls isiciParareg*pth > para_reg_isici_files
+srun python PT_test_parareg.py para_reg_isici_files > para_reg_isici.out
+#srun python PT_MG_TVPECANepi_reg.py
+#srun python PT_MG_TVPECAN.py
+#srun python PT_MG_esmPECANepi.py
+#srun python PT_MG_TVab.py
 #srun python PT_MG_PPI.py
+#srun python train_optuna.py --trials 40 --proxy-epochs 18

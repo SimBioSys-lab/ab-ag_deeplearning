@@ -7,7 +7,7 @@ import os
 import numpy as np
 from sklearn.model_selection import KFold
 from Dataloader_ctm import SequenceParatopeDataset
-from Models_full import CTMModel
+from Models_fullnew import CTMModel
 
 # Configuration for model and training
 torch.backends.cudnn.benchmark = True
@@ -17,25 +17,26 @@ torch.cuda.reset_peak_memory_stats()  # Optional: Reset memory tracking
 
 config = {
     'batch_size': 4,
-    'sequence_file': 'combined_np_train_sequences_1600.npz',
-    'data_file': 'global_maps_train10_1600.npz',
-    'edge_file': 'combined_np_train_edges_1600.npz',
+    'sequence_file': 'para_tv_esmsequences_1600.npz',
+    'data_file': 'global_maps_para_esmtv.npz',
+    'edge_file': 'para_tv_esmedges_1600.npz',
     'max_len': 1600,
-    'vocab_size': 23,
+    'vocab_size': 31,
     'embed_dim': 256,
     'num_heads': 16,
     'dropout': 0.1,
-    'num_layers': 0,
-    'num_gnn_layers': 20,
-    'num_int_layers': 8,
+    'num_layers': 1,
+    'num_gnn_layers': 10,
+    'num_int_layers': 5,
+    'drop_path_rate': 0.1,
     'num_classes': 2,
-    'num_epochs': 1000,
+    'num_epochs': 200,
     'learning_rate': 0.0001,
     'max_grad_norm': 0.1,
     'validation_split': 0.1,
     'early_stop_patience': 10,
     'initial_gradient_noise_std': 0.05,
-    'accumulation_steps': 2
+    'accumulation_steps': 1
 }
 
 print(config)
@@ -108,6 +109,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
         num_layers=config['num_layers'],
         num_gnn_layers=config['num_gnn_layers'],
         num_int_layers=config['num_int_layers'],
+        drop_path_rate=config['drop_path_rate'],
         num_classes=config['num_classes']
     )
     if num_gpus > 1:
@@ -115,7 +117,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
         model = nn.DataParallel(model)
     model = model.to(device)
     # Load parameters
-    core_params = torch.load('isicisimodelFull10_fold4_l0_g20_i8_dp0.1_core.pth', map_location=device)
+    core_params = torch.load('isiParareg_l1_g10_i5_do0.20_dpr0.15_lr0.0001_heads16_fold4_core.pth', map_location=device)
     # Update model parameters
     model_state = model.state_dict()
     model_state.update(core_params)
@@ -233,7 +235,7 @@ for fold, (train_indices, val_indices) in enumerate(kf.split(dataset_indices), 1
 
     # Save the best model for the current fold
     if best_model_state is not None:
-        torch.save(best_model_state, f'isicisicmodel_fold{fold}_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_dp{config["dropout"]}.pth')
+        torch.save(best_model_state, f'isicParareg_l{config["num_layers"]}_g{config["num_gnn_layers"]}_i{config["num_int_layers"]}_do{config["dropout"]}_dpr{config["drop_path_rate"]}_fold{fold}.pth')
         print(f"Best model for fold {fold} saved successfully.")
     else:
         print(f"No best model found for fold {fold}; check training configurations.")

@@ -19,12 +19,16 @@
 
 module load cuda/11.8.0
 #srun python PT_test_ct.py
-srun python PT_test_TT.py
-#srun python PT_test_TT_single.py
+#srun python PT_test_TT.py > para_newesm_i.out
+#srun python PT_test_TTNM.py > paraNM_newesm_i.out
+#srun python PT_test_newihd.py > ihd10_newesm_i.out
+#srun python PT_test_MIPE.py > MIPE_newesm_i.out
+#srun python PT_test_PECAN.py > pecan_newesm_i.out
+#ls iPECANepireg_*pth > pecanepi_reg_i_files
+#srun python PT_test_PECANepi.py > pecanepi_reg_i.out
+#ls iMIPEreg*pth > MIPE_reg_i_files
+#srun python PT_test_MIPEreg.py > MIPE_reg_i.out
+ls iParareg*pth > para_reg_i_files
+srun python PT_test_pararegshap.py para_reg_i_files > para_reg_i.out
 
-#srun python PT_test_comb45.py
-#srun python PT_test_comb10.py
-#python pad_edges.py
-#srun python PT_test_NF.py
-#srun python PT_test_NM.py
-#srun python CTM_test.py
+

@@ -56,10 +56,10 @@ def combine_npz(npz_file1, npz_file2, output_file, conflict_strategy='check'):
 # ---------------- Example Usage ----------------
 if __name__ == "__main__":
     # Set the file paths for your input NPZ files and the output file.
-    npz_file1 = "global_maps_para_train10.npz"
-    npz_file2 = "global_maps_para_val10.npz"
-    output_file = "global_maps_para_tv10_1600.npz"
+    npz_file1 = "para_train_esmss.npz"
+    npz_file2 = "para_val_esmss.npz"
+    output_file = "para_tv_esmss.npz"
 
     # Combine the NPZ files.
-    combine_npz(npz_file1, npz_file2, output_file, conflict_strategy='check')
+    combine_npz(npz_file1, npz_file2, output_file, conflict_strategy='skip')
 

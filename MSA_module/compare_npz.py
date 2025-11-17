@@ -33,7 +33,7 @@ def compare_npz_files(npz_file1, npz_file2, atol=1e-8, rtol=1e-5):
 
 if __name__ == "__main__":
     # Replace these with your NPZ file paths
-    npz_file1 = "cleaned_para_tv_sequences_1600.npz"
-    npz_file2 = "cleaned_para_test_sequences_1600.npz"
+    npz_file1 = "para_test_esminterfaces_1600.npz"
+    npz_file2 = "pecan_test_esminterfaces_1600.npz"
     compare_npz_files(npz_file1, npz_file2)
 

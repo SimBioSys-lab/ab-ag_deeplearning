@@ -67,8 +67,8 @@ config = {
     'num_int_layers': 8,
     'drop_path_rate': 0.1,
     'num_classes': 8,
-    'num_epochs': 1000,
-    'learning_rate': 0.0001,
+    'num_epochs': 50,
+    'learning_rate': 0.0002,
     'max_grad_norm': 0.1,
     'early_stop_patience': 15,
     'initial_gradient_noise_std': 0.05,
@@ -145,7 +145,9 @@ if num_gpus > 1:
     model = nn.DataParallel(model)
 model = model.to(device)
 # Load parameters
-core_params = torch.load('imodel_l0_g20_i8_do0.10_dpr0.10_lr0.0001_fold1_core.pth', map_location=device)
+core_params = torch.load('isiciParamodelold_l0_g20_i8_do0.15_dpr0.15_lr0.0001_fold5_core.pth', map_location=device)
+#if 'module.' in list(core_params.keys())[0]:
+#    core_params = {k[len('module.'):]: v for k, v in core_params.items()}
 # Update model parameters
 model_state = model.state_dict()
 model_state.update(core_params)
@@ -221,7 +223,7 @@ for epoch in range(config['num_epochs']):
 
     if avg_val_loss < best_val_loss:
         best_val_loss = avg_val_loss
-        torch.save(model.state_dict(), f"ismodelFullNew45_l{config['num_layers']}_g{config['num_gnn_layers']}_i{config['num_int_layers']}_dp{config['dropout']}.pth")
+        torch.save(model.state_dict(), f"isicisParamodelold_l{config['num_layers']}_g{config['num_gnn_layers']}_i{config['num_int_layers']}_dp{config['dropout']}.pth")
         print(f"New best model saved with validation loss: {avg_val_loss:.4f}")
         early_stop_counter = 0
     else:

@@ -121,7 +121,7 @@ class AxialAttention(nn.Module):
 
 
 class MSASelfAttentionBlock(nn.Module):
-    def __init__(self, dim, seq_len, heads, dim_head, dropout=0.0):
+    def __init__(self, dim, heads, dim_head, dropout=0.0):
         super().__init__()
         self.row_attn = AxialAttention(dim=dim, heads=heads, dropout=dropout, row_attn=True, col_attn=False)
         self.col_attn = AxialAttention(dim=dim, heads=heads, dropout=dropout, row_attn=False, col_attn=True)
@@ -129,6 +129,17 @@ class MSASelfAttentionBlock(nn.Module):
         x = self.row_attn(x)
         x = self.col_attn(x)
         return x
+
+def _find_chain_splits_1d(tokens: torch.Tensor, eoc_id: int = 24):
+    """
+    Locate EOC (=22) positions in a 1-D token row.
+    Returns list of (start, end) inclusive–exclusive spans,
+    e.g. [(0,20), (20,65), …].
+    """
+    eocs = (tokens == eoc_id).nonzero(as_tuple=True)[0].tolist()
+    starts = [0] + eocs
+    ends   = eocs + [tokens.numel()]
+    return list(zip(starts, ends))
 
 class CoreModel(nn.Module):
     def __init__(
@@ -144,10 +155,10 @@ class CoreModel(nn.Module):
         super().__init__()
         print(f"Initializing CoreModel with {num_layers} layers, drop_path_rate={drop_path_rate}")
 
-        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=1)
 
         self.self_attention_layers = nn.ModuleList([
-            MSASelfAttentionBlock(dim=embed_dim, seq_len=seq_len, heads=num_heads, dim_head=64, dropout=dropout)
+            MSASelfAttentionBlock(dim=embed_dim, heads=num_heads, dim_head=64, dropout=dropout)
             for _ in range(num_layers)
         ])
         self.ffn_layers = nn.ModuleList([
@@ -178,26 +189,52 @@ class CoreModel(nn.Module):
         ])
 
     def forward(self, sequences: torch.Tensor) -> torch.Tensor:
-        x = self.embedding(sequences)  # (B, L, D)
-
+        """
+        sequences : (B, 64, L) integer IDs
+        returns   : (B, 64, L, D) embeddings
+        """
+        B, S, L = sequences.shape                      # S == 64
+        D       = self.embedding.embedding_dim
+        dtype   = self.embedding.weight.dtype
+    
+        # ────────────────── embed and reshape ───────────────────────────
+        x = self.embedding(sequences.view(B * S, L))   # (B·64, L, D)
+        x = x.view(B, S, L, D)                         # (B,64,L,D)
+    
+        # chain boundaries for every protein (compute once)
+        batch_splits = [_find_chain_splits_1d(sequences[b, 0]) for b in range(B)]
+    
+        # ────────────────── transformer layers ──────────────────────────
         for i in range(len(self.self_attention_layers)):
-            # --- Self-Attention branch ---
-            res = x
-            x_attn = self.self_attention_layers[i](x)  # (B, L, D)
+            # 1️⃣  Self-attention per chain -- no in-place writes
+            res    = x                                 # residual
+            x_attn = x.clone()                         # SAFE scratch
+    
+            for b in range(B):
+                for s, e in batch_splits[b]:
+                    li   = e - s                       # chain length
+                    # (1, 64, li, D) keep batch dim for AxialAttention
+                    seg  = x[b:b+1, :, s:e, :]
+    
+                    seg_out = self.self_attention_layers[i](seg)  # (1,64,li,D)
+                    x_attn[b, :, s:e, :] = seg_out.squeeze(0)     # write to scratch
+    
             x_attn = self.dropout(x_attn)
-            x_attn = self.attn_dym[i](x_attn)                     # external DyM
-            x_attn = self.attn_drop_paths[i](x_attn)              # stochastic depth
-            x = self.norm_layers[i](res + x_attn)
-
-            # --- FFN branch ---
-            res = x
-            x_ffn = self.ffn_layers[i](x)                         # (B, L, D)
+            x_attn = self.attn_dym[i](x_attn)
+            x_attn = self.attn_drop_paths[i](x_attn)
+            x      = self.norm_layers[i](res + x_attn)            # (B,64,L,D)
+    
+            # 2️⃣  FFN on the whole row (unchanged)
+            res   = x
+            x_ffn = self.ffn_layers[i](x.view(B * S, L, D))       # (B·64,L,D)
+            x_ffn = x_ffn.view(B, S, L, D)
+    
             x_ffn = self.dropout(x_ffn)
-            x_ffn = self.ffn_dym[i](x_ffn)                        # external DyM
-            x_ffn = self.ffn_drop_paths[i](x_ffn)                 # stochastic depth
-            x = self.ffn_norm_layers[i](res + x_ffn)
-
-        return x
+            x_ffn = self.ffn_dym[i](x_ffn)
+            x_ffn = self.ffn_drop_paths[i](x_ffn)
+            x     = self.ffn_norm_layers[i](res + x_ffn)          # (B,64,L,D)
+    
+        return x       
 
 class CGModel(nn.Module):
     """

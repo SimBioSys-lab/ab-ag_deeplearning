@@ -19,9 +19,9 @@ cfg = {
 
     'vocab_size': 23,   'seq_len': 1600,
     'embed_dim':  256,  'num_heads': 16,
-    'dropout':    0.15, 'num_layers': 0,
+    'dropout':    0.1, 'num_layers': 0,
     'num_gnn_layers': 20, 'num_int_layers': 8,
-    'drop_path_rate': 0.15,'num_classes': 2,
+    'drop_path_rate': 0.1,'num_classes': 2,
 
     # optimisation
     'batch_size': 4,     'num_epochs': 80,

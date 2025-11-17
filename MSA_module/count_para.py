@@ -1,7 +1,7 @@
 import torch
 
 # Load the state dict
-pth_file = "mcmodel_fold1_l1_g2_i1_dp0.0.pth"
+pth_file = "iParamodel_l0_g20_i8_do0.15_dpr0.15_lr0.0002_fold1.pth"
 state_dict = torch.load(pth_file, map_location=torch.device('cpu'))
 
 # Calculate total parameters

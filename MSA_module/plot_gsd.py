@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
 # Data
-x = [0, 1, 2]
-y1 = [0.8856, 0.8967, 0.9067]  # AUC-PR of paratope prediction
-y2 = [0.5536, 0.5536, 0.5594]  # AUC-PR of epitope prediction
+x = [0, 1, 2, 3]
+y1 = [0.751, 0.769, 0.779, 0.779]  # AUC-PR of paratope prediction
+y2 = [0.472, 0.473, 0.484, 0.490]  # AUC-PR of epitope prediction
 
 # Create two subplots: top for paratope prediction, bottom for epitope prediction
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(6, 8), sharex=True)
@@ -14,7 +14,7 @@ max_y1 = max(y1)
 max_idx_y1 = y1.index(max_y1)
 ax1.scatter(x[max_idx_y1], max_y1, color='red', s=100, zorder=3, label='Max Paratope AUC-PR')
 ax1.annotate(
-    f'Max: {max_y1:.4f}',
+    f'Max: {max_y1:.3f}',
     xy=(x[max_idx_y1], max_y1),
     xytext=(x[max_idx_y1] - 0.5, max_y1 - 0.01),
     textcoords='data',
@@ -35,7 +35,7 @@ max_y2 = max(y2)
 max_idx_y2 = y2.index(max_y2)
 ax2.scatter(x[max_idx_y2], max_y2, color='red', s=100, zorder=3, label='Max Epitope AUC-PR')
 ax2.annotate(
-    f'Max: {max_y2:.4f}',
+    f'Max: {max_y2:.3f}',
     xy=(x[max_idx_y2], max_y2),
     xytext=(x[max_idx_y2] - 0.5, max_y2 - 0.01),
     textcoords='data',
@@ -43,7 +43,7 @@ ax2.annotate(
     fontsize=10,
     color='red'
 )
-ax2.set_xlabel('Step of GSD', fontsize=12)
+ax2.set_xlabel('Step of CTSR', fontsize=12)
 ax2.set_ylabel('AUC-PR', fontsize=12)
 ax2.set_title('Epitope Prediction AUC-PR', fontsize=14)
 ax2.grid(True, linestyle='--', alpha=0.7)

@@ -1,7 +1,7 @@
 import numpy as np
 
 # Replace 'your_file.npz' with the path to your .npz file.
-npz_data = np.load('MIPE_tv_interfaces.npz')
+npz_data = np.load('pecan_tv_esminterfaces_1600.npz')
 
 # Initialize counters for overall ones and zeros.
 total_ones = 0
